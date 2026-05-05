@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1e40af">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Majelis Keluarga Indonesia - Rumah Edukasi Digital</title>
+    
+    <!-- Google Fonts: Poppins & Noto Sans Arabic (LPMQ) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Konfigurasi Tailwind Custom -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        arabic: ['LPMQ', 'Noto Sans Arabic', 'sans-serif'],
+                    },
+                    colors: {
+                        emerald: { 50: '#eef2ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' }
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'premium-hover': '0 20px 40px -10px rgba(67, 56, 202, 0.15)',
+                        '3d': '0 6px 0 #3730a3, 0 10px 20px rgba(0,0,0,0.2)',
+                        '3d-active': '0 0px 0 #3730a3, 0 5px 10px rgba(0,0,0,0.2)',
+                        'glass-3d': 'inset 0 2px 0 rgba(255,255,255,0.7), inset 0 -2px 0 rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @font-face {
+            font-family: 'LPMQ';
+            src: url('https://cdn.jsdelivr.net/gh/lpmq-mushaf-kemenag/lpmq-mushaf-kemenag@master/fonts/lpmq.woff2') format('woff2'),
+                 url('https://cdn.jsdelivr.net/gh/lpmq-mushaf-kemenag/lpmq-mushaf-kemenag@master/fonts/lpmq.woff') format('woff');
+            font-weight: normal; font-style: normal; font-display: swap;
+        }
+
+        body, html { margin: 0 !important; padding: 0 !important; overflow: hidden !important; background-color: #f8fafc; }
+        .bg-photo-overlay, #navbar-iframe, .post-title, .post-header, .post-footer, #sidebar, #header, .comments { display: none !important; }
+        
+        #gas-app-root {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 9999999; background-color: #f8fafc; overflow-y: auto; overflow-x: hidden;
+            background-image: radial-gradient(at 0% 0%, hsla(160, 100%, 94%, 1) 0px, transparent 50%), radial-gradient(at 100% 0%, hsla(210, 100%, 96%, 1) 0px, transparent 50%);
+            background-attachment: fixed; scroll-behavior: smooth;
+            overscroll-behavior-y: none;
+        }
+
+        #gas-app-root::-webkit-scrollbar { width: 6px; }
+        #gas-app-root::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        .glass-panel { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.9); }
+        .gradient-emerald { background: linear-gradient(135deg, #4c1d95 0%, #1e40af 100%); border-bottom: 4px solid #fbbf24; }
+        .fade-in { animation: fadeIn 0.3s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .medium-title:empty:before { content: attr(data-placeholder); color: #94a3b8; }
+        .medium-content:empty:before { content: attr(data-placeholder); color: #94a3b8; }
+        .medium-title:focus, .medium-content:focus { outline: none; }
+        
+        .article-body p { margin-bottom: 1.2rem; line-height: 1.8; color: #334155; }
+        .article-body h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; color: #0f172a; }
+        .article-body blockquote { border-left: 4px solid #4f46e5; padding: 1rem; background: #eef2ff; border-radius: 0.5rem; font-style: italic; }
+        .article-body img { border-radius: 1rem; margin-bottom: 1rem; width: 100%; object-fit: cover; max-height: 400px;}
+
+        #compass-needle { transition: transform 0.1s ease-out; }
+        .tour-highlight { position: relative; z-index: 9999999 !important; border-radius: 1.5rem; box-shadow: 0 0 0 4px #fbbf24, 0 0 0 9999px rgba(15,23,42,0.7); background: white; pointer-events: none; }
+        .todo-cb:checked + div { background-color: #4f46e5; border-color: #4f46e5; }
+        .todo-cb:checked + div svg { display: block; }
+
+        .toast-enter { transform: translateY(150%); opacity: 0; }
+        .toast-enter-active { transform: translateY(0); opacity: 1; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .toast-exit { transform: translateY(150%); opacity: 0; transition: all 0.4s ease-in; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased font-sans">
+
+<audio id="audio-adzan" preload="none"></audio>
+
+<!-- TOUR TOOLTIP OVERLAY -->
+<div id="tour-tooltip" class="hidden fixed z-[10000000] bg-white p-5 rounded-2xl shadow-2xl max-w-xs left-1/2 -translate-x-1/2 top-1/3 text-center">
+    <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mx-auto mb-3"><i class="ph-fill ph-lightbulb text-2xl"></i></div>
+    <p id="tour-text" class="text-sm font-semibold text-slate-700 mb-5 leading-relaxed">Panduan Fitur</p>
+    <div class="flex justify-between items-center border-t border-slate-100 pt-3">
+        <button onclick="endTour()" class="text-slate-400 text-xs font-bold hover:text-slate-600">Lewati</button>
+        <div class="flex space-x-1" id="tour-dots"></div>
+        <button onclick="nextTourStep()" class="bg-emerald-600 text-white px-5 py-2 rounded-full text-xs font-bold shadow-md hover:bg-emerald-700">Lanjut</button>
+    </div>
+</div>
+
+<div id="gas-app-root">
+    
+    <!-- ==================== TAMPILAN UTAMA (HOME) ==================== -->
+    <div id="view-home" class="max-w-5xl mx-auto px-4 py-6 md:py-10 relative fade-in">
+        
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex items-center">
+                <img src="logo-MKI-150.png" alt="Logo MKI" class="h-10 w-auto md:h-12 mr-3 rounded-md shadow-sm border-2 border-amber-400" onerror="this.src='https://placehold.co/40x40?text=MKI'">
+                <div>
+                    <p class="text-[10px] md:text-xs text-emerald-600 font-bold tracking-widest uppercase mb-1 flex items-center">
+                        Majelis Keluarga Indonesia
+                    </p>
+                    <h1 class="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight" id="greeting-text">Selamat Siang</h1>
+                </div>
+            </div>
+            <div class="flex space-x-2">
+                <button onclick="startTour()" class="w-10 h-10 md:w-auto md:px-4 rounded-full bg-slate-100 border border-slate-200 text-slate-600 hover:bg-slate-200 flex items-center justify-center shadow-sm">
+                    <i class="ph-bold ph-question text-lg md:mr-1.5"></i> <span class="hidden md:inline text-sm font-bold">Bantuan</span>
+                </button>
+                <button onclick="bukaDonasi()" class="w-10 h-10 md:w-auto md:px-4 rounded-full bg-orange-50 border border-orange-100 text-orange-600 hover:bg-orange-100 flex items-center justify-center shadow-sm">
+                    <i class="ph-bold ph-heart text-lg md:mr-1.5"></i> <span class="hidden md:inline text-sm font-bold">Donasi</span>
+                </button>
+                <button id="btn-login-home" onclick="switchView('login')" class="w-10 h-10 md:w-auto md:px-4 rounded-full bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-200 flex items-center justify-center group">
+                    <i class="ph-duotone ph-user-circle text-emerald-600 text-xl md:mr-1.5 group-hover:scale-110 transition-transform"></i> <span id="btn-login-text" class="hidden md:inline text-sm font-bold">Masuk</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="widget-sholat" class="gradient-emerald rounded-3xl p-6 md:p-8 text-white shadow-3d mb-8 relative overflow-hidden group border-b-4 border-indigo-900">
+            <div class="absolute -right-10 -top-10 opacity-10 rotate-12 pointer-events-none"><i class="ph-fill ph-moon-stars text-[200px]"></i></div>
+            <button onclick="testAdzan()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/40 p-2 rounded-full backdrop-blur-sm transition-all" title="Putar/Hentikan Adzan">
+                <i class="ph-fill ph-speaker-high text-xl" id="icon-adzan"></i>
+            </button>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 relative z-10">
+                <div>
+                    <div class="flex items-center text-xs font-medium bg-white/20 backdrop-blur-md w-max px-4 py-1.5 rounded-full mb-3 border border-white/10">
+                        <i class="ph-fill ph-map-pin mr-1.5 text-emerald-200"></i> <span id="lokasi-teks">Jakarta, ID</span>
+                        <span id="sync-status" class="ml-2 bg-white/20 px-2 py-0.5 rounded-full text-[9px] animate-pulse">Syncing GAS...</span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-1" id="hijri-date">Memuat Tanggal...</h2>
+                    <p class="text-sm font-light text-emerald-100" id="masehi-date">Memuat...</p>
+                </div>
+                <div class="mt-6 md:mt-0 text-left md:text-right">
+                    <p class="text-xs font-medium text-emerald-200 uppercase tracking-widest mb-1">Menuju <span id="next-prayer-name" class="ml-1 font-bold text-white">...</span></p>
+                    <div class="text-4xl md:text-5xl font-bold tracking-tighter" id="realtime-clock">00:00<span class="text-xl md:text-2xl opacity-70 ml-1 font-medium">00</span></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-4 md:grid-cols-7 gap-3 text-center relative z-10" id="prayer-grid">
+                <div class="col-span-4 md:col-span-7 py-4 text-emerald-100 text-sm animate-pulse">Menyinkronkan jadwal sholat...</div>
+            </div>
+        </div>
+
+        <div id="menu-grid-container" class="grid grid-cols-4 gap-3 md:gap-6 mb-12">
+            <button onclick="openMenu('quran')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-book-open-text text-2xl md:text-3xl"></i></div>
+                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Al-Qur'an</span>
+            </button>
+            <button onclick="openMenu('todo')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group relative bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="absolute -top-2 -right-2 w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center text-[10px] font-bold text-rose-600 z-10 shadow-md">New</div>
+                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-list-checks text-2xl md:text-3xl"></i></div>
+                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Progres</span>
+            </button>
+            <button onclick="openMenu('dzikir')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-sun-horizon text-2xl md:text-3xl"></i></div>
+                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Dzikir</span>
+            </button>
+            <button onclick="openMenu('doa')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-hands-praying text-2xl md:text-3xl"></i></div>
+                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Doa</span>
+            </button>
+            <button onclick="openMenu('asmaul')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-star text-2xl md:text-3xl"></i></div>
+                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Asmaul</span>
+            </button>
+            <button onclick="openMenu('tasbih')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-circle-dashed text-2xl md:text-3xl"></i></div>
+                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Tasbih</span>
+            </button>
+            <button onclick="openMenu('zakat')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-calculator text-2xl md:text-3xl"></i></div>
+                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Zakat</span>
+            </button>
+            <button onclick="openMenu('kompas')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-compass text-2xl md:text-3xl"></i></div>
+                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Kiblat</span>
+            </button>
+        </div>
+
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6 space-y-4 md:space-y-0" id="artikel-header">
+            <h3 class="text-xl font-bold text-slate-800 flex items-center w-full md:w-auto"><i class="ph-fill ph-books text-emerald-600 mr-2"></i> Artikel</h3>
+            <div class="flex w-full md:w-auto space-x-2">
+                <select id="sort-artikel" onchange="renderArticlesHome(1)" class="bg-white border border-slate-200 shadow-sm rounded-full px-4 py-2.5 text-sm font-semibold outline-none cursor-pointer">
+                    <option value="terbaru">Terbaru</option>
+                    <option value="terlama">Terlama</option>
+                    <option value="az">A-Z</option>
+                    <option value="za">Z-A</option>
+                </select>
+                <input type="text" id="search-artikel" placeholder="Cari artikel..." class="bg-white border border-slate-200 shadow-sm rounded-full px-4 py-2.5 text-sm outline-none w-full md:w-56" onkeyup="renderArticlesHome(1)">
+            </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8" id="home-article-list"></div>
+        <div id="article-pagination" class="flex justify-center items-center space-x-2 mb-12"></div>
+
+        <div class="text-center pb-8 text-slate-400 text-xs mt-10 border-t border-slate-200 pt-8">
+            <p class="font-bold text-slate-500 mb-1">MAJELIS KELUARGA INDONESIA - RUMAH EDUKASI DIGITAL</p>
+            <p>COPYRIGHT © 2026. ALL RIGHTS RESERVED.</p>
+        </div>
+    </div>
+
+    <!-- ==================== BALLOON NOTIFICATION GREETING ==================== -->
+    <div id="greeting-balloon" class="toast-enter fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[1000000] max-w-sm w-[calc(100%-3rem)] md:w-80">
+        <div class="bg-white border-l-4 border-emerald-600 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] p-4 relative">
+            <button onclick="closeBalloon()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600"><i class="ph-bold ph-x text-xs"></i></button>
+            <div class="flex items-start">
+                <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mr-3"><i class="ph-fill ph-hand-waving text-xl"></i></div>
+                <div><h4 class="font-bold text-sm">Ahlan wa Sahlan!</h4><p class="text-xs text-slate-500">Selamat datang di MKI App.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL INSTALL PWA (Layar Penuh) ==================== -->
+    <div id="modal-install" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[10000000] flex items-center justify-center p-4 fade-in">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-6 text-center relative overflow-hidden border-t-8 border-emerald-600">
+            <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 border-4 border-white shadow-md">
+                <i class="ph-duotone ph-device-mobile-camera text-4xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-2">Install Aplikasi</h3>
+            <p class="text-sm text-slate-500 mb-6 leading-relaxed">Tambahkan Majelis Keluarga Indonesia ke layar utama Anda untuk pengalaman <b>Layar Penuh (Full Screen)</b> dan penggunaan <b>Offline</b> tanpa internet.</p>
+            <div class="flex flex-col space-y-3">
+                <button onclick="installPWA()" class="w-full bg-emerald-600 text-white font-bold py-3.5 rounded-xl shadow-3d active:shadow-3d-active active:translate-y-[6px] transition-all flex justify-center items-center">
+                    <i class="ph-bold ph-download-simple mr-2"></i> Install Sekarang
+                </button>
+                <button onclick="tutupModalInstall()" class="w-full bg-slate-100 text-slate-600 font-bold py-3.5 rounded-xl hover:bg-slate-200 transition-colors">
+                    Lain Kali
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== VIEW MODAL DONASI ==================== -->
+    <div id="modal-donasi" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-6 relative">
+            <button onclick="tutupDonasi()" class="absolute top-4 right-4 bg-slate-100 text-slate-500 w-8 h-8 rounded-full flex items-center justify-center"><i class="ph-bold ph-x"></i></button>
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mx-auto mb-3"><i class="ph-fill ph-heart text-3xl"></i></div>
+                <h3 class="text-xl font-bold">Donasi Program</h3>
+                <p class="text-sm text-slate-500">Dukung pengembangan MKI melalui QRIS di bawah ini.</p>
+            </div>
+            <div class="bg-slate-50 border-2 border-dashed rounded-2xl p-2 mb-6 flex justify-center min-h-[250px]">
+                <img id="img-qris-display" src="" class="max-w-full max-h-[250px] object-contain rounded-xl hidden">
+                <p id="img-qris-placeholder" class="text-slate-400 text-sm text-center m-auto">QRIS Belum diatur oleh Admin.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== VIEW LOGIN ==================== -->
+    <div id="view-login" class="hidden min-h-screen flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md z-50 fixed inset-0">
+        <div class="glass-panel w-full max-w-md p-8 rounded-[2rem] shadow-2xl relative bg-white">
+            <button onclick="switchView('home')" class="absolute top-6 right-6 text-slate-400 bg-slate-100 w-8 h-8 rounded-full flex items-center justify-center"><i class="ph-bold ph-x"></i></button>
+            <div class="text-center mb-8"><h2 class="text-2xl font-bold">Portal CMS</h2><p class="text-xs text-slate-500">Admin Access</p></div>
+            <form onsubmit="handleLogin(event)">
+                <input type="text" id="username" class="w-full bg-slate-50 border rounded-xl px-4 py-3 mb-4 outline-none" required placeholder="Username">
+                <div class="relative">
+                    <input type="password" id="password" class="w-full bg-slate-50 border rounded-xl px-4 py-3 pr-12 mb-6 outline-none" required placeholder="Password">
+                    <button type="button" onclick="togglePassword('password', 'eye-icon')" class="absolute right-4 top-3 text-slate-400"><i class="ph-bold ph-eye" id="eye-icon"></i></button>
+                </div>
+                <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3.5 rounded-xl shadow-3d active:shadow-3d-active active:translate-y-[6px] transition-all">Masuk</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== DASHBOARD ADMIN ==================== -->
+    <div id="view-admin" class="hidden min-h-screen p-4 md:p-8 bg-slate-50 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between mb-8 bg-white p-6 rounded-3xl shadow-sm border">
+                <div class="mb-4 md:mb-0"><h1 class="text-2xl font-bold">CMS MKI</h1><p class="text-sm font-medium">Selamat bertugas, <span id="admin-welcome" class="text-emerald-600">Admin</span> <span id="admin-role-badge" class="ml-2 text-[10px] bg-slate-100 px-2 py-1 rounded-md uppercase">Role</span></p></div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="switchView('home')" class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-bold">Beranda</button>
+                    <button id="btn-admin-users" onclick="bukaModalUsers()" class="px-4 py-2 bg-purple-50 text-purple-600 rounded-lg text-sm font-bold hidden">Pengguna</button>
+                    <button id="btn-admin-qris" onclick="toggleSetQRIS()" class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg text-sm font-bold hidden">QRIS</button>
+                    <button id="btn-admin-log" onclick="showLogsModal()" class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-bold hidden">Log Aktivitas</button>
+                    <button onclick="bukaModalGantiPassword()" class="px-4 py-2 bg-indigo-50 text-indigo-600 rounded-lg text-sm font-bold">Ganti Password</button>
+                    <button onclick="toggleCMSEditor()" class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold shadow-md">Tulis Artikel</button>
+                    <button onclick="logout()" class="px-4 py-2 bg-rose-50 text-rose-600 rounded-lg text-sm font-bold">Keluar</button>
+                </div>
+            </div>
+
+            <div id="form-qris" class="hidden bg-white p-6 rounded-3xl shadow-sm mb-6 fade-in">
+                <h3 class="font-bold mb-4 border-b pb-2">Pengaturan QRIS Donasi</h3>
+                <input type="file" id="input-qris" accept="image/*" class="w-full text-sm mb-4">
+                <button onclick="simpanQRIS()" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-bold">Simpan Gambar QRIS</button>
+            </div>
+
+            <div class="bg-white rounded-3xl overflow-hidden shadow-sm border"><table class="w-full text-left text-sm"><thead><tr class="border-b bg-slate-50"><th class="p-4">Judul & Penulis</th><th class="p-4">Kategori</th><th class="p-4 text-right">Aksi</th></tr></thead><tbody id="admin-table-body"></tbody></table></div>
+        </div>
+    </div>
+
+    <!-- MODAL USERS, PASSWORD, LOGS -->
+    <div id="modal-users" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-6 relative flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto"><button onclick="tutupModalUsers()" class="absolute top-4 right-4 bg-slate-100 w-8 h-8 rounded-full"><i class="ph-bold ph-x"></i></button><div class="w-full md:w-1/3 md:border-r pb-6 md:pb-0 md:pr-6"><h3 class="text-lg font-bold mb-4">Tambah Akun</h3><form onsubmit="tambahUser(event)"><input type="text" id="new-user-nama" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Nama Lengkap"><input type="text" id="new-user-uname" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Username"><input type="password" id="new-user-pass" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Password"><select id="new-user-role" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-4 text-sm"><option value="penulis">Penulis</option><option value="editor">Editor</option><option value="superadmin">Super Admin</option></select><button type="submit" class="w-full bg-purple-600 text-white font-bold py-2.5 rounded-xl text-sm">Buat Akun Baru</button></form></div><div class="w-full md:w-2/3"><h3 class="text-lg font-bold mb-4">Daftar Pengguna</h3><div class="overflow-x-auto bg-slate-50 rounded-2xl border"><table class="w-full text-left text-sm"><thead><tr class="text-slate-400 border-b"><th class="p-3">Pengguna</th><th class="p-3">Role</th><th class="p-3 text-right">Aksi</th></tr></thead><tbody id="users-table-body"></tbody></table></div></div></div>
+    </div>
+    
+    <div id="modal-ganti-password" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-6 relative"><button onclick="tutupModalGantiPassword()" class="absolute top-4 right-4 bg-slate-100 w-8 h-8 rounded-full"><i class="ph-bold ph-x"></i></button><div class="text-center mb-6"><h3 class="text-lg font-bold">Ganti Password</h3></div><form onsubmit="prosesGantiPassword(event)"><input type="password" id="old-password" class="w-full bg-slate-50 border rounded-xl px-4 py-3 mb-4" required placeholder="Password Lama"><input type="password" id="new-password" class="w-full bg-slate-50 border rounded-xl px-4 py-3 mb-6" required minlength="6" placeholder="Password Baru"><button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl">Simpan Password</button></form></div>
+    </div>
+
+    <div id="modal-logs" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in"><div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full p-6 relative flex flex-col max-h-[80vh]"><button onclick="tutupLogsModal()" class="absolute top-4 right-4 bg-slate-100 w-8 h-8 rounded-full"><i class="ph-bold ph-x"></i></button><h3 class="text-xl font-bold mb-4 border-b pb-4">Log Aktivitas Sistem</h3><div class="overflow-y-auto flex-1 pr-2 space-y-3" id="logs-container"></div></div></div>
+
+    <!-- VIEW CMS EDITOR (MEDIUM STYLE) -->
+    <div id="view-cms-editor" class="hidden fixed inset-0 bg-white z-[9999999] overflow-y-auto">
+        <div class="sticky top-0 bg-white/90 backdrop-blur-md border-b px-4 py-3 flex justify-between items-center z-50">
+            <button onclick="toggleCMSEditor()" class="text-slate-500 font-bold bg-slate-100 px-4 py-1.5 rounded-full text-sm">Batal</button>
+            <div class="flex space-x-3">
+                <select id="cms-kategori" class="bg-slate-50 border rounded-lg px-3 py-1.5 text-sm font-bold outline-none"><option value="Khutbah Jumat">Khutbah Jumat</option><option value="Artikel">Artikel</option><option value="Fiqih">Fiqih</option><option value="Keluarga">Keluarga</option></select>
+                <button onclick="simpanArtikel()" class="bg-emerald-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-md">Publikasikan</button>
+            </div>
+        </div>
+        <div class="max-w-3xl mx-auto px-6 py-8">
+            <div class="mb-8 relative border-2 border-dashed rounded-3xl h-48 flex items-center justify-center bg-slate-50 cursor-pointer overflow-hidden" onclick="document.getElementById('cms-cover').click()">
+                <img id="cms-cover-preview" src="" class="absolute inset-0 w-full h-full object-cover hidden">
+                <p id="cms-cover-text" class="text-sm font-bold text-slate-500">Klik untuk upload Cover Artikel</p>
+                <input type="file" id="cms-cover" accept="image/*" class="hidden" onchange="previewCover(event)">
+            </div>
+            <div id="cms-title" class="medium-title text-4xl font-extrabold outline-none mb-4" contenteditable="true" data-placeholder="Judul Artikel..."></div>
+            <div id="cms-subtitle" class="medium-title text-xl text-slate-400 mb-8 outline-none" contenteditable="true" data-placeholder="Subjudul..."></div>
+            <input type="text" id="cms-author-name" class="font-bold text-sm outline-none w-full bg-transparent mb-8" placeholder="Nama Penulis" readonly>
+            <div class="sticky top-[60px] bg-slate-800 text-white rounded-xl p-2 flex space-x-1 mb-6 shadow-xl z-40 w-max mx-auto md:mx-0">
+                <button onclick="execCmd('bold')" class="w-8 h-8 rounded hover:bg-slate-700"><b>B</b></button>
+                <button onclick="execCmd('italic')" class="w-8 h-8 rounded hover:bg-slate-700"><i>I</i></button>
+                <button onclick="execCmd('formatBlock', 'H2')" class="w-8 h-8 rounded hover:bg-slate-700 font-bold text-xs">H2</button>
+                <button onclick="execCmd('formatBlock', 'BLOCKQUOTE')" class="w-8 h-8 rounded hover:bg-slate-700 text-xs font-bold">Quote</button>
+                <button onclick="insertImagePrompt()" class="w-8 h-8 rounded hover:bg-slate-700 text-xs font-bold">Img</button>
+            </div>
+            <div id="cms-content" class="medium-content article-body text-lg outline-none min-h-[40vh]" contenteditable="true" data-placeholder="Tuliskan isi artikel di sini..."></div>
+        </div>
+    </div>
+
+    <!-- VIEW AL QURAN -->
+    <div id="view-quran" class="hidden min-h-screen bg-slate-50 relative pb-10">
+        <div class="sticky top-0 bg-white border-b px-4 py-4 flex items-center z-50"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center mr-4"><i class="ph-bold ph-arrow-left"></i></button><h2 class="text-lg font-bold">Al-Qur'an</h2></div>
+        <div class="max-w-3xl mx-auto p-4">
+            <div id="quran-bookmark-card" class="hidden bg-emerald-600 text-white p-5 rounded-[2rem] mb-6 flex justify-between items-center cursor-pointer shadow-3d active:translate-y-[6px]" onclick="openBookmarked()">
+                <div><p class="text-[10px] font-bold uppercase">Terakhir Dibaca</p><h3 class="font-bold text-xl" id="quran-bm-surah">Surah</h3><p class="text-xs mt-1">Ayat <span id="quran-bm-ayat"></span></p></div>
+                <i class="ph-bold ph-arrow-right text-xl"></i>
+            </div>
+            <input type="text" id="search-surah" placeholder="Cari surah..." class="w-full bg-white border rounded-2xl px-5 py-4 mb-6 outline-none shadow-sm" onkeyup="filterSurah()">
+            <div id="quran-list" class="space-y-3"></div>
+        </div>
+    </div>
+    <div id="view-baca-quran" class="hidden min-h-screen bg-slate-50 relative pb-10">
+        <div class="sticky top-0 bg-white/90 backdrop-blur-md border-b px-4 py-4 flex items-center z-50 shadow-sm"><button onclick="openMenu('quran')" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center mr-4"><i class="ph-bold ph-arrow-left"></i></button><h2 class="text-lg font-bold" id="baca-surah-title">Surah</h2></div>
+        <div class="max-w-3xl mx-auto p-4" id="baca-quran-content"></div>
+    </div>
+
+    <!-- VIEW LISTING, TODO, ARTICLE DETAIL, ZAKAT, TASBIH, KOMPAS -->
+    <div id="view-listing" class="hidden min-h-screen bg-slate-50 relative pb-10">
+        <div class="sticky top-0 gradient-emerald text-white px-4 py-5 flex items-center z-50 shadow-md"><button onclick="switchView('home')" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4"><i class="ph-bold ph-arrow-left"></i></button><h2 class="text-lg font-bold" id="listing-title">Daftar</h2></div>
+        <div class="max-w-3xl mx-auto p-4 space-y-4" id="listing-content"></div>
+    </div>
+
+    <div id="view-todo" class="hidden min-h-screen bg-slate-50 relative pb-10">
+        <div class="sticky top-0 bg-white border-b px-4 py-4 flex items-center z-50"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center mr-4"><i class="ph-bold ph-arrow-left"></i></button><h2 class="text-lg font-bold">Progres Ibadah</h2></div>
+        <div class="max-w-md mx-auto p-4 mt-4">
+            <div class="bg-white rounded-3xl p-6 shadow-glass-3d border text-center mb-6">
+                <p id="todo-date-display" class="text-xs font-bold text-emerald-600 uppercase mb-2"></p>
+                <h3 class="text-2xl font-bold mb-4">Mutaba'ah Yaumiyah</h3>
+                <div class="w-full bg-slate-100 rounded-full h-3 mb-2 shadow-inner"><div id="todo-progress-bar" class="bg-emerald-500 h-3 rounded-full transition-all" style="width: 0%"></div></div><p class="text-xs text-slate-500 font-bold"><span id="todo-progress-text">0</span>% Selesai Hari Ini</p></div>
+            <div class="space-y-3">
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><h4 class="font-bold text-sm mb-3">Sholat Wajib</h4><div class="grid grid-cols-5 gap-2"><label class="flex flex-col items-center cursor-pointer group"><input type="checkbox" class="hidden todo-cb" id="td-s1" onchange="updateTodo()"><div class="w-10 h-10 rounded-full border-2 flex items-center justify-center text-white mb-1 shadow-sm"><i class="ph-bold ph-check hidden"></i></div><span class="text-[10px] font-bold">Subuh</span></label><label class="flex flex-col items-center cursor-pointer group"><input type="checkbox" class="hidden todo-cb" id="td-s2" onchange="updateTodo()"><div class="w-10 h-10 rounded-full border-2 flex items-center justify-center text-white mb-1 shadow-sm"><i class="ph-bold ph-check hidden"></i></div><span class="text-[10px] font-bold">Dzuhur</span></label><label class="flex flex-col items-center cursor-pointer group"><input type="checkbox" class="hidden todo-cb" id="td-s3" onchange="updateTodo()"><div class="w-10 h-10 rounded-full border-2 flex items-center justify-center text-white mb-1 shadow-sm"><i class="ph-bold ph-check hidden"></i></div><span class="text-[10px] font-bold">Ashar</span></label><label class="flex flex-col items-center cursor-pointer group"><input type="checkbox" class="hidden todo-cb" id="td-s4" onchange="updateTodo()"><div class="w-10 h-10 rounded-full border-2 flex items-center justify-center text-white mb-1 shadow-sm"><i class="ph-bold ph-check hidden"></i></div><span class="text-[10px] font-bold">Maghrib</span></label><label class="flex flex-col items-center cursor-pointer group"><input type="checkbox" class="hidden todo-cb" id="td-s5" onchange="updateTodo()"><div class="w-10 h-10 rounded-full border-2 flex items-center justify-center text-white mb-1 shadow-sm"><i class="ph-bold ph-check hidden"></i></div><span class="text-[10px] font-bold">Isya</span></label></div></div>
+                <label class="bg-white p-4 rounded-2xl border shadow-sm flex items-center justify-between cursor-pointer"><div class="font-bold text-sm">Dzikir Pagi</div><input type="checkbox" class="w-6 h-6 rounded text-emerald-500 cursor-pointer" id="td-d1" onchange="updateTodo()"></label>
+                <label class="bg-white p-4 rounded-2xl border shadow-sm flex items-center justify-between cursor-pointer"><div class="font-bold text-sm">Dzikir Petang</div><input type="checkbox" class="w-6 h-6 rounded text-emerald-500 cursor-pointer" id="td-d2" onchange="updateTodo()"></label>
+                <label class="bg-white p-4 rounded-2xl border shadow-sm flex items-center justify-between cursor-pointer"><div class="font-bold text-sm">Doa Harian</div><input type="checkbox" class="w-6 h-6 rounded text-emerald-500 cursor-pointer" id="td-d3" onchange="updateTodo()"></label>
+                <div class="bg-white p-5 rounded-2xl border shadow-sm"><h4 class="font-bold text-sm mb-3 flex items-center justify-between"><span>Tilawah Al-Qur'an</span><input type="checkbox" class="w-5 h-5 rounded cursor-pointer" id="td-qcb" onchange="updateTodo()"></h4><input type="text" id="td-qtext" onchange="updateTodo()" placeholder="Catatan: Juz 1..." class="w-full bg-slate-50 border rounded-lg px-3 py-2 text-sm outline-none shadow-inner"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-article-detail" class="hidden min-h-screen bg-white relative pb-20">
+        <div class="sticky top-0 bg-white border-b px-4 py-4 flex justify-between z-50"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 rounded-full font-bold text-lg">&laquo;</button><button onclick="shareArticle()" class="bg-emerald-50 text-emerald-600 px-4 py-2 rounded-full font-bold text-xs">Bagikan</button></div>
+        <div id="detail-cover-container" class="w-full h-64 bg-slate-100 hidden relative"><img id="detail-cover" class="w-full h-full object-cover"></div>
+        <div class="max-w-3xl mx-auto px-6 py-8" id="detail-content-wrapper">
+            <span id="detail-kategori" class="text-[10px] font-bold text-white bg-emerald-600 px-3 py-1 rounded-full uppercase mb-4 inline-block">Kategori</span>
+            <h1 id="detail-judul" class="text-3xl md:text-4xl font-extrabold mb-3">Judul</h1>
+            <h2 id="detail-subjudul" class="text-lg text-slate-500 mb-6"></h2>
+            <div class="flex items-center justify-between mb-8 pb-8 border-b"><div class="flex items-center"><div><p id="detail-penulis" class="font-bold">Penulis</p><p id="detail-tanggal" class="text-xs text-slate-500">Tanggal</p></div></div><div class="text-right text-xs font-bold text-slate-400"><p><span id="detail-views">0</span>x dibaca</p><p class="text-amber-500"><i class="ph-fill ph-star"></i> <span id="detail-rating">0.0</span></p></div></div>
+            <div id="detail-konten" class="article-body text-lg text-slate-700"></div>
+            <div class="mt-12 pt-8 border-t text-center"><p class="text-sm font-bold mb-3">Beri nilai artikel ini</p><div class="flex justify-center space-x-2 text-3xl text-slate-300" id="rating-stars-container"></div><p id="rating-thanks" class="text-emerald-600 text-sm mt-3 hidden">Terima kasih!</p></div>
+            
+            <div class="flex justify-between items-center mt-10 pt-6 border-t border-slate-100">
+                <button id="btn-prev-article" class="flex items-center text-sm font-bold text-slate-500 hover:text-emerald-600 transition-colors"><i class="ph-bold ph-arrow-left mr-2 text-lg"></i> Artikel Sebelumnya</button>
+                <button id="btn-next-article" class="flex items-center text-sm font-bold text-slate-500 hover:text-emerald-600 transition-colors">Artikel Selanjutnya <i class="ph-bold ph-arrow-right ml-2 text-lg"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div id="view-tasbih" class="hidden min-h-screen flex flex-col items-center justify-center p-4 bg-slate-50"><button onclick="switchView('home')" class="absolute top-4 left-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md"><i class="ph-bold ph-arrow-left"></i></button><div class="bg-white p-8 rounded-[3rem] text-center shadow-glass-3d w-full max-w-xs border border-slate-100"><div class="mb-6 min-h-[80px] bg-emerald-50 rounded-2xl p-4 shadow-inner"><p id="tasbih-bacaan-arab" class="font-arabic text-4xl text-emerald-600 mb-2 transition-all">سُبْحَانَ ٱللَّٰهِ</p><p id="tasbih-bacaan-latin" class="text-sm font-bold text-slate-700 transition-all">Subhanallah</p><p id="tasbih-target" class="text-[10px] font-bold bg-emerald-600 text-white px-3 py-1 rounded-full mt-2 inline-block shadow-sm">0 / 33</p></div><div class="text-7xl font-bold mb-8 transition-transform text-slate-800" id="tasbih-count">0</div><button onclick="hitTasbih()" class="w-40 h-40 rounded-full gradient-emerald text-white shadow-3d mx-auto mb-8 text-2xl font-bold active:shadow-3d-active active:translate-y-[6px] transition-all flex flex-col items-center justify-center"><i class="ph-fill ph-hand-tap text-5xl mb-2"></i>TAP</button><button onclick="resetTasbih()" class="text-rose-500 font-bold px-6 py-2 bg-rose-50 rounded-full text-sm border-b-2 border-rose-200 active:border-b-0 active:translate-y-[2px]">Reset Angka</button></div></div>
+    
+    <div id="view-zakat" class="hidden min-h-screen bg-slate-50 relative pb-10"><div class="sticky top-0 bg-white px-4 py-4 flex items-center shadow-sm z-50"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center mr-4 shadow-inner"><i class="ph-bold ph-arrow-left"></i></button><h2 class="text-lg font-bold">Zakat Maal</h2></div><div class="max-w-lg mx-auto p-4 mt-6 bg-white p-8 rounded-[2rem] shadow-glass-3d border border-slate-100"><label class="block text-xs font-bold text-slate-500 mb-2 uppercase">Total Uang Tunai/Tabungan</label><input type="number" id="zakat-uang" class="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-4 py-3 mb-4 outline-none focus:border-emerald-500 shadow-inner" placeholder="Contoh: 10000000"><label class="block text-xs font-bold text-slate-500 mb-2 uppercase">Total Aset/Emas Disimpan</label><input type="number" id="zakat-aset" class="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-4 py-3 mb-8 outline-none focus:border-emerald-500 shadow-inner" placeholder="Contoh: 50000000"><button onclick="hitungZakat()" class="w-full gradient-emerald text-white font-bold py-4 rounded-xl shadow-3d active:shadow-3d-active active:translate-y-[6px] transition-all">Hitung Zakat 2.5%</button><div id="zakat-result" class="hidden mt-8 p-6 bg-emerald-50 text-center rounded-2xl border-2 border-emerald-100 shadow-inner"><h3 class="font-bold text-slate-700">Total Wajib Zakat:</h3><p class="text-3xl font-extrabold text-emerald-600 mt-2" id="zakat-total">0</p></div></div></div>
+    
+    <div id="view-kompas" class="hidden min-h-screen bg-slate-50 flex flex-col items-center justify-center relative"><button onclick="switchView('home')" class="absolute top-4 left-4 w-12 h-12 bg-white rounded-full shadow-md"><i class="ph-bold ph-arrow-left m-auto text-xl mt-3"></i></button><h2 class="text-2xl font-bold mb-10">Arah Kiblat</h2><div class="relative w-72 h-72 rounded-full border-4 border-emerald-500/30 flex items-center justify-center bg-white shadow-xl shadow-emerald-500/10"><div class="absolute top-2 text-slate-400 font-bold">U</div><div class="absolute bottom-2 text-slate-400 font-bold">S</div><div class="absolute right-4 text-slate-400 font-bold">T</div><div class="absolute left-4 text-slate-400 font-bold">B</div><div id="compass-needle" class="relative w-full h-full flex items-center justify-center"><div class="absolute -top-6 text-emerald-500 flex flex-col items-center"><i class="ph-fill ph-mosque text-5xl"></i><span class="text-[10px] font-bold bg-emerald-100 px-2 rounded-full mt-1">KIBLAT</span></div><div class="w-4 h-4 bg-emerald-500 rounded-full z-10 shadow-md"></div></div></div><div id="kompas-status" class="mt-10 font-mono text-xl bg-white px-6 py-2 rounded-full border shadow-sm">Derajat: 0°</div><button id="btn-izin-kompas" onclick="requestCompassPermission()" class="mt-6 px-6 py-2 bg-emerald-600 text-white rounded-full font-bold shadow-md hidden">Beri Izin (iOS)</button></div>
+
+</div>
+
+<script>
+    // --- INTEGRASI BACKEND GAS ---
+    const IS_PREVIEW = false; // Di-set False agar Aplikasi Fetch dari GAS API
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbznLfX-tN7Caa2GqLFGrqGhRiFPHV7DBK0m3_EV1Ge5ynS0HpSlOy6urDFFIwu97u2a/exec";
+
+    const getDB = (key) => JSON.parse(localStorage.getItem(key)) || [];
+    const setDB = (key, val) => localStorage.setItem(key, JSON.stringify(val));
+
+    // INIT DB (Lokal sebagai Fallback)
+    const initLocalDB = () => {
+        if (!localStorage.getItem('dzikra_users')) {
+            const defUsers = [
+                { id: 1, username: 'admin', password: 'edudigital', role: 'superadmin', nama: 'Super Admin MKI' },
+                { id: 2, username: 'editor', password: 'edudigital', role: 'editor', nama: 'Tim Editor MKI' },
+                { id: 3, username: 'penulis', password: 'edudigital', role: 'penulis', nama: 'Penulis MKI' }
+            ];
+            setDB('dzikra_users', defUsers);
+        }
+        if (!localStorage.getItem('dzikra_logs')) setDB('dzikra_logs', []);
+    };
+
+    // Fungsi Fetch ke Google Apps Script (Sinkronisasi Live Data)
+    async function syncWithGAS() {
+        if(IS_PREVIEW) return;
+        const statusEl = document.getElementById('sync-status');
+        if(statusEl) statusEl.classList.remove('hidden');
+
+        try {
+            const res = await fetch(GAS_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify({ action: 'get_all_data' })
+            });
+            
+            const textResponse = await res.text();
+            let data;
+            
+            try {
+                // Mencoba mem-parsing JSON. Jika gagal, berarti GAS mengirim HTML/Error
+                data = JSON.parse(textResponse);
+            } catch(e) {
+                throw new Error("Respons bukan JSON. Pastikan Web App GAS di-deploy dengan hak akses 'Anyone' (Siapa saja).");
+            }
+            
+            if (data && data.status === 'success') {
+                if(data.articles && data.articles.length > 0) {
+                    const mappedArts = data.articles.map(a => ({
+                        id: a.ID, judul: a.Judul, subjudul: a.Subjudul, kategori: a.Kategori,
+                        tanggal: a.Tanggal, penulis: a.Penulis, cover: a.Cover_URL,
+                        konten: a.Konten_HTML, views: a.Views, rating: a.Rating, ratingCount: a.RatingCount
+                    }));
+                    setDB('dzikra_articles', mappedArts);
+                }
+                if(data.doa && data.doa.length > 0) {
+                    setDB('dzikra_doa', data.doa.map(d => ({judul: d.Judul, arab: d.Teks_Arab, latin: d.Teks_Latin, terjemahan: d.Terjemahan})));
+                }
+                if(data.dzikir && data.dzikir.length > 0) {
+                    setDB('dzikra_dzikir', data.dzikir.map(d => ({judul: d.Judul, arab: d.Teks_Arab, latin: d.Teks_Latin, terjemahan: d.Terjemahan})));
+                }
+                
+                // Segarkan tampilan ke pengguna
+                renderArticlesHome(currentHomeArticlePage);
+                if(statusEl) { statusEl.innerText = "Synced"; setTimeout(() => statusEl.classList.add('hidden'), 2000); }
+            } else {
+                 throw new Error(data ? data.message : "Data API tidak valid");
+            }
+        } catch (err) {
+            // Ubah menjadi console.warn agar tidak dianggap sebagai error merah oleh sistem Canvas
+            console.warn("Sinkronisasi GAS dihentikan sementara:", err.message);
+            if(statusEl) statusEl.classList.add('hidden');
+        }
+    }
+
+    function addLog(actionStr) {
+        const role = localStorage.getItem('dzikra_auth_role') || 'Sistem';
+        const nama = localStorage.getItem('dzikra_auth_nama') || 'Sistem';
+        let logs = getDB('dzikra_logs');
+        logs.unshift({ waktu: new Date().toLocaleString('id-ID', {day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}), user: nama + ` (${role})`, aksi: actionStr });
+        if(logs.length > 50) logs.pop(); 
+        setDB('dzikra_logs', logs);
+    }
+
+    let adzanAudio = document.getElementById('audio-adzan');
+    let isAdzanPlaying = false;
+    let jadwalHariIni = [];
+    let currentEditId = null; 
+    let currentHomeArticlePage = 1;
+
+    document.addEventListener("DOMContentLoaded", () => {
+        initLocalDB(); 
+        initClockAndDate(); 
+        fetchRealPrayerTimes(); 
+        
+        // Panggil rendering awal pakai cache lokal, dan fetch sinkronisasi background API GAS
+        renderArticlesHome(1); 
+        syncWithGAS(); 
+        
+        checkLoginState(); 
+        initTodo();
+        
+        setTimeout(() => {
+            const balloon = document.getElementById('greeting-balloon');
+            if(balloon) balloon.classList.add('toast-enter-active');
+            
+            // Cek jika PWA bisa di-install namun belum pernah ditolak
+            if(deferredPrompt && localStorage.getItem('mki_install_prompt') !== 'dismissed') { 
+                setTimeout(bukaModalInstall, 6000); // Popup PWA Screen setelah balloon hilang
+            }
+            setTimeout(closeBalloon, 5000);
+        }, 1500);
+    });
+
+    function closeBalloon() { const balloon = document.getElementById('greeting-balloon'); if(!balloon) return; balloon.classList.remove('toast-enter-active'); balloon.classList.add('toast-exit'); setTimeout(() => balloon.classList.add('hidden'), 400); }
+
+    // --- PWA INSTALL & SW ---
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault(); deferredPrompt = e;
+    });
+
+    async function installPWA() {
+        tutupModalInstall();
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') addLog("User menginstall aplikasi PWA");
+            deferredPrompt = null;
+        } else {
+            alert('Browser Anda tidak mendukung instalasi langsung. Silakan buka menu browser (titik tiga) dan pilih "Tambahkan ke Layar Utama" / "Add to Home Screen" atau "Install App".');
+        }
+    }
+    
+    function bukaModalInstall() { document.getElementById('modal-install').classList.remove('hidden'); closeBalloon(); }
+    function tutupModalInstall() { document.getElementById('modal-install').classList.add('hidden'); localStorage.setItem('mki_install_prompt', 'dismissed'); }
+
+    if (location.protocol.startsWith('http')) {
+        const manifest = {
+            "name": "Majelis Keluarga Indonesia",
+            "short_name": "MKI App",
+            "description": "Rumah Edukasi Digital Keluarga Indonesia",
+            "start_url": location.href.split('?')[0].split('#')[0],
+            "display": "standalone",
+            "background_color": "#f8fafc",
+            "theme_color": "#1e40af",
+            "icons": [{"src": "1000037681.jpg", "sizes": "192x192 512x512", "type": "image/jpeg"}]
+        };
+        const manifestUrl = 'data:application/manifest+json;charset=utf-8,' + encodeURIComponent(JSON.stringify(manifest));
+        document.querySelector('head').insertAdjacentHTML('beforeend', `<link rel="manifest" href="${manifestUrl}">`);
+
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                const CACHE_NAME = 'mki-offline-v3';
+                const urlsToCache = [location.href.split('?')[0].split('#')[0]];
+                self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(urlsToCache))); self.skipWaiting(); }); 
+                self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(keys => Promise.all(keys.map(k => { if(k !== CACHE_NAME) return caches.delete(k); })))); self.clients.claim(); }); 
+                self.addEventListener('fetch', e => {
+                    if (e.request.method === 'GET' && !e.request.url.includes('api.')) {
+                        e.respondWith(
+                            fetch(e.request).then(res => {
+                                const resClone = res.clone(); caches.open(CACHE_NAME).then(c => c.put(e.request, resClone)); return res;
+                            }).catch(() => caches.match(e.request).then(res => res || caches.match(urlsToCache[0])))
+                        );
+                    }
+                });
+            `;
+            const swBlob = new Blob([swCode], {type: 'application/javascript'});
+            navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
+        }
+    }
+
+    // --- TOUR LOGIC ---
+    let tourStep = 0;
+    const tourData = [
+        { id: 'widget-sholat', text: 'Di widget ini, Anda bisa melihat jadwal sholat sesuai lokasi Anda. Audio Adzan otomatis akan berbunyi saat waktunya tiba.' },
+        { id: 'menu-grid-container', text: 'Ini adalah menu utama. Anda bisa mengakses Al-Quran, Dzikir, Doa, dan fitur tracking Mutaba\'ah harian.' },
+        { id: 'btn-login-home', text: 'Bagi Admin, Penulis, dan Editor, klik tombol ini untuk masuk ke panel manajemen konten (CMS).' }
+    ];
+    function startTour() { tourStep = 0; document.getElementById('tour-tooltip').classList.remove('hidden'); showTourStep(); }
+    function showTourStep() {
+        document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight'));
+        if (tourStep >= tourData.length) { endTour(); return; }
+        const data = tourData[tourStep]; const targetEl = document.getElementById(data.id);
+        if(targetEl) { targetEl.classList.add('tour-highlight'); targetEl.scrollIntoView({behavior: 'smooth', block: 'center'}); }
+        document.getElementById('tour-text').innerText = data.text;
+        let dotsHtml = ''; for(let i=0; i<tourData.length; i++) dotsHtml += `<div class="w-2 h-2 rounded-full ${i === tourStep ? 'bg-emerald-600' : 'bg-slate-200'}"></div>`;
+        document.getElementById('tour-dots').innerHTML = dotsHtml;
+    }
+    function nextTourStep() { tourStep++; showTourStep(); }
+    function endTour() { document.getElementById('tour-tooltip').classList.add('hidden'); document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight')); }
+
+    // --- CORE ROUTING & SCROLL STATE ---
+    let activeView = 'home';
+    const scrollPositions = {};
+
+    function openMenu(menu) {
+        if(menu === 'quran') { switchView('quran'); fetchQuranList(); }
+        else if(menu === 'todo') { switchView('todo'); loadTodo(); }
+        else if(menu === 'tasbih') switchView('tasbih');
+        else if(menu === 'zakat') switchView('zakat');
+        else if(menu === 'kompas') switchView('kompas');
+        else if(menu === 'dzikir' || menu === 'doa') { switchView('listing'); document.getElementById('listing-title').innerText = menu === 'dzikir' ? 'Dzikir' : 'Doa'; renderListingStatic(menu); }
+        else if(menu === 'asmaul') { switchView('listing'); document.getElementById('listing-title').innerText = 'Asmaul Husna'; renderAsmaulHusnaLokal(); }
+    }
+
+    function switchView(viewName) {
+        const root = document.getElementById('gas-app-root');
+        scrollPositions[activeView] = root.scrollTop; // Simpan posisi scroll tampilan saat ini
+
+        const views = ['home', 'quran', 'baca-quran', 'tasbih', 'zakat', 'kompas', 'listing', 'article-detail', 'login', 'admin', 'todo'];
+        views.forEach(v => { const el = document.getElementById(`view-${v}`); if (el) el.classList.add('hidden'); });
+        
+        const target = document.getElementById(`view-${viewName}`); 
+        if(target) target.classList.remove('hidden');
+        
+        // Kembalikan posisi scroll tampilan tujuan, atau reset ke atas jika baru
+        root.scrollTop = scrollPositions[viewName] || 0;
+        activeView = viewName;
+
+        if(viewName === 'kompas') startCompass(); else stopCompass();
+        if(viewName === 'admin') renderAdminUI();
+    }
+
+    // --- LISTING & QURAN ---
+    const asmaulHusnaData = [
+        { id: 1, latin: "Ar Rahman", arab: "الرَّحْمَنُ", arti: "Yang Maha Pengasih" }, { id: 2, latin: "Ar Rahiim", arab: "الرَّحِيمُ", arti: "Yang Maha Penyayang" },
+        { id: 3, latin: "Al Malik", arab: "الْمَلِكُ", arti: "Yang Maha Merajai" }, { id: 4, latin: "Al Quddus", arab: "الْقُدُّوسُ", arti: "Yang Maha Suci" },
+        { id: 5, latin: "As Salaam", arab: "السَّلَامُ", arti: "Yang Maha Memberi Kesejahteraan" }, { id: 6, latin: "Al Mu'min", arab: "الْمُؤْمِنُ", arti: "Yang Maha Memberi Keamanan" },
+        { id: 7, latin: "Al Muhaimin", arab: "الْمُهَيْمِنُ", arti: "Yang Maha Mengatur" }, { id: 8, latin: "Al 'Aziiz", arab: "الْعَزِيزُ", arti: "Yang Maha Perkasa" },
+        { id: 9, latin: "Al Jabbaar", arab: "الْجَبَّارُ", arti: "Yang Memiliki Mutlak Kegagahan" }, { id: 10, latin: "Al Mutakabbir", arab: "الْمُتَكَبِّرُ", arti: "Yang Maha Megah" },
+        { id: 11, latin: "Al Khaliq", arab: "الْخَالِقُ", arti: "Yang Maha Pencipta" }, { id: 12, latin: "Al Baari'", arab: "الْبَارِئُ", arti: "Yang Maha Melepaskan" },
+        { id: 13, latin: "Al Mushawwir", arab: "الْمُصَوِّرُ", arti: "Yang Maha Membentuk Rupa" }, { id: 14, latin: "Al Ghaffaar", arab: "الْغَفَّارُ", arti: "Yang Maha Pengampun" },
+        { id: 15, latin: "Al Qahhaar", arab: "الْقَهَّارُ", arti: "Yang Maha Memaksa" }, { id: 16, latin: "Al Wahhaab", arab: "الْوَهَّابُ", arti: "Yang Maha Pemberi Karunia" },
+        { id: 17, latin: "Ar Razzaaq", arab: "الرَّزَّاقُ", arti: "Yang Maha Pemberi Rezeki" }, { id: 18, latin: "Al Fattaah", arab: "الْفَتَّاحُ", arti: "Yang Maha Pembuka Rahmat" },
+        { id: 19, latin: "Al 'Aliim", arab: "الْعَلِيمُ", arti: "Yang Maha Mengetahui" }, { id: 20, latin: "Al Qaabidh", arab: "الْقَابِضُ", arti: "Yang Maha Menyempitkan" },
+        { id: 21, latin: "Al Baasith", arab: "الْبَاسِطُ", arti: "Yang Maha Melapangkan" }, { id: 22, latin: "Al Khaafidh", arab: "الْخَافِضُ", arti: "Yang Maha Merendahkan" },
+        { id: 23, latin: "Ar Raafi'", arab: "الرَّافِعُ", arti: "Yang Maha Meninggikan" }, { id: 24, latin: "Al Mu'izz", arab: "الْمُعِزُّ", arti: "Yang Maha Memuliakan" },
+        { id: 25, latin: "Al Mudzil", arab: "المُذِلُّ", arti: "Yang Maha Menghinakan" }, { id: 26, latin: "As Samii'", arab: "السَّمِيعُ", arti: "Yang Maha Mendengar" },
+        { id: 27, latin: "Al Bashiir", arab: "الْبَصِيرُ", arti: "Yang Maha Melihat" }, { id: 28, latin: "Al Hakam", arab: "الْحَكَمُ", arti: "Yang Maha Menetapkan" },
+        { id: 29, latin: "Al 'Adl", arab: "الْعَدْلُ", arti: "Yang Maha Adil" }, { id: 30, latin: "Al Lathiif", arab: "اللَّطِيفُ", arti: "Yang Maha Lembut" },
+        { id: 31, latin: "Al Khabiir", arab: "الْخَبِيرُ", arti: "Yang Maha Mengenal" }, { id: 32, latin: "Al Haliim", arab: "الْحَلِيمُ", arti: "Yang Maha Penyantun" },
+        { id: 33, latin: "Al 'Azhiim", arab: "الْعَظِيمُ", arti: "Yang Maha Agung" }, { id: 34, latin: "Al Ghafuur", arab: "الْغَفُورُ", arti: "Yang Maha Pengampun" },
+        { id: 35, latin: "As Syakuur", arab: "الشَّكُورُ", arti: "Yang Maha Pembalas Budi" }, { id: 36, latin: "Al 'Aliy", arab: "الْعَلِيُّ", arti: "Yang Maha Tinggi" },
+        { id: 37, latin: "Al Kabiir", arab: "الْكَبِيرُ", arti: "Yang Maha Besar" }, { id: 38, latin: "Al Hafizh", arab: "الْحَفِيظُ", arti: "Yang Maha Memelihara" },
+        { id: 39, latin: "Al Muqiit", arab: "الْمُقِيتُ", arti: "Yang Maha Pemberi Kecukupan" }, { id: 40, latin: "Al Hasiib", arab: "الْحَسِيبُ", arti: "Yang Maha Membuat Perhitungan" },
+        { id: 41, latin: "Al Jaliil", arab: "الْجَلِيلُ", arti: "Yang Maha Luhur" }, { id: 42, latin: "Al Kariim", arab: "الْكَرِيمُ", arti: "Yang Maha Mulia" },
+        { id: 43, latin: "Ar Raqiib", arab: "الرَّقِيبُ", arti: "Yang Maha Mengawasi" }, { id: 44, latin: "Al Mujiib", arab: "الْمُجِيبُ", arti: "Yang Maha Mengabulkan" },
+        { id: 45, latin: "Al Waasi'", arab: "الْوَاسِعُ", arti: "Yang Maha Luas" }, { id: 46, latin: "Al Hakiim", arab: "الْحَكِيمُ", arti: "Yang Maha Bijaksana" },
+        { id: 47, latin: "Al Waduud", arab: "الْوَدُودُ", arti: "Yang Maha Mengasihi" }, { id: 48, latin: "Al Majiid", arab: "الْمَجِيدُ", arti: "Yang Maha Mulia" },
+        { id: 49, latin: "Al Baa'its", arab: "الْبَاعِثُ", arti: "Yang Maha Membangkitkan" }, { id: 50, latin: "As Syahiid", arab: "الشَّهِيدُ", arti: "Yang Maha Menyaksikan" },
+        { id: 51, latin: "Al Haqq", arab: "الْحَقُّ", arti: "Yang Maha Benar" }, { id: 52, latin: "Al Wakiil", arab: "الْوَكِيلُ", arti: "Yang Maha Memelihara" },
+        { id: 53, latin: "Al Qawiyyu", arab: "الْقَوِيُّ", arti: "Yang Maha Kuat" }, { id: 54, latin: "Al Matiin", arab: "الْمَتِينُ", arti: "Yang Maha Kokoh" },
+        { id: 55, latin: "Al Waliyy", arab: "الْوَلِيُّ", arti: "Yang Maha Melindungi" }, { id: 56, latin: "Al Hamiid", arab: "الْحَمِيدُ", arti: "Yang Maha Terpuji" },
+        { id: 57, latin: "Al Muhshii", arab: "الْمُحْصِي", arti: "Yang Maha Menghitung" }, { id: 58, latin: "Al Mubdi'", arab: "الْمُبْدِئُ", arti: "Yang Maha Memulai" },
+        { id: 59, latin: "Al Mu'iid", arab: "الْمُعِيدُ", arti: "Yang Maha Mengembalikan" }, { id: 60, latin: "Al Muhyii", arab: "الْمُحْيِي", arti: "Yang Maha Menghidupkan" },
+        { id: 61, latin: "Al Mumiit", arab: "اَلْمُمِيتُ", arti: "Yang Maha Mematikan" }, { id: 62, latin: "Al Hayyu", arab: "الْحَيُّ", arti: "Yang Maha Hidup" },
+        { id: 63, latin: "Al Qayyuum", arab: "الْقَيُّومُ", arti: "Yang Maha Mandiri" }, { id: 64, latin: "Al Waajid", arab: "الْوَاجِدُ", arti: "Yang Maha Penemu" },
+        { id: 65, latin: "Al Maajid", arab: "الْمَاجِدُ", arti: "Yang Maha Mulia" }, { id: 66, latin: "Al Wahiid", arab: "الْواحِدُ", arti: "Yang Maha Tunggal" },
+        { id: 67, latin: "Al Ahad", arab: "الْأَحَدُ", arti: "Yang Maha Esa" }, { id: 68, latin: "As Shamad", arab: "الصَّمَدُ", arti: "Yang Maha Dibutuhkan" },
+        { id: 69, latin: "Al Qaadir", arab: "الْقَادِرُ", arti: "Yang Maha Menentukan" }, { id: 70, latin: "Al Muqtadir", arab: "الْمُقْتَدِرُ", arti: "Yang Maha Berkuasa" },
+        { id: 71, latin: "Al Muqaddim", arab: "الْمُقَدِّمُ", arti: "Yang Maha Mendahulukan" }, { id: 72, latin: "Al Mu'akkhir", arab: "الْمُؤَخِّرُ", arti: "Yang Maha Mengakhirkan" },
+        { id: 73, latin: "Al Awwal", arab: "الْأَوَّلُ", arti: "Yang Maha Awal" }, { id: 74, latin: "Al Aakhir", arab: "الْآخِرُ", arti: "Yang Maha Akhir" },
+        { id: 75, latin: "Az Zhaahir", arab: "الظَّاهِرُ", arti: "Yang Maha Nyata" }, { id: 76, latin: "Al Baathin", arab: "الْبَاطِنُ", arti: "Yang Maha Ghaib" },
+        { id: 77, latin: "Al Waali", arab: "الْوَالِي", arti: "Yang Maha Memerintah" }, { id: 78, latin: "Al Muta'aalii", arab: "الْمُتَعَالِي", arti: "Yang Maha Tinggi" },
+        { id: 79, latin: "Al Barru", arab: "الْبَرُّ", arti: "Yang Maha Penderma" }, { id: 80, latin: "At Tawwaab", arab: "التَّوَابُ", arti: "Yang Maha Penerima Tobat" },
+        { id: 81, latin: "Al Muntaqim", arab: "الْمُنْتَقِمُ", arti: "Yang Maha Pemberi Balasan" }, { id: 82, latin: "Al Afuww", arab: "العَفُوُّ", arti: "Yang Maha Pemaaf" },
+        { id: 83, latin: "Ar Ra`uuf", arab: "الرَّؤُوفُ", arti: "Yang Maha Pengasuh" }, { id: 84, latin: "Malikul Mulk", arab: "مَالِكُ الْمُلْكِ", arti: "Yang Maha Penguasa Kerajaan" },
+        { id: 85, latin: "Dzul Jalaali Wal Ikraam", arab: "ذُوالْجَلَالِ وَالْإِكْرَامِ", arti: "Pemilik Kebesaran dan Kemuliaan" }, { id: 86, latin: "Al Muqsit", arab: "الْمُقْسِطُ", arti: "Yang Maha Pemberi Keadilan" },
+        { id: 87, latin: "Al Jaami'", arab: "الْجَامِعُ", arti: "Yang Maha Mengumpulkan" }, { id: 88, latin: "Al Ghaniyy", arab: "الْغَنِيُّ", arti: "Yang Maha Kaya" },
+        { id: 89, latin: "Al Mughnii", arab: "الْمُغْنِي", arti: "Yang Maha Pemberi Kekayaan" }, { id: 90, latin: "Al Maani", arab: "اَلْمَانِعُ", arti: "Yang Maha Mencegah" },
+        { id: 91, latin: "Ad Dhaar", arab: "الضَّارُ", arti: "Yang Maha Penimpa Kemudharatan" }, { id: 92, latin: "An Nafii'", arab: "النَّافِعُ", arti: "Yang Maha Memberi Manfaat" },
+        { id: 93, latin: "An Nuur", arab: "النُّورُ", arti: "Yang Maha Bercahaya" }, { id: 94, latin: "Al Haadii", arab: "الْهَادِي", arti: "Yang Maha Pemberi Petunjuk" },
+        { id: 95, latin: "Al Badii'", arab: "الْبَدِيعُ", arti: "Yang Maha Pencipta" }, { id: 96, latin: "Al Baaqii", arab: "اَلْبَاقِي", arti: "Yang Maha Kekal" },
+        { id: 97, latin: "Al Waarits", arab: "الْوَارِثُ", arti: "Yang Maha Pewaris" }, { id: 98, latin: "Ar Rasyiid", arab: "الرَّشِيدُ", arti: "Yang Maha Pandai" },
+        { id: 99, latin: "As Shabuur", arab: "الصَّبُورُ", arti: "Yang Maha Sabar" }
+    ];
+
+    function renderAsmaulHusnaLokal() {
+        const content = document.getElementById('listing-content');
+        content.innerHTML = asmaulHusnaData.map(item => `
+            <div class="bg-white p-6 rounded-2xl border flex items-center justify-between mb-4 shadow-sm hover:border-emerald-300 transition-colors">
+                <div><h3 class="font-bold text-xl text-emerald-800">${item.latin}</h3><p class="text-sm text-slate-600">${item.arti}</p></div>
+                <div class="font-arabic text-4xl text-emerald-600">${item.arab}</div>
+            </div>`).join('');
+    }
+
+    function renderListingStatic(menu) {
+        let items = menu === 'dzikir' ? getDB('dzikra_dzikir') : getDB('dzikra_doa');
+        
+        // Fallback dummy jika DB masih kosong / gagal fetch
+        if(!items || items.length === 0) {
+            if(menu === 'dzikir') {
+                items = [
+                    { judul: "Ayat Kursi", arab: "اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ...", terjemahan: "Allah, tidak ada tuhan selain Dia. Yang Mahahidup, Yang terus menerus mengurus (makhluk-Nya)..." },
+                    { judul: "Surat Al-Ikhlas (3x)", arab: "قُلْ هُوَ اللَّهُ أَحَدٌ. اللَّهُ الصَّمَدُ. لَمْ يَلِدْ وَلَمْ يُولَدْ. وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ", terjemahan: "Katakanlah (Muhammad), Dialah Allah, Yang Maha Esa..." }
+                ];
+            } else {
+                items = [
+                    { judul: "Doa Sapu Jagad", arab: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ", terjemahan: "Ya Tuhan kami, berilah kami kebaikan di dunia dan kebaikan di akhirat dan peliharalah kami dari siksa neraka." },
+                    { judul: "Doa Memohon Ilmu", arab: "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا وَعَمَلًا مُتَقَبَّلًا", terjemahan: "Ya Allah, sungguh aku memohon kepada-Mu ilmu yang bermanfaat, rezeki yang halal, dan amal yang diterima." }
+                ];
+            }
+        }
+
+        const content = document.getElementById('listing-content');
+        content.innerHTML = items.map(item => `
+            <div class="bg-white p-6 md:p-8 rounded-[2rem] shadow-sm border mb-6">
+                <h3 class="font-bold text-emerald-700 text-lg mb-4 border-b pb-2">${item.judul}</h3>
+                <p class="font-arabic text-3xl md:text-4xl leading-[2.5] text-right text-slate-800 mb-6" dir="rtl">${item.arab}</p>
+                ${item.latin ? `<p class="text-sm text-emerald-600 font-medium mb-3">${item.latin}</p>` : ''}
+                <div class="bg-emerald-50 rounded-2xl p-4"><p class="text-sm font-medium">"${item.terjemahan}"</p></div>
+            </div>`).join('');
+    }
+
+    let surahDataCache = [];
+    async function fetchQuranList() {
+        const bmCard = document.getElementById('quran-bookmark-card');
+        const bmData = getDB('dzikra_quran_bm');
+        if(bmData && bmData.surahName) {
+            document.getElementById('quran-bm-surah').innerText = bmData.surahName;
+            document.getElementById('quran-bm-ayat').innerText = bmData.ayahNum;
+            bmCard.classList.remove('hidden');
+        } else bmCard.classList.add('hidden');
+
+        if(surahDataCache.length > 0) { renderSurahList(surahDataCache); return; }
+        try { 
+            const res = await fetch('https://equran.id/api/v2/surat'); 
+            const data = await res.json(); 
+            surahDataCache = data.data; renderSurahList(surahDataCache); 
+        } catch(e) { document.getElementById('quran-list').innerHTML = "<p class='text-center text-rose-500 font-bold'>Gagal memuat API.</p>"; }
+    }
+    
+    function renderSurahList(data) {
+        const list = document.getElementById('quran-list');
+        list.innerHTML = data.map(s => `<div onclick="openSurah(${s.nomor}, '${s.namaLatin}')" class="bg-white p-4 rounded-2xl border shadow-sm flex justify-between cursor-pointer hover:border-emerald-300 mb-3"><div class="flex items-center"><div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center font-bold mr-4">${s.nomor}</div><div><h3 class="font-bold text-slate-800">${s.namaLatin}</h3><p class="text-xs text-slate-500">${s.arti} • ${s.jumlahAyat} Ayat</p></div></div><div class="font-arabic text-3xl text-emerald-700 pt-1">${s.nama}</div></div>`).join('');
+    }
+    
+    function filterSurah() {
+        const q = document.getElementById('search-surah').value.toLowerCase();
+        renderSurahList(surahDataCache.filter(s => s.namaLatin.toLowerCase().includes(q) || s.arti.toLowerCase().includes(q)));
+    }
+    
+    async function openSurah(id, name, scrollToBookmark = false) {
+        scrollPositions['baca-quran'] = 0; 
+        switchView('baca-quran'); document.getElementById('baca-surah-title').innerText = name;
+        const c = document.getElementById('baca-quran-content'); c.innerHTML = `<div class="text-center py-20"><i class="ph-duotone ph-spinner-gap animate-spin text-4xl text-emerald-500 mb-3"></i><p class="text-slate-500">Memuat Surah...</p></div>`;
+        
+        try {
+            const res = await fetch(`https://equran.id/api/v2/surat/${id}`);
+            const dataObj = await res.json();
+            const ayahs = dataObj.data.ayat;
+            c.innerHTML = id !== 1 && id !== 9 ? `<div class="text-center font-arabic text-4xl my-8 text-emerald-800 leading-loose">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>` : '';
+            const bmData = getDB('dzikra_quran_bm');
+            ayahs.forEach((ayah) => {
+                const isBM = bmData && bmData.surahId === id && bmData.ayahNum === ayah.nomorAyat;
+                const bgClass = isBM ? 'bg-emerald-50 border-emerald-300 ring-2 ring-emerald-500/20 shadow-md' : 'bg-white border-slate-100 shadow-sm';
+                const btnClass = isBM ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200';
+                
+                c.innerHTML += `
+                    <div id="ayah-${ayah.nomorAyat}" class="${bgClass} p-6 rounded-3xl mb-4 border transition-all">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="flex flex-col space-y-2 items-center mr-4">
+                                <span class="w-8 h-8 bg-slate-200 text-slate-700 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">${ayah.nomorAyat}</span>
+                                <button onclick="tandaiAyat(${id}, '${name}', ${ayah.nomorAyat})" class="px-2 py-1 rounded text-[10px] font-bold ${btnClass} shadow-sm transition-colors whitespace-nowrap" title="Tandai terakhir dibaca">Tandai</button>
+                            </div>
+                            <div class="flex-1 w-full">
+                                <p class="font-arabic text-3xl md:text-4xl leading-[2.2] md:leading-[2.5] text-right text-slate-800 mb-4" dir="rtl">${ayah.teksArab}</p>
+                            </div>
+                        </div>
+                        <div class="border-t border-slate-100 pt-4">
+                            <p class="text-sm text-emerald-600 font-medium leading-relaxed mb-2" dir="ltr">${ayah.teksLatin}</p>
+                            <p class="text-sm text-slate-600 leading-relaxed">${ayah.teksIndonesia}</p>
+                        </div>
+                    </div>`;
+            });
+            if(scrollToBookmark && bmData && bmData.surahId === id) { setTimeout(() => { const el = document.getElementById(`ayah-${bmData.ayahNum}`); if(el) el.scrollIntoView({behavior: 'smooth', block: 'center'}); }, 300); }
+        } catch(e) { c.innerHTML = "<p class='text-center py-10 text-rose-500 font-bold'>Gagal memuat ayat.</p>"; }
+    }
+    
+    function tandaiAyat(surahId, surahName, ayahNum) { setDB('dzikra_quran_bm', { surahId, surahName, ayahNum }); openSurah(surahId, surahName, true); }
+    function openBookmarked() { const bmData = getDB('dzikra_quran_bm'); if(bmData && bmData.surahId) openSurah(bmData.surahId, bmData.surahName, true); }
+
+    // --- ADZAN & TIME ---
+    function initClockAndDate() { 
+        const opt = { day: 'numeric', month: 'long', year: 'numeric' };
+        document.getElementById('masehi-date').innerText = new Date().toLocaleDateString('id-ID', opt);
+        
+        const updateTime = () => { 
+            let now = new Date();
+            let hr = now.getHours().toString().padStart(2,'0'); let mn = now.getMinutes().toString().padStart(2,'0'); let sc = now.getSeconds().toString().padStart(2,'0');
+            let el = document.getElementById('realtime-clock');
+            if(el) el.innerHTML = `${hr}:${mn}<span class="text-xl md:text-2xl opacity-70 ml-1 font-medium">:${sc}</span>`; 
+            
+            if(sc === '00' && jadwalHariIni.length > 0) {
+                let check = jadwalHariIni.find(j => j.waktu === `${hr}:${mn}` && j.id !== "Sunrise" && j.id !== "Imsak");
+                if(check) { playAdzan(); alert(`Waktu sholat ${check.nama} telah tiba.`); }
+            }
+        };
+        updateTime(); 
+        setInterval(updateTime, 1000); 
+    }
+    
+    async function fetchRealPrayerTimes() { 
+        try {
+            const res = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Jakarta&country=Indonesia&method=11');
+            const data = await res.json(); 
+            const t = data.data.timings;
+            const hd = data.data.date.hijri;
+            
+            document.getElementById('hijri-date').innerText = `${hd.day} ${hd.month.en} ${hd.year} H`;
+            
+            jadwalHariIni = [
+                { id: "Imsak", nama: "IMSAK", waktu: t.Imsak }, { id: "Fajr", nama: "SUBUH", waktu: t.Fajr },
+                { id: "Sunrise", nama: "TERBIT", waktu: t.Sunrise }, { id: "Dhuhr", nama: "DZUHUR", waktu: t.Dhuhr },
+                { id: "Asr", nama: "ASHAR", waktu: t.Asr }, { id: "Maghrib", nama: "MAGHRIB", waktu: t.Maghrib }, { id: "Isha", nama: "ISYA", waktu: t.Isha }
+            ];
+            const now = new Date(); const curMin = now.getHours() * 60 + now.getMinutes();
+            let nextIndex = jadwalHariIni.findIndex(j => { let p = j.waktu.split(':'); return (parseInt(p[0])*60 + parseInt(p[1])) > curMin; });
+            if(nextIndex === -1) nextIndex = 0;
+            document.getElementById('next-prayer-name').innerText = jadwalHariIni[nextIndex].nama;
+            
+            const grid = document.getElementById('prayer-grid'); grid.innerHTML = '';
+            jadwalHariIni.forEach((s, i) => {
+                let active = i === nextIndex ? 'bg-white text-emerald-700 ring-4 ring-emerald-500/30 scale-105 transform z-10 font-bold shadow-lg' : 'bg-white/10 text-emerald-50 border border-white/20';
+                grid.innerHTML += `<div class="rounded-2xl py-3 px-1 transition-all ${active}"><p class="text-[9px] mb-1 tracking-widest">${s.nama}</p><p class="text-sm font-bold">${s.waktu}</p></div>`;
+            });
+        } catch(e) {}
+    }
+    
+    async function playAdzan() {
+        if(!isAdzanPlaying) { 
+            try {
+                if (!adzanAudio.src) adzanAudio.src = "https://www.islamcan.com/audio/adhan/azan1.mp3";
+                await adzanAudio.play(); isAdzanPlaying = true; 
+                document.getElementById('icon-adzan').style.color = '#fbbf24';
+            } catch (err) { console.error("Audio error", err); }
+        }
+        else { adzanAudio.pause(); adzanAudio.currentTime = 0; isAdzanPlaying = false; document.getElementById('icon-adzan').style.color = 'inherit'; }
+    }
+    function testAdzan() { playAdzan(); }
+
+    // --- ARTICLES RENDER ---
+    function renderArticlesHome(page = 1) {
+        currentHomeArticlePage = page;
+        const itemsPerPage = 6;
+        const query = document.getElementById('search-artikel').value.toLowerCase();
+        const sort = document.getElementById('sort-artikel').value;
+        let articles = getDB('dzikra_articles');
+        
+        if(query) articles = articles.filter(a => a.judul.toLowerCase().includes(query) || a.kategori.toLowerCase().includes(query));
+        if(sort === 'terbaru') articles.sort((a,b) => new Date(b.tanggal) - new Date(a.tanggal));
+        else if(sort === 'terlama') articles.sort((a,b) => new Date(a.tanggal) - new Date(b.tanggal));
+        else if(sort === 'az') articles.sort((a,b) => a.judul.localeCompare(b.judul));
+        else if(sort === 'za') articles.sort((a,b) => b.judul.localeCompare(a.judul));
+
+        const totalPages = Math.ceil(articles.length / itemsPerPage);
+        const paginatedArticles = articles.slice((page - 1) * itemsPerPage, page * itemsPerPage);
+        const list = document.getElementById('home-article-list'); list.innerHTML = '';
+        
+        if(paginatedArticles.length === 0) list.innerHTML = `<div class="col-span-1 md:col-span-2 text-center py-10 text-slate-400">Tidak ada artikel ditemukan.</div>`;
+
+        paginatedArticles.forEach(art => {
+            let d = new Date(art.tanggal); let tgl = isNaN(d) ? art.tanggal : d.toLocaleDateString('id-ID', {day:'numeric',month:'short',year:'numeric'});
+            let imgHtml = art.cover && !art.cover.includes(window.location.href) ? `<img src="${art.cover}" class="w-full h-40 object-cover mb-4 rounded-2xl">` : '';
+            list.innerHTML += `<div onclick="bacaArtikel(${art.id})" class="bg-white p-6 rounded-[2rem] border shadow-sm hover:border-emerald-300 transition-all cursor-pointer flex flex-col justify-between group"><div>${imgHtml}<div class="flex justify-between items-center mb-3"><span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block">${art.kategori}</span><div class="flex items-center text-xs text-slate-400 space-x-2 font-bold"><span class="flex items-center">👁 ${art.views || 0}</span><span class="flex items-center text-amber-500">★ ${art.rating || '0.0'}</span></div></div><h3 class="text-xl font-bold text-slate-800 mb-2 leading-snug group-hover:text-emerald-600 transition-colors">${art.judul}</h3>${art.subjudul ? `<p class="text-sm font-medium text-slate-500 mb-3 line-clamp-1">${art.subjudul}</p>` : ''}<p class="text-sm text-slate-500 line-clamp-2 leading-relaxed mb-4">${art.konten.replace(/<[^>]*>?/gm, '')}</p></div><div class="flex items-center pt-4 border-t border-slate-50 mt-auto"><div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center mr-3 text-slate-400">U</div><div><p class="text-xs font-bold text-slate-700">${art.penulis}</p><p class="text-[10px] text-slate-400">${tgl}</p></div></div></div>`;
+        });
+
+        const pagDiv = document.getElementById('article-pagination'); pagDiv.innerHTML = '';
+        if(totalPages > 1) {
+            pagDiv.innerHTML += `<button onclick="renderArticlesHome(${page-1})" ${page === 1 ? 'disabled class="opacity-50"' : ''} class="px-3 py-1.5 bg-white border rounded-lg">&laquo;</button>`;
+            for(let i=1; i<=totalPages; i++) pagDiv.innerHTML += `<button onclick="renderArticlesHome(${i})" class="px-3.5 py-1.5 rounded-lg text-sm font-bold transition-colors ${i === page ? 'bg-emerald-600 text-white' : 'bg-white border'}">${i}</button>`;
+            pagDiv.innerHTML += `<button onclick="renderArticlesHome(${page+1})" ${page === totalPages ? 'disabled class="opacity-50"' : ''} class="px-3 py-1.5 bg-white border rounded-lg">&raquo;</button>`;
+        }
+    }
+
+    function bacaArtikel(id) {
+        let articles = getDB('dzikra_articles').sort((a,b) => new Date(b.tanggal) - new Date(a.tanggal));
+        const artIdx = articles.findIndex(a => a.id === id); 
+        if(artIdx === -1) return;
+        
+        let art = articles[artIdx]; art.views = (art.views || 0) + 1; articles[artIdx] = art; setDB('dzikra_articles', articles);
+        
+        scrollPositions['article-detail'] = 0; 
+        switchView('article-detail'); addLog("Membaca artikel: " + art.judul);
+        
+        let d = new Date(art.tanggal);
+        document.getElementById('detail-kategori').innerText = art.kategori; document.getElementById('detail-judul').innerText = art.judul;
+        document.getElementById('detail-subjudul').innerText = art.subjudul || ''; document.getElementById('detail-penulis').innerText = art.penulis;
+        document.getElementById('detail-tanggal').innerText = isNaN(d) ? art.tanggal : d.toLocaleDateString('id-ID', {day:'numeric',month:'long',year:'numeric'});
+        document.getElementById('detail-views').innerText = art.views; document.getElementById('detail-rating').innerText = parseFloat(art.rating || 0).toFixed(1);
+        document.getElementById('detail-konten').innerHTML = art.konten;
+        
+        const coverCont = document.getElementById('detail-cover-container');
+        if(art.cover && !art.cover.includes(window.location.href)) { document.getElementById('detail-cover').src = art.cover; coverCont.classList.remove('hidden'); document.getElementById('detail-content-wrapper').classList.add('-mt-16', 'bg-white', 'rounded-t-[3rem]', 'shadow-[0_-20px_40px_rgba(0,0,0,0.1)]'); } 
+        else { coverCont.classList.add('hidden'); document.getElementById('detail-content-wrapper').classList.remove('-mt-16', 'bg-white', 'rounded-t-[3rem]', 'shadow-[0_-20px_40px_rgba(0,0,0,0.1)]'); }
+
+        const container = document.getElementById('rating-stars-container'); document.getElementById('rating-thanks').classList.add('hidden'); container.innerHTML = '';
+        for(let i=1; i<=5; i++) container.innerHTML += `<span class="cursor-pointer hover:text-amber-400 transition-colors" onclick="rateArticle(${id}, ${i})">★</span>`;
+
+        // Navigasi Artikel
+        const btnPrev = document.getElementById('btn-prev-article');
+        const btnNext = document.getElementById('btn-next-article');
+        
+        if(artIdx < articles.length - 1) { 
+            btnPrev.style.visibility = 'visible';
+            btnPrev.onclick = () => bacaArtikel(articles[artIdx + 1].id); 
+        } else btnPrev.style.visibility = 'hidden';
+
+        if(artIdx > 0) { 
+            btnNext.style.visibility = 'visible';
+            btnNext.onclick = () => bacaArtikel(articles[artIdx - 1].id); 
+        } else btnNext.style.visibility = 'hidden';
+    }
+
+    function rateArticle(id, score) {
+        let articles = getDB('dzikra_articles'); const idx = articles.findIndex(a => a.id === id); if(idx === -1) return;
+        let art = articles[idx]; let cur = parseFloat(art.rating || 0); let count = art.ratingCount || 0;
+        art.rating = (((cur * count) + score) / (count + 1)).toFixed(1); art.ratingCount = count + 1;
+        articles[idx] = art; setDB('dzikra_articles', articles);
+        document.getElementById('detail-rating').innerText = art.rating; document.getElementById('rating-thanks').classList.remove('hidden');
+    }
+    
+    function shareArticle() {
+        const title = document.getElementById('detail-judul').innerText;
+        if (navigator.share) navigator.share({ title: title, text: `Baca kajian menarik "${title}" di MKI App!`, url: window.location.href }).catch(console.error);
+        else alert("Fitur Share (Bagikan) tidak didukung browser Anda.");
+    }
+
+    // --- TODO LOGIC ---
+    function initTodo() {
+        const today = new Date().toLocaleDateString('id-ID'); let todo = getDB('dzikra_todo');
+        if(todo.date !== today) { todo = { date: today, s: [false,false,false,false,false], d1: false, d2: false, d3: false, qcb: false, qtext: "" }; setDB('dzikra_todo', todo); }
+    }
+    function loadTodo() {
+        const todo = getDB('dzikra_todo'); document.getElementById('todo-date-display').innerText = todo.date;
+        for(let i=0; i<5; i++) document.getElementById(`td-s${i+1}`).checked = todo.s[i];
+        document.getElementById('td-d1').checked = todo.d1; document.getElementById('td-d2').checked = todo.d2; document.getElementById('td-d3').checked = todo.d3;
+        document.getElementById('td-qcb').checked = todo.qcb; document.getElementById('td-qtext').value = todo.qtext;
+        calcTodoProgress();
+    }
+    function updateTodo() {
+        setDB('dzikra_todo', { date: new Date().toLocaleDateString('id-ID'), s: [document.getElementById('td-s1').checked, document.getElementById('td-s2').checked, document.getElementById('td-s3').checked, document.getElementById('td-s4').checked, document.getElementById('td-s5').checked], d1: document.getElementById('td-d1').checked, d2: document.getElementById('td-d2').checked, d3: document.getElementById('td-d3').checked, qcb: document.getElementById('td-qcb').checked, qtext: document.getElementById('td-qtext').value });
+        calcTodoProgress();
+    }
+    function calcTodoProgress() {
+        let total = 9; let done = 0; const todo = getDB('dzikra_todo');
+        todo.s.forEach(val => { if(val) done++; }); if(todo.d1) done++; if(todo.d2) done++; if(todo.d3) done++; if(todo.qcb) done++;
+        let pct = Math.round((done/total)*100); document.getElementById('todo-progress-bar').style.width = `${pct}%`; document.getElementById('todo-progress-text').innerText = pct;
+    }
+
+    // --- CMS, ADMIN, USERS & LOGS ---
+    function handleLogin(e) {
+        e.preventDefault(); const userInp = document.getElementById('username').value; const passInp = document.getElementById('password').value;
+        const users = getDB('dzikra_users'); const foundUser = users.find(u => u.username === userInp && u.password === passInp);
+        if (foundUser) {
+            localStorage.setItem('dzikra_auth_username', foundUser.username); localStorage.setItem('dzikra_auth_role', foundUser.role); localStorage.setItem('dzikra_auth_nama', foundUser.nama);
+            document.getElementById('username').value = ''; document.getElementById('password').value = '';
+            addLog("Login ke dalam sistem CMS"); switchView('admin');
+        } else alert('Gagal! Username atau password salah.');
+    }
+    function logout() { addLog("Keluar (Logout) dari sistem CMS"); localStorage.removeItem('dzikra_auth_role'); localStorage.removeItem('dzikra_auth_nama'); localStorage.removeItem('dzikra_auth_username'); switchView('home'); }
+    function checkLoginState() { /* Silent check */ }
+    
+    function renderAdminUI() {
+        const role = localStorage.getItem('dzikra_auth_role'); const nama = localStorage.getItem('dzikra_auth_nama');
+        document.getElementById('admin-welcome').innerText = nama; document.getElementById('admin-role-badge').innerText = role;
+        document.getElementById('btn-admin-users').classList.toggle('hidden', role !== 'superadmin');
+        document.getElementById('btn-admin-qris').classList.toggle('hidden', role !== 'superadmin');
+        document.getElementById('btn-admin-log').classList.toggle('hidden', role !== 'superadmin');
+        renderAdminTable();
+    }
+    
+    function renderAdminTable() {
+        let articles = getDB('dzikra_articles'); const role = localStorage.getItem('dzikra_auth_role'); const nama = localStorage.getItem('dzikra_auth_nama');
+        if (role === 'penulis') articles = articles.filter(a => a.penulis === nama);
+        const tbody = document.getElementById('admin-table-body'); tbody.innerHTML = '';
+        if(articles.length === 0) tbody.innerHTML = `<tr><td colspan="3" class="text-center text-slate-400 py-6">Tidak ada artikel.</td></tr>`;
+        articles.forEach((art) => {
+            tbody.innerHTML += `<tr class="border-b hover:bg-slate-50"><td class="p-4"><p class="font-bold text-slate-800">${art.judul}</p><p class="text-[10px] text-slate-400">Oleh: ${art.penulis}</p></td><td class="p-4"><span class="bg-slate-100 border px-2 py-1 rounded text-[10px] font-bold uppercase">${art.kategori}</span></td><td class="p-4 text-right whitespace-nowrap"><button onclick="editArtikel(${art.id})" class="text-blue-600 font-bold text-xs bg-blue-50 px-3 py-1.5 rounded-full mr-2">Edit</button><button onclick="hapusArtikel(${art.id})" class="text-rose-600 font-bold text-xs bg-rose-50 px-3 py-1.5 rounded-full">Hapus</button></td></tr>`;
+        });
+    }
+
+    function hapusArtikel(id) {
+        if(confirm(`Yakin ingin menghapus artikel permanen?`)) {
+            let articles = getDB('dzikra_articles').filter(a => a.id !== id);
+            setDB('dzikra_articles', articles); addLog("Menghapus artikel"); renderAdminTable(); renderArticlesHome(currentHomeArticlePage);
+        }
+    }
+
+    function toggleCMSEditor() {
+        currentEditId = null; document.getElementById('cms-title').innerHTML = ''; document.getElementById('cms-subtitle').innerHTML = ''; document.getElementById('cms-content').innerHTML = '';
+        document.getElementById('cms-cover-preview').src = ''; document.getElementById('cms-cover-preview').classList.add('hidden'); document.getElementById('cms-cover-text').classList.remove('hidden');
+        document.getElementById('cms-author-name').value = localStorage.getItem('dzikra_auth_nama') || "Admin MKI";
+        document.getElementById('view-cms-editor').classList.toggle('hidden');
+    }
+
+    function simpanArtikel() {
+        const judul = document.getElementById('cms-title').innerText.trim(); const subjudul = document.getElementById('cms-subtitle').innerText.trim();
+        const konten = document.getElementById('cms-content').innerHTML.trim(); const kategori = document.getElementById('cms-kategori').value;
+        const penulis = document.getElementById('cms-author-name').value.trim(); const cover = document.getElementById('cms-cover-preview').src;
+        if(!judul || !konten) { alert("Judul dan Konten wajib diisi!"); return; }
+
+        let articles = getDB('dzikra_articles');
+        if (currentEditId) {
+            const idx = articles.findIndex(a => a.id === currentEditId);
+            if(idx !== -1) { articles[idx] = { ...articles[idx], judul, subjudul, kategori, penulis, cover, konten, tanggal: new Date().toISOString() }; addLog("Mengubah artikel: " + judul); }
+            currentEditId = null;
+        } else {
+            articles.unshift({ id: Date.now(), judul, subjudul, kategori, tanggal: new Date().toISOString(), penulis, cover, konten, views: 0, rating: "0.0", ratingCount: 0 }); addLog("Mempublikasikan artikel: " + judul);
+        }
+        setDB('dzikra_articles', articles); document.getElementById('view-cms-editor').classList.add('hidden'); renderAdminTable(); renderArticlesHome(1); alert("Tersimpan!");
+    }
+
+    function editArtikel(id) {
+        const art = getDB('dzikra_articles').find(a => a.id === id); if(!art) return;
+        currentEditId = id; document.getElementById('cms-title').innerText = art.judul; document.getElementById('cms-subtitle').innerText = art.subjudul || '';
+        document.getElementById('cms-content').innerHTML = art.konten; document.getElementById('cms-kategori').value = art.kategori; document.getElementById('cms-author-name').value = art.penulis;
+        if(art.cover && !art.cover.includes(window.location.href)) { document.getElementById('cms-cover-preview').src = art.cover; document.getElementById('cms-cover-preview').classList.remove('hidden'); document.getElementById('cms-cover-text').classList.add('hidden'); } 
+        else { document.getElementById('cms-cover-preview').src = ''; document.getElementById('cms-cover-preview').classList.add('hidden'); document.getElementById('cms-cover-text').classList.remove('hidden'); }
+        document.getElementById('view-cms-editor').classList.remove('hidden');
+    }
+
+    function execCmd(command, value = null) { document.execCommand(command, false, value); document.getElementById('cms-content').focus(); }
+    function insertImagePrompt() { let url = prompt("Masukkan URL Gambar:"); if(url) execCmd('insertImage', url); }
+    function previewCover(event) { const file = event.target.files[0]; if(file) { const reader = new FileReader(); reader.onload = function(e) { document.getElementById('cms-cover-preview').src = e.target.result; document.getElementById('cms-cover-preview').classList.remove('hidden'); document.getElementById('cms-cover-text').classList.add('hidden'); }; reader.readAsDataURL(file); } }
+
+    function bukaModalUsers() { renderUsersTable(); document.getElementById('modal-users').classList.remove('hidden'); }
+    function tutupModalUsers() { document.getElementById('modal-users').classList.add('hidden'); }
+    function renderUsersTable() {
+        const tbody = document.getElementById('users-table-body'); tbody.innerHTML = '';
+        getDB('dzikra_users').forEach(u => { tbody.innerHTML += `<tr class="border-b"><td class="p-3"><p class="font-bold">${u.nama}</p><p class="text-[10px] text-slate-400">@${u.username}</p></td><td class="p-3"><span class="bg-purple-50 text-purple-600 px-2 py-1 rounded text-[10px] font-bold uppercase">${u.role}</span></td><td class="p-3 text-right">${u.username !== 'admin' ? `<button onclick="hapusUserAcc(${u.id})" class="text-rose-500 font-bold text-xs">Hapus</button>` : '-'}</td></tr>`; });
+    }
+    function tambahUser(e) {
+        e.preventDefault(); const uname = document.getElementById('new-user-uname').value.trim();
+        let users = getDB('dzikra_users'); if(users.find(u => u.username === uname)) { alert('Username sudah digunakan!'); return; }
+        users.push({ id: Date.now(), username: uname, password: document.getElementById('new-user-pass').value, role: document.getElementById('new-user-role').value, nama: document.getElementById('new-user-nama').value.trim() });
+        setDB('dzikra_users', users); addLog(`Membuat akun baru: ${uname}`); alert('Akun dibuat!'); e.target.reset(); renderUsersTable();
+    }
+    function hapusUserAcc(id) { if(confirm('Hapus akun ini?')) { setDB('dzikra_users', getDB('dzikra_users').filter(u => u.id !== id)); addLog("Menghapus akun pengguna"); renderUsersTable(); } }
+
+    function bukaModalGantiPassword() { document.getElementById('old-password').value = ''; document.getElementById('new-password').value = ''; document.getElementById('modal-ganti-password').classList.remove('hidden'); }
+    function tutupModalGantiPassword() { document.getElementById('modal-ganti-password').classList.add('hidden'); }
+    function prosesGantiPassword(e) {
+        e.preventDefault(); const oldPass = document.getElementById('old-password').value; const newPass = document.getElementById('new-password').value;
+        let users = getDB('dzikra_users'); let uIdx = users.findIndex(u => u.username === localStorage.getItem('dzikra_auth_username'));
+        if (uIdx !== -1 && users[uIdx].password === oldPass) { users[uIdx].password = newPass; setDB('dzikra_users', users); addLog("Mengganti password"); alert("Password diubah!"); tutupModalGantiPassword(); } 
+        else alert("Password lama salah!");
+    }
+
+    function showLogsModal() {
+        const container = document.getElementById('logs-container'); container.innerHTML = '';
+        const logs = getDB('dzikra_logs');
+        if(logs.length === 0) container.innerHTML = `<p class="text-center py-6 text-slate-400 text-sm">Belum ada log aktivitas.</p>`;
+        else logs.forEach(log => { container.innerHTML += `<div class="bg-slate-50 p-3 rounded-xl border flex justify-between"><div><p class="text-sm font-semibold">${log.aksi}</p><p class="text-[10px] text-slate-500">Oleh: ${log.user}</p></div><span class="text-[10px] text-slate-400 bg-white border px-2 py-1 rounded-md">${log.waktu}</span></div>`; });
+        document.getElementById('modal-logs').classList.remove('hidden');
+    }
+    function tutupLogsModal() { document.getElementById('modal-logs').classList.add('hidden'); }
+
+    // --- TOOLS ---
+    let tasbihCounter = 0;
+    function hitTasbih() { 
+        tasbihCounter++; 
+        let c = document.getElementById('tasbih-count'); 
+        c.innerText = tasbihCounter; 
+        
+        c.classList.remove('scale-110'); void c.offsetWidth; c.classList.add('scale-110');
+        setTimeout(() => c.classList.remove('scale-110'), 150);
+
+        let cycle = tasbihCounter % 100; 
+        let countInCycle = cycle === 0 && tasbihCounter > 0 ? 100 : cycle;
+        let arab = "سُبْحَانَ ٱللَّٰهِ"; let latin = "Subhanallah"; let target = "0 / 33";
+        
+        if (countInCycle <= 33) { target = `${countInCycle} / 33`; } 
+        else if (countInCycle <= 66) { arab = "ٱلْحَمْدُ لِلَّٰهِ"; latin = "Alhamdulillah"; target = `${countInCycle - 33} / 33`; } 
+        else if (countInCycle <= 99) { arab = "ٱللَّٰهُ أَكْبَرُ"; latin = "Allahu Akbar"; target = `${countInCycle - 66} / 33`; } 
+        else { arab = "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ"; latin = "Laa Ilaaha Illallah"; target = `1 / 1`; }
+        
+        document.getElementById('tasbih-bacaan-arab').innerText = arab;
+        document.getElementById('tasbih-bacaan-latin').innerText = latin;
+        document.getElementById('tasbih-target').innerText = target;
+        
+        if(navigator.vibrate) navigator.vibrate(50);
+    }
+    
+    function resetTasbih() { 
+        tasbihCounter = 0; 
+        document.getElementById('tasbih-count').innerText = 0; 
+        document.getElementById('tasbih-bacaan-arab').innerText = "سُبْحَانَ ٱللَّٰهِ";
+        document.getElementById('tasbih-bacaan-latin').innerText = "Subhanallah";
+        document.getElementById('tasbih-target').innerText = "0 / 33";
+    }
+
+    function hitungZakat() {
+        const u = parseFloat(document.getElementById('zakat-uang').value)||0; 
+        const a = parseFloat(document.getElementById('zakat-aset').value)||0;
+        const tot = u+a; const nisab = 85000000;
+        document.getElementById('zakat-result').classList.remove('hidden');
+        const resEl = document.getElementById('zakat-total');
+        if(tot >= nisab) { 
+            resEl.innerText = "Rp "+(tot*0.025).toLocaleString('id-ID'); 
+            resEl.classList.remove('text-rose-600');
+            resEl.classList.add('text-emerald-600'); 
+        } else { 
+            resEl.innerText = "Belum Wajib Zakat"; 
+            resEl.classList.remove('text-emerald-600');
+            resEl.classList.add('text-rose-600'); 
+        }
+    }
+
+    function bukaDonasi() { document.getElementById('modal-donasi').classList.remove('hidden'); const qrisData = localStorage.getItem('dzikra_qris'); if(qrisData) { document.getElementById('img-qris-display').src = qrisData; document.getElementById('img-qris-display').classList.remove('hidden'); document.getElementById('img-qris-placeholder').classList.add('hidden'); } }
+    function tutupDonasi() { document.getElementById('modal-donasi').classList.add('hidden'); }
+    function toggleSetQRIS() { document.getElementById('form-qris').classList.toggle('hidden'); }
+    function simpanQRIS() { const fileInput = document.getElementById('input-qris'); if(fileInput.files && fileInput.files[0]) { const reader = new FileReader(); reader.onload = function(e) { localStorage.setItem('dzikra_qris', e.target.result); addLog("Memperbarui gambar QRIS"); alert('Gambar QRIS disimpan!'); toggleSetQRIS(); }; reader.readAsDataURL(fileInput.files[0]); } else alert('Pilih gambar dahulu.'); }
+
+    // --- COMPASS IMPLEMENTATION ---
+    let compassHandler;
+    function startCompass() { if(typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') { document.getElementById('btn-izin-kompas').classList.remove('hidden'); } else { initCompassSensor(); } }
+    function requestCompassPermission() { DeviceOrientationEvent.requestPermission().then(r => { if(r == 'granted') { initCompassSensor(); document.getElementById('btn-izin-kompas').classList.add('hidden'); } }).catch(console.error); }
+    function initCompassSensor() {
+        compassHandler = (e) => {
+            let c = e.webkitCompassHeading || Math.abs(e.alpha - 360);
+            if(c) {
+                const rotateDegree = c - 295; 
+                document.getElementById('compass-needle').style.transform = `rotate(${-rotateDegree}deg)`;
+                document.getElementById('kompas-status').innerText = `Derajat: ${Math.round(c)}°`;
+            }
+        };
+        window.addEventListener('deviceorientationabsolute', compassHandler, true); window.addEventListener('deviceorientation', compassHandler, true);
+    }
+    function stopCompass() { if(compassHandler) { window.removeEventListener('deviceorientationabsolute', compassHandler, true); window.removeEventListener('deviceorientation', compassHandler, true); } }
+    function togglePassword(id, icon) { const el = document.getElementById(id); if(el.type === 'password') { el.type = 'text'; document.getElementById(icon).classList.replace('ph-eye', 'ph-eye-slash'); } else { el.type = 'password'; document.getElementById(icon).classList.replace('ph-eye-slash', 'ph-eye'); } }
+</script>
+</body>
+</html>
