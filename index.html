@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#1e40af">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Majelis Keluarga Indonesia - APPS</title>
+    <title>Majelis Keluarga Indonesia</title>
     
     <!-- Google Fonts: Poppins & Noto Sans Arabic (LPMQ) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -79,7 +79,7 @@
         .article-body blockquote { border-left: 4px solid #4f46e5; padding: 1rem; background: #eef2ff; border-radius: 0.5rem; font-style: italic; }
         .article-body img { border-radius: 1rem; margin-bottom: 1rem; width: 100%; object-fit: cover; max-height: 400px;}
 
-        #compass-needle { transition: transform 0.1s ease-out; }
+        #compass-needle { transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
         .tour-highlight { position: relative; z-index: 9999999 !important; border-radius: 1.5rem; box-shadow: 0 0 0 4px #fbbf24, 0 0 0 9999px rgba(15,23,42,0.7); background: white; pointer-events: none; }
         .todo-cb:checked + div { background-color: #4f46e5; border-color: #4f46e5; }
         .todo-cb:checked + div svg { display: block; }
@@ -107,88 +107,112 @@
 <div id="gas-app-root">
     
     <!-- ==================== TAMPILAN UTAMA (HOME) ==================== -->
-    <div id="view-home" class="max-w-5xl mx-auto px-4 py-6 md:py-10 relative fade-in">
+    <div id="view-home" class="max-w-5xl mx-auto px-4 py-6 md:py-10 relative fade-in pb-28 md:pb-12">
         
-        <div class="flex justify-between items-center mb-8">
+        <div class="flex justify-between items-center mb-6 md:mb-8">
             <div class="flex items-center">
-                <img src="logo-MKI-150.png" alt="Logo MKI" class="h-10 w-auto md:h-12 mr-3 rounded-md shadow-sm border-2 border-amber-400" onerror="this.src='https://placehold.co/40x40?text=MKI'">
+                <img src="logo-MKI-150.png" alt="Logo MKI" class="h-10 w-auto sm:h-12 md:h-14 mr-3 rounded-md shadow-sm border-2 border-amber-400" onerror="this.src='https://placehold.co/40x40?text=MKI'">
                 <div>
-                    <p class="text-[10px] md:text-xs text-emerald-600 font-bold tracking-widest uppercase mb-1 flex items-center">
+                    <p class="text-[9px] sm:text-[10px] md:text-xs text-emerald-600 font-bold tracking-widest uppercase mb-0.5 sm:mb-1 flex items-center">
                         Majelis Keluarga Indonesia
                     </p>
-                    <h1 class="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight" id="greeting-text">Selamat Siang</h1>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 tracking-tight" id="greeting-text">Selamat Siang</h1>
                 </div>
             </div>
-            <div class="flex space-x-2">
-                <button onclick="startTour()" class="w-10 h-10 md:w-auto md:px-4 rounded-full bg-slate-100 border border-slate-200 text-slate-600 hover:bg-slate-200 flex items-center justify-center shadow-sm">
-                    <i class="ph-bold ph-question text-lg md:mr-1.5"></i> <span class="hidden md:inline text-sm font-bold">Bantuan</span>
+            <div class="flex space-x-1.5 sm:space-x-2">
+                <button onclick="startTour()" class="w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:px-4 rounded-full bg-slate-100 border border-slate-200 text-slate-600 hover:bg-slate-200 flex items-center justify-center shadow-sm">
+                    <i class="ph-bold ph-question text-base sm:text-lg md:mr-1.5"></i> <span class="hidden md:inline text-sm font-bold">Bantuan</span>
                 </button>
-                <button onclick="bukaDonasi()" class="w-10 h-10 md:w-auto md:px-4 rounded-full bg-orange-50 border border-orange-100 text-orange-600 hover:bg-orange-100 flex items-center justify-center shadow-sm">
-                    <i class="ph-bold ph-heart text-lg md:mr-1.5"></i> <span class="hidden md:inline text-sm font-bold">Donasi</span>
+                <button onclick="bukaDonasi()" class="w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:px-4 rounded-full bg-orange-50 border border-orange-100 text-orange-600 hover:bg-orange-100 flex items-center justify-center shadow-sm">
+                    <i class="ph-bold ph-heart text-base sm:text-lg md:mr-1.5"></i> <span class="hidden md:inline text-sm font-bold">Donasi</span>
                 </button>
-                <button id="btn-login-home" onclick="switchView('login')" class="w-10 h-10 md:w-auto md:px-4 rounded-full bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-200 flex items-center justify-center group">
-                    <i class="ph-duotone ph-user-circle text-emerald-600 text-xl md:mr-1.5 group-hover:scale-110 transition-transform"></i> <span id="btn-login-text" class="hidden md:inline text-sm font-bold">Masuk</span>
+                <button id="btn-login-home" onclick="switchView('login')" class="w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:px-4 rounded-full bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-200 flex items-center justify-center group">
+                    <i class="ph-duotone ph-user-circle text-emerald-600 text-lg sm:text-xl md:mr-1.5 group-hover:scale-110 transition-transform"></i> <span id="btn-login-text" class="hidden md:inline text-sm font-bold">Masuk</span>
                 </button>
             </div>
         </div>
 
-        <div id="widget-sholat" class="gradient-emerald rounded-3xl p-6 md:p-8 text-white shadow-3d mb-8 relative overflow-hidden group border-b-4 border-indigo-900">
-            <div class="absolute -right-10 -top-10 opacity-10 rotate-12 pointer-events-none"><i class="ph-fill ph-moon-stars text-[200px]"></i></div>
-            <button onclick="testAdzan()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/40 p-2 rounded-full backdrop-blur-sm transition-all" title="Putar/Hentikan Adzan">
-                <i class="ph-fill ph-speaker-high text-xl" id="icon-adzan"></i>
+        <div id="widget-sholat" class="gradient-emerald rounded-[2rem] p-5 sm:p-6 md:p-8 text-white shadow-3d mb-8 relative overflow-hidden group border-b-4 border-indigo-900">
+            <div class="absolute -right-10 -top-10 opacity-10 rotate-12 pointer-events-none"><i class="ph-fill ph-moon-stars text-[150px] sm:text-[200px]"></i></div>
+            <button onclick="testAdzan()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/40 p-1.5 sm:p-2 rounded-full backdrop-blur-sm transition-all" title="Putar/Hentikan Adzan">
+                <i class="ph-fill ph-speaker-high text-lg sm:text-xl" id="icon-adzan"></i>
             </button>
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 relative z-10">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 relative z-10">
                 <div>
-                    <div class="flex items-center text-xs font-medium bg-white/20 backdrop-blur-md w-max px-4 py-1.5 rounded-full mb-3 border border-white/10">
-                        <i class="ph-fill ph-map-pin mr-1.5 text-emerald-200"></i> <span id="lokasi-teks">Jakarta, ID</span>
-                        <span id="sync-status" class="ml-2 bg-white/20 px-2 py-0.5 rounded-full text-[9px] animate-pulse">Syncing GAS...</span>
+                    <div class="flex items-center text-[10px] sm:text-xs font-medium bg-white/20 backdrop-blur-md w-max px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-2 sm:mb-3 border border-white/10">
+                        <i class="ph-fill ph-map-pin mr-1 sm:mr-1.5 text-emerald-200"></i> <span id="lokasi-teks">Jakarta, ID</span>
+                        <span id="sync-status" class="ml-2 bg-white/20 px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] animate-pulse">Syncing GAS...</span>
                     </div>
-                    <h2 class="text-2xl md:text-3xl font-bold mb-1" id="hijri-date">Memuat Tanggal...</h2>
-                    <p class="text-sm font-light text-emerald-100" id="masehi-date">Memuat...</p>
+                    <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-0.5 sm:mb-1" id="hijri-date">Memuat Tanggal...</h2>
+                    <p class="text-xs sm:text-sm font-light text-emerald-100" id="masehi-date">Memuat...</p>
                 </div>
-                <div class="mt-6 md:mt-0 text-left md:text-right">
-                    <p class="text-xs font-medium text-emerald-200 uppercase tracking-widest mb-1">Menuju <span id="next-prayer-name" class="ml-1 font-bold text-white">...</span></p>
-                    <div class="text-4xl md:text-5xl font-bold tracking-tighter" id="realtime-clock">00:00<span class="text-xl md:text-2xl opacity-70 ml-1 font-medium">00</span></div>
+                <div class="mt-4 sm:mt-0 text-left sm:text-right">
+                    <p class="text-[10px] sm:text-xs font-medium text-emerald-200 uppercase tracking-widest mb-0.5 sm:mb-1">Menuju <span id="next-prayer-name" class="ml-1 font-bold text-white">...</span></p>
+                    <div class="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tighter" id="realtime-clock">00:00<span class="text-lg sm:text-xl md:text-2xl opacity-70 ml-1 font-medium">00</span></div>
                 </div>
             </div>
-            <div class="grid grid-cols-4 md:grid-cols-7 gap-3 text-center relative z-10" id="prayer-grid">
-                <div class="col-span-4 md:col-span-7 py-4 text-emerald-100 text-sm animate-pulse">Menyinkronkan jadwal sholat...</div>
+            <div class="grid grid-cols-4 sm:grid-cols-7 gap-2 sm:gap-3 text-center relative z-10" id="prayer-grid">
+                <div class="col-span-4 sm:col-span-7 py-4 text-emerald-100 text-xs sm:text-sm animate-pulse">Menyinkronkan jadwal sholat...</div>
             </div>
         </div>
 
-        <div id="menu-grid-container" class="grid grid-cols-4 gap-3 md:gap-6 mb-12">
-            <button onclick="openMenu('quran')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
-                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-book-open-text text-2xl md:text-3xl"></i></div>
-                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Al-Qur'an</span>
+        <div id="menu-grid-container" class="grid grid-cols-4 gap-2.5 sm:gap-4 md:gap-6 mb-10 md:mb-12">
+            <!-- Menu 1 -->
+            <button onclick="openMenu('quran')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
+                    <i class="ph-duotone ph-book-open-text text-2xl sm:text-3xl drop-shadow-md"></i>
+                </div>
+                <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Al-Qur'an</span>
             </button>
-            <button onclick="openMenu('todo')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group relative bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
-                <div class="absolute -top-2 -right-2 w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center text-[10px] font-bold text-rose-600 z-10 shadow-md">New</div>
-                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-list-checks text-2xl md:text-3xl"></i></div>
-                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Progres</span>
+            <!-- Menu 2 -->
+            <button onclick="openMenu('todo')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group relative bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 bg-rose-100 rounded-full flex items-center justify-center text-[8px] sm:text-[10px] font-bold text-rose-600 z-10 shadow-sm border border-white">New</div>
+                <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
+                    <i class="ph-duotone ph-list-checks text-2xl sm:text-3xl drop-shadow-md"></i>
+                </div>
+                <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Progres</span>
             </button>
-            <button onclick="openMenu('dzikir')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
-                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-sun-horizon text-2xl md:text-3xl"></i></div>
-                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Dzikir</span>
+            <!-- Menu 3 -->
+            <button onclick="openMenu('dzikir')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
+                    <i class="ph-duotone ph-sun-horizon text-2xl sm:text-3xl drop-shadow-md"></i>
+                </div>
+                <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Dzikir</span>
             </button>
-            <button onclick="openMenu('doa')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
-                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-hands-praying text-2xl md:text-3xl"></i></div>
-                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Doa</span>
+            <!-- Menu 4 -->
+            <button onclick="openMenu('doa')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
+                    <i class="ph-duotone ph-hands-praying text-2xl sm:text-3xl drop-shadow-md"></i>
+                </div>
+                <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Doa</span>
             </button>
-            <button onclick="openMenu('asmaul')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
-                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-star text-2xl md:text-3xl"></i></div>
-                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Asmaul</span>
+            <!-- Menu 5 -->
+            <button onclick="openMenu('asmaul')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
+                    <i class="ph-duotone ph-star text-2xl sm:text-3xl drop-shadow-md"></i>
+                </div>
+                <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Asmaul</span>
             </button>
-            <button onclick="openMenu('tasbih')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
-                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-circle-dashed text-2xl md:text-3xl"></i></div>
-                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Tasbih</span>
+            <!-- Menu 6 -->
+            <button onclick="openMenu('tasbih')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
+                    <i class="ph-duotone ph-link text-2xl sm:text-3xl drop-shadow-md"></i>
+                </div>
+                <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Tasbih</span>
             </button>
-            <button onclick="openMenu('zakat')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
-                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-calculator text-2xl md:text-3xl"></i></div>
-                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Zakat</span>
+            <!-- Menu 7 -->
+            <button onclick="openMenu('zakat')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
+                    <i class="ph-duotone ph-calculator text-2xl sm:text-3xl drop-shadow-md"></i>
+                </div>
+                <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Zakat</span>
             </button>
-            <button onclick="openMenu('kompas')" class="glass-panel p-3 md:p-6 rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
-                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 transition-colors shadow-inner"><i class="ph-duotone ph-compass text-2xl md:text-3xl"></i></div>
-                <span class="text-[10px] md:text-sm font-semibold text-slate-700 text-center leading-tight">Kiblat</span>
+            <!-- Menu 8 -->
+            <button onclick="openMenu('kompas')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
+                <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
+                    <i class="ph-duotone ph-compass text-2xl sm:text-3xl drop-shadow-md"></i>
+                </div>
+                <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Kiblat</span>
             </button>
         </div>
 
@@ -209,18 +233,25 @@
 
         <div class="text-center pb-8 text-slate-400 text-xs mt-10 border-t border-slate-200 pt-8">
             <p class="font-bold text-slate-500 mb-1">MAJELIS KELUARGA INDONESIA</p>
-            <p>COPYRIGHT © 2026.RUMAH EDUKASI DIGITAl. ALL RIGHTS RESERVED.</p>
+            <p>COPYRIGHT © 2026. RUMAH EDUKASI DIGITAL. ALL RIGHTS RESERVED.</p>
         </div>
     </div>
 
     <!-- ==================== BALLOON NOTIFICATION GREETING ==================== -->
     <div id="greeting-balloon" class="toast-enter fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[1000000] max-w-sm w-[calc(100%-3rem)] md:w-80">
-        <div class="bg-white border-l-4 border-emerald-600 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] p-4 relative">
+        <div class="bg-white border-l-4 border-emerald-600 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] p-5 relative">
             <button onclick="closeBalloon()" class="absolute top-3 right-3 text-slate-400 hover:text-slate-600"><i class="ph-bold ph-x text-xs"></i></button>
-            <div class="flex items-start">
+            <div class="flex items-start mb-3">
                 <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mr-3"><i class="ph-fill ph-hand-waving text-xl"></i></div>
-                <div><h4 class="font-bold text-sm">Ahlan wa Sahlan!</h4><p class="text-xs text-slate-500">Selamat datang di MKI App.</p></div>
+                <div class="flex-1">
+                    <h4 class="font-bold text-sm text-slate-800">Ahlan wa Sahlan!</h4>
+                    <p class="text-xs text-slate-500 mt-1">Selamat datang di aplikasi Portal Islami MKI.</p>
+                </div>
             </div>
+            <!-- Tombol Install dinamis dalam Balloon -->
+            <button id="btn-install-app-balloon" onclick="installPWA()" class="w-full mt-3 bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-bold py-2.5 rounded-lg shadow-sm transition-colors hidden flex justify-center items-center">
+                <i class="ph-bold ph-download-simple mr-1.5"></i> Gunakan Layar Penuh (Install)
+            </button>
         </div>
     </div>
 
@@ -382,9 +413,9 @@
     </div>
 
     <div id="view-article-detail" class="hidden min-h-screen bg-white relative pb-20">
-        <div class="sticky top-0 bg-white border-b px-4 py-4 flex justify-between z-50"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 rounded-full font-bold text-lg">&laquo;</button><button onclick="shareArticle()" class="bg-emerald-50 text-emerald-600 px-4 py-2 rounded-full font-bold text-xs">Bagikan</button></div>
-        <div id="detail-cover-container" class="w-full h-64 bg-slate-100 hidden relative"><img id="detail-cover" class="w-full h-full object-cover"></div>
-        <div class="max-w-3xl mx-auto px-6 py-8" id="detail-content-wrapper">
+        <div class="sticky top-0 bg-white border-b px-4 py-4 flex justify-between z-50 shadow-sm"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 rounded-full font-bold text-lg hover:bg-slate-200 transition-colors">&laquo;</button><button onclick="shareArticle()" class="bg-emerald-50 text-emerald-600 px-4 py-2 rounded-full font-bold text-xs hover:bg-emerald-100 transition-colors">Bagikan</button></div>
+        <div id="detail-cover-container" class="w-full h-48 sm:h-64 md:h-96 bg-slate-100 hidden relative"><img id="detail-cover" class="w-full h-full object-cover"></div>
+        <div class="max-w-3xl mx-auto px-5 sm:px-6 py-6 sm:py-8" id="detail-content-wrapper">
             <span id="detail-kategori" class="text-[10px] font-bold text-white bg-emerald-600 px-3 py-1 rounded-full uppercase mb-4 inline-block">Kategori</span>
             <h1 id="detail-judul" class="text-3xl md:text-4xl font-extrabold mb-3">Judul</h1>
             <h2 id="detail-subjudul" class="text-lg text-slate-500 mb-6"></h2>
@@ -399,11 +430,11 @@
         </div>
     </div>
 
-    <div id="view-tasbih" class="hidden min-h-screen flex flex-col items-center justify-center p-4 bg-slate-50"><button onclick="switchView('home')" class="absolute top-4 left-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md"><i class="ph-bold ph-arrow-left"></i></button><div class="bg-white p-8 rounded-[3rem] text-center shadow-glass-3d w-full max-w-xs border border-slate-100"><div class="mb-6 min-h-[80px] bg-emerald-50 rounded-2xl p-4 shadow-inner"><p id="tasbih-bacaan-arab" class="font-arabic text-4xl text-emerald-600 mb-2 transition-all">سُبْحَانَ ٱللَّٰهِ</p><p id="tasbih-bacaan-latin" class="text-sm font-bold text-slate-700 transition-all">Subhanallah</p><p id="tasbih-target" class="text-[10px] font-bold bg-emerald-600 text-white px-3 py-1 rounded-full mt-2 inline-block shadow-sm">0 / 33</p></div><div class="text-7xl font-bold mb-8 transition-transform text-slate-800" id="tasbih-count">0</div><button onclick="hitTasbih()" class="w-40 h-40 rounded-full gradient-emerald text-white shadow-3d mx-auto mb-8 text-2xl font-bold active:shadow-3d-active active:translate-y-[6px] transition-all flex flex-col items-center justify-center"><i class="ph-fill ph-hand-tap text-5xl mb-2"></i>TAP</button><button onclick="resetTasbih()" class="text-rose-500 font-bold px-6 py-2 bg-rose-50 rounded-full text-sm border-b-2 border-rose-200 active:border-b-0 active:translate-y-[2px]">Reset Angka</button></div></div>
+    <div id="view-tasbih" class="hidden min-h-screen flex flex-col items-center justify-center p-4 bg-slate-50 overflow-y-auto"><button onclick="switchView('home')" class="absolute top-4 left-4 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-slate-50"><i class="ph-bold ph-arrow-left"></i></button><div class="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[3rem] text-center shadow-glass-3d w-full max-w-sm border border-slate-100 my-auto"><div class="mb-6 min-h-[80px] bg-emerald-50 rounded-2xl p-4 shadow-inner"><p id="tasbih-bacaan-arab" class="font-arabic text-3xl sm:text-4xl text-emerald-600 mb-2 transition-all">سُبْحَانَ ٱللَّٰهِ</p><p id="tasbih-bacaan-latin" class="text-xs sm:text-sm font-bold text-slate-700 transition-all">Subhanallah</p><p id="tasbih-target" class="text-[10px] font-bold bg-emerald-600 text-white px-3 py-1 rounded-full mt-2 inline-block shadow-sm">0 / 33</p></div><div class="text-6xl sm:text-7xl font-bold mb-8 transition-transform text-slate-800" id="tasbih-count">0</div><button onclick="hitTasbih()" class="w-32 h-32 sm:w-40 sm:h-40 rounded-full gradient-emerald text-white shadow-3d mx-auto mb-8 text-xl sm:text-2xl font-bold active:shadow-3d-active active:translate-y-[6px] transition-all flex flex-col items-center justify-center"><i class="ph-fill ph-hand-tap text-4xl sm:text-5xl mb-2"></i>TAP</button><button onclick="resetTasbih()" class="text-rose-500 font-bold px-6 py-2 bg-rose-50 rounded-full text-xs sm:text-sm border-b-2 border-rose-200 active:border-b-0 active:translate-y-[2px]">Reset Angka</button></div></div>
     
-    <div id="view-zakat" class="hidden min-h-screen bg-slate-50 relative pb-10"><div class="sticky top-0 bg-white px-4 py-4 flex items-center shadow-sm z-50"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center mr-4 shadow-inner"><i class="ph-bold ph-arrow-left"></i></button><h2 class="text-lg font-bold">Zakat Maal</h2></div><div class="max-w-lg mx-auto p-4 mt-6 bg-white p-8 rounded-[2rem] shadow-glass-3d border border-slate-100"><label class="block text-xs font-bold text-slate-500 mb-2 uppercase">Total Uang Tunai/Tabungan</label><input type="number" id="zakat-uang" class="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-4 py-3 mb-4 outline-none focus:border-emerald-500 shadow-inner" placeholder="Contoh: 10000000"><label class="block text-xs font-bold text-slate-500 mb-2 uppercase">Total Aset/Emas Disimpan</label><input type="number" id="zakat-aset" class="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-4 py-3 mb-8 outline-none focus:border-emerald-500 shadow-inner" placeholder="Contoh: 50000000"><button onclick="hitungZakat()" class="w-full gradient-emerald text-white font-bold py-4 rounded-xl shadow-3d active:shadow-3d-active active:translate-y-[6px] transition-all">Hitung Zakat 2.5%</button><div id="zakat-result" class="hidden mt-8 p-6 bg-emerald-50 text-center rounded-2xl border-2 border-emerald-100 shadow-inner"><h3 class="font-bold text-slate-700">Total Wajib Zakat:</h3><p class="text-3xl font-extrabold text-emerald-600 mt-2" id="zakat-total">0</p></div></div></div>
+    <div id="view-zakat" class="hidden min-h-screen bg-slate-50 relative pb-10 overflow-y-auto"><div class="sticky top-0 bg-white px-4 py-4 flex items-center shadow-sm z-50"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center mr-4 shadow-inner hover:bg-slate-200"><i class="ph-bold ph-arrow-left"></i></button><h2 class="text-base sm:text-lg font-bold">Zakat Maal</h2></div><div class="max-w-lg mx-auto p-4 mt-4 sm:mt-6 bg-white p-6 sm:p-8 rounded-[2rem] shadow-glass-3d border border-slate-100"><label class="block text-[10px] sm:text-xs font-bold text-slate-500 mb-2 uppercase">Total Uang Tunai/Tabungan</label><input type="number" id="zakat-uang" class="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-4 py-3 mb-4 outline-none focus:border-emerald-500 shadow-inner" placeholder="Contoh: 10000000"><label class="block text-[10px] sm:text-xs font-bold text-slate-500 mb-2 uppercase">Total Aset/Emas Disimpan</label><input type="number" id="zakat-aset" class="w-full bg-slate-50 border-2 border-slate-100 rounded-xl px-4 py-3 mb-8 outline-none focus:border-emerald-500 shadow-inner" placeholder="Contoh: 50000000"><button onclick="hitungZakat()" class="w-full gradient-emerald text-white font-bold py-3.5 sm:py-4 rounded-xl shadow-3d active:shadow-3d-active active:translate-y-[6px] transition-all text-sm sm:text-base">Hitung Zakat 2.5%</button><div id="zakat-result" class="hidden mt-8 p-5 sm:p-6 bg-emerald-50 text-center rounded-2xl border-2 border-emerald-100 shadow-inner"><h3 class="font-bold text-slate-700 text-sm sm:text-base">Total Wajib Zakat:</h3><p class="text-2xl sm:text-3xl font-extrabold text-emerald-600 mt-2 break-words" id="zakat-total">0</p></div></div></div>
     
-    <div id="view-kompas" class="hidden min-h-screen bg-slate-50 flex flex-col items-center justify-center relative"><button onclick="switchView('home')" class="absolute top-4 left-4 w-12 h-12 bg-white rounded-full shadow-md"><i class="ph-bold ph-arrow-left m-auto text-xl mt-3"></i></button><h2 class="text-2xl font-bold mb-10">Arah Kiblat</h2><div class="relative w-72 h-72 rounded-full border-4 border-emerald-500/30 flex items-center justify-center bg-white shadow-xl shadow-emerald-500/10"><div class="absolute top-2 text-slate-400 font-bold">U</div><div class="absolute bottom-2 text-slate-400 font-bold">S</div><div class="absolute right-4 text-slate-400 font-bold">T</div><div class="absolute left-4 text-slate-400 font-bold">B</div><div id="compass-needle" class="relative w-full h-full flex items-center justify-center"><div class="absolute -top-6 text-emerald-500 flex flex-col items-center"><i class="ph-fill ph-mosque text-5xl"></i><span class="text-[10px] font-bold bg-emerald-100 px-2 rounded-full mt-1">KIBLAT</span></div><div class="w-4 h-4 bg-emerald-500 rounded-full z-10 shadow-md"></div></div></div><div id="kompas-status" class="mt-10 font-mono text-xl bg-white px-6 py-2 rounded-full border shadow-sm">Derajat: 0°</div><button id="btn-izin-kompas" onclick="requestCompassPermission()" class="mt-6 px-6 py-2 bg-emerald-600 text-white rounded-full font-bold shadow-md hidden">Beri Izin (iOS)</button></div>
+    <div id="view-kompas" class="hidden min-h-screen bg-slate-50 flex flex-col items-center justify-center relative overflow-y-auto py-10"><button onclick="switchView('home')" class="absolute top-4 left-4 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-slate-100"><i class="ph-bold ph-arrow-left text-lg sm:text-xl"></i></button><h2 class="text-xl sm:text-2xl font-bold mb-8 sm:mb-10 mt-10">Arah Kiblat</h2><div class="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full border-4 border-emerald-500/30 flex items-center justify-center bg-white shadow-xl shadow-emerald-500/10"><div class="absolute top-2 text-slate-400 font-bold">U</div><div class="absolute bottom-2 text-slate-400 font-bold">S</div><div class="absolute right-4 text-slate-400 font-bold">T</div><div class="absolute left-4 text-slate-400 font-bold">B</div><div id="compass-needle" class="relative w-full h-full flex items-center justify-center"><div class="absolute -top-6 text-emerald-500 flex flex-col items-center"><i class="ph-fill ph-mosque text-4xl sm:text-5xl drop-shadow-md"></i><span class="text-[9px] sm:text-[10px] font-bold bg-emerald-100 px-2 rounded-full mt-1 border border-emerald-200 text-emerald-700">KIBLAT</span></div><div class="w-3 h-3 sm:w-4 sm:h-4 bg-emerald-500 rounded-full z-10 shadow-md"></div></div></div><div id="kompas-status" class="mt-8 sm:mt-10 font-mono text-lg sm:text-xl bg-white px-5 sm:px-6 py-2 rounded-full border shadow-sm">Derajat: 0°</div><button id="btn-izin-kompas" onclick="requestCompassPermission()" class="mt-5 sm:mt-6 px-5 sm:px-6 py-2 bg-emerald-600 text-white rounded-full font-bold shadow-md hidden text-sm sm:text-base">Beri Izin (iOS)</button></div>
 
 </div>
 
@@ -411,6 +442,11 @@
     // --- INTEGRASI BACKEND GAS ---
     const IS_PREVIEW = false; // Di-set False agar Aplikasi Fetch dari GAS API
     const GAS_URL = "https://script.google.com/macros/s/AKfycbznLfX-tN7Caa2GqLFGrqGhRiFPHV7DBK0m3_EV1Ge5ynS0HpSlOy6urDFFIwu97u2a/exec";
+
+    // Fungsi utilitas untuk membersihkan string yang akan dilempar ke HTML (menghindari SyntaxError saat onclick dipanggil)
+    function escapeJS(str) {
+        return (str || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n|\r/g, '');
+    }
 
     const getDB = (key) => JSON.parse(localStorage.getItem(key)) || [];
     const setDB = (key, val) => localStorage.setItem(key, JSON.stringify(val));
@@ -445,7 +481,6 @@
             let data;
             
             try {
-                // Mencoba mem-parsing JSON. Jika gagal, berarti GAS mengirim HTML/Error
                 data = JSON.parse(textResponse);
             } catch(e) {
                 throw new Error("Respons bukan JSON. Pastikan Web App GAS di-deploy dengan hak akses 'Anyone' (Siapa saja).");
@@ -467,14 +502,12 @@
                     setDB('dzikra_dzikir', data.dzikir.map(d => ({judul: d.Judul, arab: d.Teks_Arab, latin: d.Teks_Latin, terjemahan: d.Terjemahan})));
                 }
                 
-                // Segarkan tampilan ke pengguna
                 renderArticlesHome(currentHomeArticlePage);
                 if(statusEl) { statusEl.innerText = "Synced"; setTimeout(() => statusEl.classList.add('hidden'), 2000); }
             } else {
                  throw new Error(data ? data.message : "Data API tidak valid");
             }
         } catch (err) {
-            // Ubah menjadi console.warn agar tidak dianggap sebagai error merah oleh sistem Canvas
             console.warn("Sinkronisasi GAS dihentikan sementara:", err.message);
             if(statusEl) statusEl.classList.add('hidden');
         }
@@ -500,7 +533,6 @@
         initClockAndDate(); 
         fetchRealPrayerTimes(); 
         
-        // Panggil rendering awal pakai cache lokal, dan fetch sinkronisasi background API GAS
         renderArticlesHome(1); 
         syncWithGAS(); 
         
@@ -511,9 +543,8 @@
             const balloon = document.getElementById('greeting-balloon');
             if(balloon) balloon.classList.add('toast-enter-active');
             
-            // Cek jika PWA bisa di-install namun belum pernah ditolak
             if(deferredPrompt && localStorage.getItem('mki_install_prompt') !== 'dismissed') { 
-                setTimeout(bukaModalInstall, 6000); // Popup PWA Screen setelah balloon hilang
+                setTimeout(bukaModalInstall, 6000); 
             }
             setTimeout(closeBalloon, 5000);
         }, 1500);
@@ -524,7 +555,10 @@
     // --- PWA INSTALL & SW ---
     let deferredPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault(); deferredPrompt = e;
+        e.preventDefault(); 
+        deferredPrompt = e;
+        const btnInstallBalloon = document.getElementById('btn-install-app-balloon');
+        if(btnInstallBalloon) btnInstallBalloon.classList.remove('hidden');
     });
 
     async function installPWA() {
@@ -532,8 +566,11 @@
         if (deferredPrompt) {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') addLog("User menginstall aplikasi PWA");
+            if (outcome === 'accepted') {
+                addLog("User menginstall aplikasi PWA (Layar Penuh)");
+            }
             deferredPrompt = null;
+            closeBalloon();
         } else {
             alert('Browser Anda tidak mendukung instalasi langsung. Silakan buka menu browser (titik tiga) dan pilih "Tambahkan ke Layar Utama" / "Add to Home Screen" atau "Install App".');
         }
@@ -613,7 +650,7 @@
 
     function switchView(viewName) {
         const root = document.getElementById('gas-app-root');
-        scrollPositions[activeView] = root.scrollTop; // Simpan posisi scroll tampilan saat ini
+        scrollPositions[activeView] = root.scrollTop; 
 
         const views = ['home', 'quran', 'baca-quran', 'tasbih', 'zakat', 'kompas', 'listing', 'article-detail', 'login', 'admin', 'todo'];
         views.forEach(v => { const el = document.getElementById(`view-${v}`); if (el) el.classList.add('hidden'); });
@@ -621,7 +658,6 @@
         const target = document.getElementById(`view-${viewName}`); 
         if(target) target.classList.remove('hidden');
         
-        // Kembalikan posisi scroll tampilan tujuan, atau reset ke atas jika baru
         root.scrollTop = scrollPositions[viewName] || 0;
         activeView = viewName;
 
@@ -695,7 +731,6 @@
     function renderListingStatic(menu) {
         let items = menu === 'dzikir' ? getDB('dzikra_dzikir') : getDB('dzikra_doa');
         
-        // Fallback dummy jika DB masih kosong / gagal fetch
         if(!items || items.length === 0) {
             if(menu === 'dzikir') {
                 items = [
@@ -740,7 +775,10 @@
     
     function renderSurahList(data) {
         const list = document.getElementById('quran-list');
-        list.innerHTML = data.map(s => `<div onclick="openSurah(${s.nomor}, '${s.namaLatin}')" class="bg-white p-4 rounded-2xl border shadow-sm flex justify-between cursor-pointer hover:border-emerald-300 mb-3"><div class="flex items-center"><div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center font-bold mr-4">${s.nomor}</div><div><h3 class="font-bold text-slate-800">${s.namaLatin}</h3><p class="text-xs text-slate-500">${s.arti} • ${s.jumlahAyat} Ayat</p></div></div><div class="font-arabic text-3xl text-emerald-700 pt-1">${s.nama}</div></div>`).join('');
+        list.innerHTML = data.map(s => {
+            const safeName = escapeJS(s.namaLatin);
+            return `<div onclick="openSurah(${s.nomor}, '${safeName}')" class="bg-white p-4 rounded-2xl border shadow-sm flex justify-between cursor-pointer hover:border-emerald-300 mb-3"><div class="flex items-center"><div class="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center font-bold mr-4">${s.nomor}</div><div><h3 class="font-bold text-slate-800">${s.namaLatin}</h3><p class="text-xs text-slate-500">${s.arti} • ${s.jumlahAyat} Ayat</p></div></div><div class="font-arabic text-3xl text-emerald-700 pt-1">${s.nama}</div></div>`;
+        }).join('');
     }
     
     function filterSurah() {
@@ -759,6 +797,7 @@
             const ayahs = dataObj.data.ayat;
             c.innerHTML = id !== 1 && id !== 9 ? `<div class="text-center font-arabic text-4xl my-8 text-emerald-800 leading-loose">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>` : '';
             const bmData = getDB('dzikra_quran_bm');
+            const safeSurahName = escapeJS(name);
             ayahs.forEach((ayah) => {
                 const isBM = bmData && bmData.surahId === id && bmData.ayahNum === ayah.nomorAyat;
                 const bgClass = isBM ? 'bg-emerald-50 border-emerald-300 ring-2 ring-emerald-500/20 shadow-md' : 'bg-white border-slate-100 shadow-sm';
@@ -769,7 +808,7 @@
                         <div class="flex justify-between items-start mb-4">
                             <div class="flex flex-col space-y-2 items-center mr-4">
                                 <span class="w-8 h-8 bg-slate-200 text-slate-700 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">${ayah.nomorAyat}</span>
-                                <button onclick="tandaiAyat(${id}, '${name}', ${ayah.nomorAyat})" class="px-2 py-1 rounded text-[10px] font-bold ${btnClass} shadow-sm transition-colors whitespace-nowrap" title="Tandai terakhir dibaca">Tandai</button>
+                                <button onclick="tandaiAyat(${id}, '${safeSurahName}', ${ayah.nomorAyat})" class="px-2 py-1 rounded text-[10px] font-bold ${btnClass} shadow-sm transition-colors whitespace-nowrap" title="Tandai terakhir dibaca">Tandai</button>
                             </div>
                             <div class="flex-1 w-full">
                                 <p class="font-arabic text-3xl md:text-4xl leading-[2.2] md:leading-[2.5] text-right text-slate-800 mb-4" dir="rtl">${ayah.teksArab}</p>
@@ -1120,22 +1159,66 @@
     function toggleSetQRIS() { document.getElementById('form-qris').classList.toggle('hidden'); }
     function simpanQRIS() { const fileInput = document.getElementById('input-qris'); if(fileInput.files && fileInput.files[0]) { const reader = new FileReader(); reader.onload = function(e) { localStorage.setItem('dzikra_qris', e.target.result); addLog("Memperbarui gambar QRIS"); alert('Gambar QRIS disimpan!'); toggleSetQRIS(); }; reader.readAsDataURL(fileInput.files[0]); } else alert('Pilih gambar dahulu.'); }
 
-    // --- COMPASS IMPLEMENTATION ---
+    // --- COMPASS IMPLEMENTATION (LOW-PASS FILTER SMOOTHING) ---
     let compassHandler;
-    function startCompass() { if(typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') { document.getElementById('btn-izin-kompas').classList.remove('hidden'); } else { initCompassSensor(); } }
-    function requestCompassPermission() { DeviceOrientationEvent.requestPermission().then(r => { if(r == 'granted') { initCompassSensor(); document.getElementById('btn-izin-kompas').classList.add('hidden'); } }).catch(console.error); }
+    let lastHeading = 0; // Menyimpan heading sebelumnya untuk keperluan smoothing
+
+    function startCompass() { 
+        if(typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') { 
+            document.getElementById('btn-izin-kompas').classList.remove('hidden'); 
+        } else { 
+            initCompassSensor(); 
+        } 
+    }
+    
+    function requestCompassPermission() { 
+        DeviceOrientationEvent.requestPermission().then(r => { 
+            if(r == 'granted') { 
+                initCompassSensor(); document.getElementById('btn-izin-kompas').classList.add('hidden'); 
+            } 
+        }).catch(console.error); 
+    }
+    
     function initCompassSensor() {
         compassHandler = (e) => {
-            let c = e.webkitCompassHeading || Math.abs(e.alpha - 360);
-            if(c) {
-                const rotateDegree = c - 295; 
-                document.getElementById('compass-needle').style.transform = `rotate(${-rotateDegree}deg)`;
-                document.getElementById('kompas-status').innerText = `Derajat: ${Math.round(c)}°`;
+            // Dapatkan heading dari API iOS atau Alpha dari Android
+            let heading = e.webkitCompassHeading;
+            if (typeof heading === 'undefined' || heading === null) {
+                heading = 360 - e.alpha; 
+            }
+
+            if(heading !== null && heading !== undefined) {
+                // Algoritma Low-Pass Filter (Smoothing)
+                let diff = heading - lastHeading;
+                
+                // Menangani lonpatan sudut saat melewati angka utara (360 derajat ke 0 derajat)
+                if (diff > 180) diff -= 360;
+                else if (diff < -180) diff += 360;
+
+                // Faktor smoothing, ubah angka 0.15 jika butuh lebih kaku atau lebih lambat
+                lastHeading += diff * 0.15; 
+                
+                if(lastHeading < 0) lastHeading += 360;
+                if(lastHeading >= 360) lastHeading -= 360;
+
+                const kiblatHeading = 295; // Arah kiblat patokan untuk Indonesia (relatif)
+                let needleRotation = lastHeading - kiblatHeading;
+
+                document.getElementById('compass-needle').style.transform = `rotate(${-needleRotation}deg)`;
+                document.getElementById('kompas-status').innerText = `Derajat: ${Math.round(lastHeading)}°`;
             }
         };
-        window.addEventListener('deviceorientationabsolute', compassHandler, true); window.addEventListener('deviceorientation', compassHandler, true);
+        window.addEventListener('deviceorientationabsolute', compassHandler, true); 
+        window.addEventListener('deviceorientation', compassHandler, true);
     }
-    function stopCompass() { if(compassHandler) { window.removeEventListener('deviceorientationabsolute', compassHandler, true); window.removeEventListener('deviceorientation', compassHandler, true); } }
+    
+    function stopCompass() { 
+        if(compassHandler) { 
+            window.removeEventListener('deviceorientationabsolute', compassHandler, true); 
+            window.removeEventListener('deviceorientation', compassHandler, true); 
+        } 
+    }
+    
     function togglePassword(id, icon) { const el = document.getElementById(id); if(el.type === 'password') { el.type = 'text'; document.getElementById(icon).classList.replace('ph-eye', 'ph-eye-slash'); } else { el.type = 'password'; document.getElementById(icon).classList.replace('ph-eye-slash', 'ph-eye'); } }
 </script>
 </body>
