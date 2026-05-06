@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#1e40af">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Majelis Keluarga Indonesia</title>
+    <title>Majelis Keluarga Indonesia - Rumah Edukasi Digital</title>
     
     <!-- Google Fonts: Poppins, Amiri & Charter fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -144,7 +144,7 @@
         </div>
         <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-1">Ahlan wa Sahlan!</h3>
         <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-4 uppercase tracking-widest">Majelis Keluarga Indonesia</p>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Selamat datang di aplikasi mobile kami. Untuk pengalaman <b>Layar Penuh (Fullscreen)</b> dan penggunaan <b>Offline</b>, silakan install aplikasi ini ke layar utama HP Anda.</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Selamat datang di aplikasi kami. Untuk pengalaman <b>Layar Penuh (Fullscreen)</b> dan penggunaan <b>Offline</b>, silakan install aplikasi ini ke layar utama HP Anda.</p>
         
         <label class="flex items-center justify-center space-x-2 text-xs text-slate-500 dark:text-slate-400 mb-6 cursor-pointer group">
             <input type="checkbox" id="chk-dont-show" class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300 dark:border-slate-600 cursor-pointer">
@@ -174,7 +174,8 @@
                     <p class="text-[9px] sm:text-[10px] md:text-xs text-emerald-600 dark:text-emerald-400 font-bold tracking-widest uppercase mb-0.5 sm:mb-1 flex items-center">
                         Majelis Keluarga Indonesia
                     </p>
-                                    </div>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 dark:text-white tracking-tight" id="greeting-text">Selamat Siang</h1>
+                </div>
             </div>
             <div class="flex space-x-1.5 sm:space-x-2 overflow-x-auto hide-scrollbar max-w-[50vw] md:max-w-none py-1">
                 <button onclick="toggleTheme()" class="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 md:w-auto md:px-4 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center shadow-sm">
@@ -195,7 +196,6 @@
             </div>
         </div>
 
-        <!-- WIDGET SHOLAT -->
         <div id="widget-sholat" class="gradient-emerald rounded-[2rem] p-5 sm:p-6 md:p-8 text-white shadow-3d mb-8 relative overflow-hidden group border-b-4 border-indigo-900 transition-all hover:shadow-[0_15px_30px_rgba(0,0,0,0.3)]">
             <div class="absolute -right-10 -top-10 opacity-10 rotate-12 pointer-events-none transition-transform duration-700 group-hover:rotate-45"><i class="ph-fill ph-moon-stars text-[150px] sm:text-[200px]"></i></div>
             <button onclick="testAdzan()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/40 p-1.5 sm:p-2 rounded-full backdrop-blur-sm transition-all hover:scale-110" title="Putar/Hentikan Adzan">
@@ -205,7 +205,7 @@
                 <div>
                     <div class="flex items-center text-[10px] sm:text-xs font-medium bg-white/20 backdrop-blur-md w-max px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-2 sm:mb-3 border border-white/10">
                         <i class="ph-fill ph-map-pin mr-1 sm:mr-1.5 text-emerald-200"></i> <span id="lokasi-teks">Jakarta, ID</span>
-                        <span id="sync-status" class="ml-2 bg-white/20 px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] animate-pulse">Syncing DATA...</span>
+                        <span id="sync-status" class="ml-2 bg-white/20 px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] animate-pulse">Syncing GAS...</span>
                     </div>
                     <p class="text-[10px] sm:text-xs text-emerald-200 uppercase tracking-widest font-bold mb-0.5">Tanggal Hijriah & Masehi</p>
                     <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-0.5 sm:mb-1 drop-shadow-md" id="hijri-date">Memuat Tanggal...</h2>
@@ -222,7 +222,6 @@
             </div>
         </div>
 
-        <!-- MENU UTAMA -->
         <div id="menu-grid-container" class="grid grid-cols-4 gap-2.5 sm:gap-4 md:gap-6 mb-10 md:mb-12">
             <button onclick="openMenu('quran')" class="fade-in stagger-1 glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white dark:bg-slate-800 border-b-4 border-slate-200 dark:border-slate-700 active:border-b-0 active:translate-y-1">
                 <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white dark:from-emerald-900 dark:to-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50 dark:border-slate-600">
@@ -275,7 +274,6 @@
             </button>
         </div>
 
-        <!-- ARTIKEL FEED & KATEGORI -->
         <div class="flex flex-col mb-6" id="artikel-header">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 space-y-4 md:space-y-0">
                 <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 flex items-center w-full md:w-auto"><i class="ph-fill ph-books text-emerald-600 dark:text-emerald-400 mr-2"></i> Artikel Islami</h3>
@@ -303,8 +301,8 @@
         <div id="article-pagination" class="flex justify-center items-center space-x-2 mb-12"></div>
 
         <div class="text-center pb-8 text-slate-400 dark:text-slate-500 text-xs mt-10 border-t border-slate-200 dark:border-slate-700 pt-8">
-            <p class="font-bold text-slate-500 dark:text-slate-400 mb-2">MAJELIS KELUARGA INDONESIA</p>
-            <p class="mb-5">COPYRIGHT © 2026. RUMAH EDUKASI DIGITAL.</p>
+            <p class="font-bold text-slate-500 dark:text-slate-400 mb-2">MAJELIS KELUARGA INDONESIA - RUMAH EDUKASI DIGITAL</p>
+            <p class="mb-5">COPYRIGHT © 2026. ALL RIGHTS RESERVED.</p>
             
             <div class="flex justify-center items-center space-x-5">
                 <a href="#" class="flex flex-col items-center text-slate-400 hover:text-red-500 transition-all hover:-translate-y-1 group">
@@ -330,7 +328,7 @@
     <div id="view-marketplace" class="hidden min-h-screen bg-slate-50 dark:bg-slate-900 relative pb-10 overflow-y-auto">
         <div class="sticky top-0 bg-white dark:bg-slate-800 px-4 py-4 flex items-center shadow-sm z-50">
             <button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mr-4 shadow-inner hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300"><i class="ph-bold ph-arrow-left"></i></button>
-            <h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100">Market MKI</h2>
+            <h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100">Toko Muslim MKI</h2>
         </div>
         <div class="max-w-5xl mx-auto p-4 mt-2">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6" id="marketplace-list"></div>
@@ -358,7 +356,7 @@
     <div id="view-login" class="hidden min-h-screen flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md z-50 fixed inset-0">
         <div class="bg-white dark:bg-slate-800 w-full max-w-md p-8 rounded-[2rem] shadow-2xl relative border dark:border-slate-700">
             <button onclick="switchView('home')" class="absolute top-6 right-6 text-slate-400 bg-slate-100 dark:bg-slate-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-600"><i class="ph-bold ph-x"></i></button>
-            <div class="text-center mb-8"><h2 class="text-2xl font-bold text-slate-800 dark:text-white">LOGIN</h2><p class="text-xs text-slate-500 dark:text-slate-400">Member Access</p></div>
+            <div class="text-center mb-8"><h2 class="text-2xl font-bold text-slate-800 dark:text-white">Portal CMS</h2><p class="text-xs text-slate-500 dark:text-slate-400">Admin Access</p></div>
             <form onsubmit="handleLogin(event)">
                 <input type="text" id="username" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-3 mb-4 outline-none focus:border-emerald-500" required placeholder="Username">
                 <div class="relative">
@@ -602,6 +600,24 @@
         </div>
     </div>
 
+    <div id="view-article-detail" class="hidden min-h-screen bg-white dark:bg-slate-900 relative pb-20 overflow-y-auto">
+        <div class="sticky top-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b dark:border-slate-700 px-4 py-4 flex justify-between z-50 shadow-sm"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full font-bold text-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">&laquo;</button><button onclick="shareArticle()" class="bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 px-4 py-2 rounded-full font-bold text-xs hover:bg-emerald-100 dark:hover:bg-emerald-800/60 transition-colors">Bagikan</button></div>
+        <div id="detail-cover-container" class="w-full h-48 sm:h-64 md:h-96 bg-slate-100 dark:bg-slate-800 hidden relative"><img id="detail-cover" class="w-full h-full object-cover"></div>
+        <div class="max-w-3xl mx-auto px-5 sm:px-6 py-6 sm:py-8 bg-white dark:bg-slate-900" id="detail-content-wrapper">
+            <span id="detail-kategori" class="text-[10px] font-bold text-white bg-emerald-600 px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-sm">Kategori</span>
+            <h1 id="detail-judul" class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-3">Judul</h1>
+            <h2 id="detail-subjudul" class="text-lg text-slate-500 dark:text-slate-400 mb-6 font-sans"></h2>
+            <div class="flex items-center justify-between mb-8 pb-8 border-b border-slate-100 dark:border-slate-800"><div class="flex items-center"><div><p id="detail-penulis" class="font-bold text-slate-800 dark:text-slate-200 font-sans">Penulis</p><p id="detail-tanggal" class="text-xs text-slate-500 dark:text-slate-400 font-sans">Tanggal</p></div></div><div class="text-right text-xs font-bold text-slate-400 font-sans"><p><span id="detail-views">0</span>x dibaca</p><p class="text-amber-500"><i class="ph-fill ph-star"></i> <span id="detail-rating">0.0</span></p></div></div>
+            <div id="detail-konten" class="article-body text-lg text-slate-700 font-charter"></div>
+            <div class="mt-12 pt-8 border-t border-slate-100 dark:border-slate-800 text-center font-sans"><p class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3">Beri nilai artikel ini</p><div class="flex justify-center space-x-2 text-3xl text-slate-300 dark:text-slate-600" id="rating-stars-container"></div><p id="rating-thanks" class="text-emerald-600 dark:text-emerald-400 text-sm mt-3 hidden">Terima kasih!</p></div>
+            
+            <div class="flex justify-between items-center mt-10 pt-6 border-t border-slate-100 dark:border-slate-800 font-sans">
+                <button id="btn-prev-article" class="flex items-center text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"><i class="ph-bold ph-arrow-left mr-2 text-lg"></i> Artikel Sebelumnya</button>
+                <button id="btn-next-article" class="flex items-center text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Artikel Selanjutnya <i class="ph-bold ph-arrow-right ml-2 text-lg"></i></button>
+            </div>
+        </div>
+    </div>
+
     <div id="view-tasbih" class="hidden min-h-screen flex flex-col items-center justify-center p-4 bg-slate-50 dark:bg-slate-900 overflow-y-auto"><button onclick="switchView('home')" class="absolute top-4 left-4 w-10 h-10 sm:w-12 sm:h-12 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-full flex items-center justify-center shadow-md hover:bg-slate-100 dark:hover:bg-slate-700"><i class="ph-bold ph-arrow-left"></i></button><div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-[2rem] sm:rounded-[3rem] text-center shadow-glass-3d w-full max-w-sm border dark:border-slate-700 my-auto"><div class="mb-6 min-h-[80px] bg-emerald-50 dark:bg-slate-900 rounded-2xl p-4 shadow-inner border dark:border-slate-700"><p id="tasbih-bacaan-arab" class="font-arabic text-3xl sm:text-4xl text-emerald-600 dark:text-emerald-400 mb-2 transition-all">سُبْحَانَ ٱللَّٰهِ</p><p id="tasbih-bacaan-latin" class="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 transition-all">Subhanallah</p><p id="tasbih-target" class="text-[10px] font-bold bg-emerald-600 text-white px-3 py-1 rounded-full mt-2 inline-block shadow-sm">0 / 33</p></div><div class="text-6xl sm:text-7xl font-bold mb-8 transition-transform text-slate-800 dark:text-white" id="tasbih-count">0</div><button onclick="hitTasbih()" class="w-32 h-32 sm:w-40 sm:h-40 rounded-full gradient-emerald text-white shadow-3d mx-auto mb-8 text-xl sm:text-2xl font-bold active:shadow-3d-active active:translate-y-[6px] transition-all flex flex-col items-center justify-center"><i class="ph-fill ph-hand-tap text-4xl sm:text-5xl mb-2"></i>TAP</button><button onclick="resetTasbih()" class="text-rose-500 dark:text-rose-400 font-bold px-6 py-2 bg-rose-50 dark:bg-rose-900/40 rounded-full text-xs sm:text-sm border-b-2 border-rose-200 dark:border-rose-800/50 active:border-b-0 active:translate-y-[2px]">Reset Angka</button></div></div>
     
     <div id="view-zakat" class="hidden min-h-screen bg-slate-50 dark:bg-slate-900 relative pb-10 overflow-y-auto"><div class="sticky top-0 bg-white dark:bg-slate-800 border-b dark:border-slate-700 px-4 py-4 flex items-center shadow-sm z-50"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full flex items-center justify-center mr-4 shadow-inner hover:bg-slate-200 dark:hover:bg-slate-600"><i class="ph-bold ph-arrow-left"></i></button><h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-white">Zakat Maal</h2></div><div class="max-w-lg mx-auto p-4 mt-4 sm:mt-6 bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-[2rem] shadow-glass-3d border dark:border-slate-700"><label class="block text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase">Total Uang Tunai/Tabungan</label><input type="number" id="zakat-uang" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border-2 border-slate-100 dark:border-slate-700 rounded-xl px-4 py-3 mb-4 outline-none focus:border-emerald-500 shadow-inner" placeholder="Contoh: 10000000"><label class="block text-[10px] sm:text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase">Total Aset/Emas Disimpan</label><input type="number" id="zakat-aset" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border-2 border-slate-100 dark:border-slate-700 rounded-xl px-4 py-3 mb-8 outline-none focus:border-emerald-500 shadow-inner" placeholder="Contoh: 50000000"><button onclick="hitungZakat()" class="w-full gradient-emerald text-white font-bold py-3.5 sm:py-4 rounded-xl shadow-3d active:shadow-3d-active active:translate-y-[6px] transition-all text-sm sm:text-base">Hitung Zakat 2.5%</button><div id="zakat-result" class="hidden mt-8 p-5 sm:p-6 bg-emerald-50 dark:bg-slate-900 text-center rounded-2xl border-2 border-emerald-100 dark:border-slate-700 shadow-inner"><h3 class="font-bold text-slate-700 dark:text-slate-300 text-sm sm:text-base">Total Wajib Zakat:</h3><p class="text-2xl sm:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-2 break-words" id="zakat-total">0</p></div></div></div>
@@ -617,6 +633,11 @@
     function escapeJS(str) { return (str || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n|\r/g, ''); }
     const getDB = (key) => JSON.parse(localStorage.getItem(key)) || [];
     const setDB = (key, val) => localStorage.setItem(key, JSON.stringify(val));
+
+    // Helper functions for safe DOM updates
+    const setElText = (id, text) => { const el = document.getElementById(id); if(el) el.innerText = text; };
+    const setElHTML = (id, html) => { const el = document.getElementById(id); if(el) el.innerHTML = html; };
+    const setElVal = (id, val) => { const el = document.getElementById(id); if(el) el.value = val; };
 
     function toggleTheme() {
         if(document.documentElement.classList.contains('dark')){
@@ -673,8 +694,10 @@
 
     function updateCoverPreview(imgId, val) {
         const img = document.getElementById(imgId);
-        if(val) { img.src = val; img.classList.remove('hidden'); }
-        else img.classList.add('hidden');
+        if(img) {
+            if(val) { img.src = val; img.classList.remove('hidden'); }
+            else img.classList.add('hidden');
+        }
     }
 
     function previewFile(e, imgId, urlId) {
@@ -682,7 +705,7 @@
         if(file) {
             const reader = new FileReader();
             reader.onload = function(evt) {
-                document.getElementById(urlId).value = evt.target.result; 
+                setElVal(urlId, evt.target.result);
                 updateCoverPreview(imgId, evt.target.result);
             };
             reader.readAsDataURL(file);
@@ -695,7 +718,7 @@
         try {
             const res = await fetch(GAS_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ action: 'get_all_data' }) });
             const textResponse = await res.text(); let data;
-            try { data = JSON.parse(textResponse); } catch(e) { throw new Error("Respons bukan JSON. Pastikan Web App GAS di-deploy dengan hak akses 'Anyone' (Siapa saja)."); }
+            try { data = JSON.parse(textResponse); } catch(e) { throw new Error("Respons bukan JSON."); }
             if (data && data.status === 'success') {
                 if(data.articles && data.articles.length > 0) setDB('dzikra_articles', data.articles.map(a => ({ id: a.ID, judul: a.Judul, subjudul: a.Subjudul, kategori: a.Kategori, tanggal: a.Tanggal, penulis: a.Penulis, cover: a.Cover_URL, konten: a.Konten_HTML, views: a.Views, rating: a.Rating, ratingCount: a.RatingCount })));
                 if(data.doa && data.doa.length > 0) setDB('dzikra_doa', data.doa.map(d => ({judul: d.Judul, arab: d.Teks_Arab, latin: d.Teks_Latin, terjemahan: d.Terjemahan})));
@@ -703,7 +726,7 @@
                 renderArticlesHome(currentHomeArticlePage);
                 if(statusEl) { statusEl.innerText = "Synced"; setTimeout(() => statusEl.classList.add('hidden'), 2000); }
             } else throw new Error(data ? data.message : "Data API tidak valid");
-        } catch (err) { console.warn("Sinkronisasi GAS dihentikan sementara:", err.message); if(statusEl) statusEl.classList.add('hidden'); }
+        } catch (err) { console.warn("Sinkronisasi dihentikan:", err.message); if(statusEl) statusEl.classList.add('hidden'); }
     }
 
     function addLog(actionStr) {
@@ -721,7 +744,8 @@
         
         setTimeout(() => {
             if (localStorage.getItem('mki_install_prompt') !== 'dismissed') {
-                document.getElementById('modal-welcome').classList.remove('hidden');
+                const welcomeModal = document.getElementById('modal-welcome');
+                if(welcomeModal) welcomeModal.classList.remove('hidden');
             }
         }, 1500);
     });
@@ -736,8 +760,10 @@
     }
 
     function tutupModalWelcome() {
-        document.getElementById('modal-welcome').classList.add('hidden');
-        if (document.getElementById('chk-dont-show') && document.getElementById('chk-dont-show').checked) {
+        const welcomeModal = document.getElementById('modal-welcome');
+        if(welcomeModal) welcomeModal.classList.add('hidden');
+        const chkShow = document.getElementById('chk-dont-show');
+        if (chkShow && chkShow.checked) {
             localStorage.setItem('mki_install_prompt', 'dismissed');
         }
     }
@@ -750,7 +776,8 @@
         if(btnInstall) btnInstall.classList.remove('hidden');
         
         if (localStorage.getItem('mki_install_prompt') !== 'dismissed') {
-            document.getElementById('modal-welcome').classList.remove('hidden');
+            const welcomeModal = document.getElementById('modal-welcome');
+            if(welcomeModal) welcomeModal.classList.remove('hidden');
         }
     });
 
@@ -775,7 +802,9 @@
     if (location.protocol.startsWith('http')) {
         const manifest = { "name": "Majelis Keluarga Indonesia", "short_name": "MKI App", "description": "Rumah Edukasi Digital Keluarga Indonesia", "start_url": location.href.split('?')[0].split('#')[0], "display": "fullscreen", "background_color": "#f8fafc", "theme_color": "#1e40af", "icons": [{"src": "1000037681.jpg", "sizes": "192x192 512x512", "type": "image/jpeg"}] };
         const manifestUrl = 'data:application/manifest+json;charset=utf-8,' + encodeURIComponent(JSON.stringify(manifest));
-        document.querySelector('head').insertAdjacentHTML('beforeend', `<link rel="manifest" href="${manifestUrl}">`);
+        const head = document.querySelector('head');
+        if(head) head.insertAdjacentHTML('beforeend', `<link rel="manifest" href="${manifestUrl}">`);
+        
         if ('serviceWorker' in navigator) {
             const swCode = `const CACHE_NAME = 'mki-offline-final'; const urlsToCache = [location.href.split('?')[0].split('#')[0]]; self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(urlsToCache))); self.skipWaiting(); }); self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(keys => Promise.all(keys.map(k => { if(k !== CACHE_NAME) return caches.delete(k); })))); self.clients.claim(); }); self.addEventListener('fetch', e => { if (e.request.method === 'GET' && !e.request.url.includes('api.aladhan.com')) { e.respondWith( caches.match(e.request).then(cachedRes => { if (cachedRes) return cachedRes; return fetch(e.request).then(res => { if(res && res.status === 200) { const resClone = res.clone(); caches.open(CACHE_NAME).then(c => c.put(e.request, resClone)); } return res; }).catch(() => { if (e.request.mode === 'navigate') return caches.match(urlsToCache[0]); }); }) ); } });`;
             const swBlob = new Blob([swCode], {type: 'application/javascript'}); navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
@@ -784,10 +813,10 @@
 
     let tourStep = 0;
     const tourData = [ { id: 'widget-sholat', text: 'Di widget ini, Anda bisa melihat jadwal sholat sesuai lokasi Anda. Audio Adzan otomatis akan berbunyi saat waktunya tiba.' }, { id: 'menu-grid-container', text: 'Ini adalah menu utama. Anda bisa mengakses Al-Quran, Dzikir, Doa, dan fitur tracking Mutaba\'ah harian.' }, { id: 'btn-login-home', text: 'Bagi Admin, Penulis, dan Editor, klik tombol ini untuk masuk ke panel manajemen konten (CMS).' } ];
-    function startTour() { tourStep = 0; document.getElementById('tour-tooltip').classList.remove('hidden'); showTourStep(); }
-    function showTourStep() { document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight')); if (tourStep >= tourData.length) { endTour(); return; } const data = tourData[tourStep]; const targetEl = document.getElementById(data.id); if(targetEl) { targetEl.classList.add('tour-highlight'); targetEl.scrollIntoView({behavior: 'smooth', block: 'center'}); } document.getElementById('tour-text').innerText = data.text; let dotsHtml = ''; for(let i=0; i<tourData.length; i++) dotsHtml += `<div class="w-2 h-2 rounded-full ${i === tourStep ? 'bg-emerald-600' : 'bg-slate-200'}"></div>`; document.getElementById('tour-dots').innerHTML = dotsHtml; }
+    function startTour() { tourStep = 0; const tooltip = document.getElementById('tour-tooltip'); if(tooltip) { tooltip.classList.remove('hidden'); showTourStep(); } }
+    function showTourStep() { document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight')); if (tourStep >= tourData.length) { endTour(); return; } const data = tourData[tourStep]; const targetEl = document.getElementById(data.id); if(targetEl) { targetEl.classList.add('tour-highlight'); targetEl.scrollIntoView({behavior: 'smooth', block: 'center'}); } setElText('tour-text', data.text); let dotsHtml = ''; for(let i=0; i<tourData.length; i++) dotsHtml += `<div class="w-2 h-2 rounded-full ${i === tourStep ? 'bg-emerald-600' : 'bg-slate-200'}"></div>`; setElHTML('tour-dots', dotsHtml); }
     function nextTourStep() { tourStep++; showTourStep(); }
-    function endTour() { document.getElementById('tour-tooltip').classList.add('hidden'); document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight')); }
+    function endTour() { const tooltip = document.getElementById('tour-tooltip'); if(tooltip) tooltip.classList.add('hidden'); document.querySelectorAll('.tour-highlight').forEach(el => el.classList.remove('tour-highlight')); }
 
     let activeView = 'home'; const scrollPositions = {};
 
@@ -797,16 +826,22 @@
         else if(menu === 'tasbih') switchView('tasbih');
         else if(menu === 'zakat') switchView('zakat');
         else if(menu === 'kompas') switchView('kompas');
-        else if(menu === 'dzikir' || menu === 'doa') { switchView('listing'); document.getElementById('listing-title').innerText = menu === 'dzikir' ? 'Dzikir' : 'Doa'; renderListingStatic(menu); }
-        else if(menu === 'asmaul') { switchView('listing'); document.getElementById('listing-title').innerText = 'Asmaul Husna'; renderAsmaulHusnaLokal(); }
+        else if(menu === 'dzikir' || menu === 'doa') { switchView('listing'); setElText('listing-title', menu === 'dzikir' ? 'Dzikir' : 'Doa'); renderListingStatic(menu); }
+        else if(menu === 'asmaul') { switchView('listing'); setElText('listing-title', 'Asmaul Husna'); renderAsmaulHusnaLokal(); }
     }
 
     function switchView(viewName) {
-        const root = document.getElementById('gas-app-root'); scrollPositions[activeView] = root.scrollTop; 
+        const root = document.getElementById('gas-app-root'); 
+        if(root) scrollPositions[activeView] = root.scrollTop; 
+        
         const views = ['home', 'quran', 'baca-quran', 'tasbih', 'zakat', 'kompas', 'listing', 'article-detail', 'login', 'admin', 'todo', 'marketplace'];
         views.forEach(v => { const el = document.getElementById(`view-${v}`); if (el) el.classList.add('hidden'); });
-        const target = document.getElementById(`view-${viewName}`); if(target) target.classList.remove('hidden');
-        root.scrollTop = scrollPositions[viewName] || 0; activeView = viewName;
+        
+        const target = document.getElementById(`view-${viewName}`); 
+        if(target) target.classList.remove('hidden');
+        
+        if(root) root.scrollTop = scrollPositions[viewName] || 0; 
+        activeView = viewName;
         
         if(viewName === 'kompas') startCompass(); else stopCompass();
         if(viewName === 'admin') renderAdminUI();
@@ -817,6 +852,7 @@
     function renderMarketplace() {
         const products = getDB('dzikra_products');
         const list = document.getElementById('marketplace-list');
+        if(!list) return;
         list.innerHTML = '';
         if (products.length === 0) {
             list.innerHTML = '<div class="col-span-2 md:col-span-3 lg:col-span-4 text-center py-12 text-slate-400 font-medium">Belum ada produk yang dijual saat ini.</div>';
@@ -825,7 +861,7 @@
 
         products.forEach(p => {
             const imgSrc = p.gambar && p.gambar.startsWith('data:image') ? p.gambar : (p.gambar || 'https://placehold.co/300x300?text=No+Image');
-            const hJual = parseInt(p.hargaJual) || parseInt(p.harga) || 0; // Kompatibilitas mundur
+            const hJual = parseInt(p.hargaJual) || parseInt(p.harga) || 0;
             const dsk = parseInt(p.diskon) || 0;
             const hAkhir = dsk > 0 ? hJual - (hJual * dsk / 100) : hJual;
             
@@ -861,7 +897,9 @@
     // --- FORM CMS MANAJEMEN PRODUK ---
     function renderAdminProducts() {
         const products = getDB('dzikra_products');
-        const tbody = document.getElementById('admin-produk-body'); tbody.innerHTML = '';
+        const tbody = document.getElementById('admin-produk-body'); 
+        if(!tbody) return;
+        tbody.innerHTML = '';
         if(products.length === 0) {
             tbody.innerHTML = `<tr><td colspan="4" class="text-center text-slate-400 py-6 font-sans">Belum ada produk.</td></tr>`;
             return;
@@ -901,44 +939,55 @@
         if (id) {
             const prod = getDB('dzikra_products').find(p => p.id === id);
             if(prod) {
-                document.getElementById('prd-nama').value = prod.nama;
-                document.getElementById('prd-kategori').value = prod.kategori;
-                document.getElementById('prd-harga-modal').value = prod.hargaModal || 0;
-                document.getElementById('prd-harga-jual').value = prod.hargaJual || prod.harga || 0;
-                document.getElementById('prd-diskon').value = prod.diskon || 0;
-                document.getElementById('prd-link').value = prod.link;
-                document.getElementById('prd-deskripsi').value = prod.deskripsi;
+                setElVal('prd-nama', prod.nama);
+                setElVal('prd-kategori', prod.kategori);
+                setElVal('prd-harga-modal', prod.hargaModal || 0);
+                setElVal('prd-harga-jual', prod.hargaJual || prod.harga || 0);
+                setElVal('prd-diskon', prod.diskon || 0);
+                setElVal('prd-link', prod.link);
+                setElVal('prd-deskripsi', prod.deskripsi);
                 
                 if(prod.gambar) {
-                    document.getElementById('prd-foto-url').value = prod.gambar;
-                    imgPreview.src = prod.gambar;
-                    imgPreview.classList.remove('hidden');
+                    setElVal('prd-foto-url', prod.gambar);
+                    if(imgPreview) { imgPreview.src = prod.gambar; imgPreview.classList.remove('hidden'); }
                 } else {
-                    document.getElementById('prd-foto-url').value = '';
-                    imgPreview.classList.add('hidden');
+                    setElVal('prd-foto-url', '');
+                    if(imgPreview) imgPreview.classList.add('hidden');
                 }
             }
         } else {
-            form.reset();
-            imgPreview.src = '';
-            imgPreview.classList.add('hidden');
-            document.getElementById('prd-foto-url').value = '';
+            if(form) form.reset();
+            if(imgPreview) { imgPreview.src = ''; imgPreview.classList.add('hidden'); }
+            setElVal('prd-foto-url', '');
         }
-        document.getElementById('modal-form-produk').classList.remove('hidden');
+        const modal = document.getElementById('modal-form-produk');
+        if(modal) modal.classList.remove('hidden');
     }
 
-    function tutupModalProduk() { document.getElementById('modal-form-produk').classList.add('hidden'); }
+    function tutupModalProduk() { const modal = document.getElementById('modal-form-produk'); if(modal) modal.classList.add('hidden'); }
 
     function simpanProduk(e) {
         e.preventDefault();
-        const nama = document.getElementById('prd-nama').value.trim();
-        const kategori = document.getElementById('prd-kategori').value;
-        const hargaModal = parseInt(document.getElementById('prd-harga-modal').value) || 0;
-        const hargaJual = parseInt(document.getElementById('prd-harga-jual').value) || 0;
-        const diskon = parseInt(document.getElementById('prd-diskon').value) || 0;
-        const link = document.getElementById('prd-link').value.trim() || "#";
-        const deskripsi = document.getElementById('prd-deskripsi').value.trim();
-        const gambar = document.getElementById('prd-foto-url').value.trim() || document.getElementById('preview-foto-produk').src;
+        const elNama = document.getElementById('prd-nama');
+        const elKat = document.getElementById('prd-kategori');
+        const elHmodal = document.getElementById('prd-harga-modal');
+        const elHjual = document.getElementById('prd-harga-jual');
+        const elDsk = document.getElementById('prd-diskon');
+        const elLink = document.getElementById('prd-link');
+        const elDesc = document.getElementById('prd-deskripsi');
+        const elUrl = document.getElementById('prd-foto-url');
+        const elPrev = document.getElementById('preview-foto-produk');
+
+        const nama = elNama ? elNama.value.trim() : '';
+        const kategori = elKat ? elKat.value : '';
+        const hargaModal = elHmodal ? parseInt(elHmodal.value) || 0 : 0;
+        const hargaJual = elHjual ? parseInt(elHjual.value) || 0 : 0;
+        const diskon = elDsk ? parseInt(elDsk.value) || 0 : 0;
+        const link = elLink ? elLink.value.trim() || "#" : "#";
+        const deskripsi = elDesc ? elDesc.value.trim() : '';
+        let gambar = '';
+        if (elUrl && elUrl.value.trim()) gambar = elUrl.value.trim();
+        else if (elPrev && elPrev.src) gambar = elPrev.src;
 
         let products = getDB('dzikra_products');
         
@@ -988,61 +1037,9 @@
         });
     };
 
-    const asmaulHusnaData = [
-        { id: 1, latin: "Ar Rahman", arab: "الرَّحْمَنُ", arti: "Yang Maha Pengasih" }, { id: 2, latin: "Ar Rahiim", arab: "الرَّحِيمُ", arti: "Yang Maha Penyayang" },
-        { id: 3, latin: "Al Malik", arab: "الْمَلِكُ", arti: "Yang Maha Merajai" }, { id: 4, latin: "Al Quddus", arab: "الْقُدُّوسُ", arti: "Yang Maha Suci" },
-        { id: 5, latin: "As Salaam", arab: "السَّلَامُ", arti: "Yang Maha Memberi Kesejahteraan" }, { id: 6, latin: "Al Mu'min", arab: "الْمُؤْمِنُ", arti: "Yang Maha Memberi Keamanan" },
-        { id: 7, latin: "Al Muhaimin", arab: "الْمُهَيْمِنُ", arti: "Yang Maha Mengatur" }, { id: 8, latin: "Al 'Aziiz", arab: "الْعَزِيزُ", arti: "Yang Maha Perkasa" },
-        { id: 9, latin: "Al Jabbaar", arab: "الْجَبَّارُ", arti: "Yang Memiliki Mutlak Kegagahan" }, { id: 10, latin: "Al Mutakabbir", arab: "الْمُتَكَبِّرُ", arti: "Yang Maha Megah" },
-        { id: 11, latin: "Al Khaliq", arab: "الْخَالِقُ", arti: "Yang Maha Pencipta" }, { id: 12, latin: "Al Baari'", arab: "الْبَارِئُ", arti: "Yang Maha Melepaskan" },
-        { id: 13, latin: "Al Mushawwir", arab: "الْمُصَوِّرُ", arti: "Yang Maha Membentuk Rupa" }, { id: 14, latin: "Al Ghaffaar", arab: "الْغَفَّارُ", arti: "Yang Maha Pengampun" },
-        { id: 15, latin: "Al Qahhaar", arab: "الْقَهَّارُ", arti: "Yang Maha Memaksa" }, { id: 16, latin: "Al Wahhaab", arab: "الْوَهَّابُ", arti: "Yang Maha Pemberi Karunia" },
-        { id: 17, latin: "Ar Razzaaq", arab: "الرَّزَّاقُ", arti: "Yang Maha Pemberi Rezeki" }, { id: 18, latin: "Al Fattaah", arab: "الْفَتَّاحُ", arti: "Yang Maha Pembuka Rahmat" },
-        { id: 19, latin: "Al 'Aliim", arab: "الْعَلِيمُ", arti: "Yang Maha Mengetahui" }, { id: 20, latin: "Al Qaabidh", arab: "الْقَابِضُ", arti: "Yang Maha Menyempitkan" },
-        { id: 21, latin: "Al Baasith", arab: "الْبَاسِطُ", arti: "Yang Maha Melapangkan" }, { id: 22, latin: "Al Khaafidh", arab: "الْخَافِضُ", arti: "Yang Maha Merendahkan" },
-        { id: 23, latin: "Ar Raafi'", arab: "الرَّافِعُ", arti: "Yang Maha Meninggikan" }, { id: 24, latin: "Al Mu'izz", arab: "الْمُعِزُّ", arti: "Yang Maha Memuliakan" },
-        { id: 25, latin: "Al Mudzil", arab: "المُذِلُّ", arti: "Yang Maha Menghinakan" }, { id: 26, latin: "As Samii'", arab: "السَّمِيعُ", arti: "Yang Maha Mendengar" },
-        { id: 27, latin: "Al Bashiir", arab: "الْبَصِيرُ", arti: "Yang Maha Melihat" }, { id: 28, latin: "Al Hakam", arab: "الْحَكَمُ", arti: "Yang Maha Menetapkan" },
-        { id: 29, latin: "Al 'Adl", arab: "الْعَدْلُ", arti: "Yang Maha Adil" }, { id: 30, latin: "Al Lathiif", arab: "اللَّطِيفُ", arti: "Yang Maha Lembut" },
-        { id: 31, latin: "Al Khabiir", arab: "الْخَبِيرُ", arti: "Yang Maha Mengenal" }, { id: 32, latin: "Al Haliim", arab: "الْحَلِيمُ", arti: "Yang Maha Penyantun" },
-        { id: 33, latin: "Al 'Azhiim", arab: "الْعَظِيمُ", arti: "Yang Maha Agung" }, { id: 34, latin: "Al Ghafuur", arab: "الْغَفُورُ", arti: "Yang Maha Pengampun" },
-        { id: 35, latin: "As Syakuur", arab: "الشَّكُورُ", arti: "Yang Maha Pembalas Budi" }, { id: 36, latin: "Al 'Aliy", arab: "الْعَلِيُّ", arti: "Yang Maha Tinggi" },
-        { id: 37, latin: "Al Kabiir", arab: "الْكَبِيرُ", arti: "Yang Maha Besar" }, { id: 38, latin: "Al Hafizh", arab: "الْحَفِيظُ", arti: "Yang Maha Memelihara" },
-        { id: 39, latin: "Al Muqiit", arab: "الْمُقِيتُ", arti: "Yang Maha Pemberi Kecukupan" }, { id: 40, latin: "Al Hasiib", arab: "الْحَسِيبُ", arti: "Yang Maha Membuat Perhitungan" },
-        { id: 41, latin: "Al Jaliil", arab: "الْجَلِيلُ", arti: "Yang Maha Luhur" }, { id: 42, latin: "Al Kariim", arab: "الْكَرِيمُ", arti: "Yang Maha Mulia" },
-        { id: 43, latin: "Ar Raqiib", arab: "الرَّقِيبُ", arti: "Yang Maha Mengawasi" }, { id: 44, latin: "Al Mujiib", arab: "الْمُجِيبُ", arti: "Yang Maha Mengabulkan" },
-        { id: 45, latin: "Al Waasi'", arab: "الْوَاسِعُ", arti: "Yang Maha Luas" }, { id: 46, latin: "Al Hakiim", arab: "الْحَكِيمُ", arti: "Yang Maha Bijaksana" },
-        { id: 47, latin: "Al Waduud", arab: "الْوَدُودُ", arti: "Yang Maha Mengasihi" }, { id: 48, latin: "Al Majiid", arab: "الْمَجِيدُ", arti: "Yang Maha Mulia" },
-        { id: 49, latin: "Al Baa'its", arab: "الْبَاعِثُ", arti: "Yang Maha Membangkitkan" }, { id: 50, latin: "As Syahiid", arab: "الشَّهِيدُ", arti: "Yang Maha Menyaksikan" },
-        { id: 51, latin: "Al Haqq", arab: "الْحَقُّ", arti: "Yang Maha Benar" }, { id: 52, latin: "Al Wakiil", arab: "الْوَكِيلُ", arti: "Yang Maha Memelihara" },
-        { id: 53, latin: "Al Qawiyyu", arab: "الْقَوِيُّ", arti: "Yang Maha Kuat" }, { id: 54, latin: "Al Matiin", arab: "الْمَتِينُ", arti: "Yang Maha Kokoh" },
-        { id: 55, latin: "Al Waliyy", arab: "الْوَلِيُّ", arti: "Yang Maha Melindungi" }, { id: 56, latin: "Al Hamiid", arab: "الْحَمِيدُ", arti: "Yang Maha Terpuji" },
-        { id: 57, latin: "Al Muhshii", arab: "الْمُحْصِي", arti: "Yang Maha Menghitung" }, { id: 58, latin: "Al Mubdi'", arab: "الْمُبْدِئُ", arti: "Yang Maha Memulai" },
-        { id: 59, latin: "Al Mu'iid", arab: "الْمُعِيدُ", arti: "Yang Maha Mengembalikan" }, { id: 60, latin: "Al Muhyii", arab: "الْمُحْيِي", arti: "Yang Maha Menghidupkan" },
-        { id: 61, latin: "Al Mumiit", arab: "اَلْمُمِيتُ", arti: "Yang Maha Mematikan" }, { id: 62, latin: "Al Hayyu", arab: "الْحَيُّ", arti: "Yang Maha Hidup" },
-        { id: 63, latin: "Al Qayyuum", arab: "الْقَيُّومُ", arti: "Yang Maha Mandiri" }, { id: 64, latin: "Al Waajid", arab: "الْوَاجِدُ", arti: "Yang Maha Penemu" },
-        { id: 65, latin: "Al Maajid", arab: "الْمَاجِدُ", arti: "Yang Maha Mulia" }, { id: 66, latin: "Al Wahiid", arab: "الْواحِدُ", arti: "Yang Maha Tunggal" },
-        { id: 67, latin: "Al Ahad", arab: "الْأَحَدُ", arti: "Yang Maha Esa" }, { id: 68, latin: "As Shamad", arab: "الصَّمَدُ", arti: "Yang Maha Dibutuhkan" },
-        { id: 69, latin: "Al Qaadir", arab: "الْقَادِرُ", arti: "Yang Maha Menentukan" }, { id: 70, latin: "Al Muqtadir", arab: "الْمُقْتَدِرُ", arti: "Yang Maha Berkuasa" },
-        { id: 71, latin: "Al Muqaddim", arab: "الْمُقَدِّمُ", arti: "Yang Maha Mendahulukan" }, { id: 72, latin: "Al Mu'akkhir", arab: "الْمُؤَخِّرُ", arti: "Yang Maha Mengakhirkan" },
-        { id: 73, latin: "Al Awwal", arab: "الْأَوَّلُ", arti: "Yang Maha Awal" }, { id: 74, latin: "Al Aakhir", arab: "الْآخِرُ", arti: "Yang Maha Akhir" },
-        { id: 75, latin: "Az Zhaahir", arab: "الظَّاهِرُ", arti: "Yang Maha Nyata" }, { id: 76, latin: "Al Baathin", arab: "الْبَاطِنُ", arti: "Yang Maha Ghaib" },
-        { id: 77, latin: "Al Waali", arab: "الْوَالِي", arti: "Yang Maha Memerintah" }, { id: 78, latin: "Al Muta'aalii", arab: "الْمُتَعَالِي", arti: "Yang Maha Tinggi" },
-        { id: 79, latin: "Al Barru", arab: "الْبَرُّ", arti: "Yang Maha Penderma" }, { id: 80, latin: "At Tawwaab", arab: "التَّوَابُ", arti: "Yang Maha Penerima Tobat" },
-        { id: 81, latin: "Al Muntaqim", arab: "الْمُنْتَقِمُ", arti: "Yang Maha Pemberi Balasan" }, { id: 82, latin: "Al Afuww", arab: "العَفُوُّ", arti: "Yang Maha Pemaaf" },
-        { id: 83, latin: "Ar Ra`uuf", arab: "الرَّؤُوفُ", arti: "Yang Maha Pengasuh" }, { id: 84, latin: "Malikul Mulk", arab: "مَالِكُ الْمُلْكِ", arti: "Yang Maha Penguasa Kerajaan" },
-        { id: 85, latin: "Dzul Jalaali Wal Ikraam", arab: "ذُوالْجَلَالِ وَالْإِكْرَامِ", arti: "Pemilik Kebesaran dan Kemuliaan" }, { id: 86, latin: "Al Muqsit", arab: "الْمُقْسِطُ", arti: "Yang Maha Pemberi Keadilan" },
-        { id: 87, latin: "Al Jaami'", arab: "الْجَامِعُ", arti: "Yang Maha Mengumpulkan" }, { id: 88, latin: "Al Ghaniyy", arab: "الْغَنِيُّ", arti: "Yang Maha Kaya" },
-        { id: 89, latin: "Al Mughnii", arab: "الْمُغْنِي", arti: "Yang Maha Pemberi Kekayaan" }, { id: 90, latin: "Al Maani", arab: "اَلْمَانِعُ", arti: "Yang Maha Mencegah" },
-        { id: 91, latin: "Ad Dhaar", arab: "الضَّارُ", arti: "Yang Maha Penimpa Kemudharatan" }, { id: 92, latin: "An Nafii'", arab: "النَّافِعُ", arti: "Yang Maha Memberi Manfaat" },
-        { id: 93, latin: "An Nuur", arab: "النُّورُ", arti: "Yang Maha Bercahaya" }, { id: 94, latin: "Al Haadii", arab: "الْهَادِي", arti: "Yang Maha Pemberi Petunjuk" },
-        { id: 95, latin: "Al Badii'", arab: "الْبَدِيعُ", arti: "Yang Maha Pencipta" }, { id: 96, latin: "Al Baaqii", arab: "اَلْبَاقِي", arti: "Yang Maha Kekal" },
-        { id: 97, latin: "Al Waarits", arab: "الْوَارِثُ", arti: "Yang Maha Pewaris" }, { id: 98, latin: "Ar Rasyiid", arab: "الرَّشِيدُ", arti: "Yang Maha Pandai" },
-        { id: 99, latin: "As Shabuur", arab: "الصَّبُورُ", arti: "Yang Maha Sabar" }
-    ];
-
     function renderAsmaulHusnaLokal() {
         const content = document.getElementById('listing-content');
+        if(!content) return;
         content.innerHTML = asmaulHusnaData.map(item => `
             <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl border dark:border-slate-700 flex items-center justify-between mb-4 shadow-sm hover:border-emerald-300 dark:hover:border-emerald-500 transition-colors">
                 <div><h3 class="font-bold text-xl text-emerald-800 dark:text-emerald-400">${item.latin}</h3><p class="text-sm text-slate-600 dark:text-slate-300">${item.arti}</p></div>
@@ -1068,6 +1065,7 @@
         }
 
         const content = document.getElementById('listing-content');
+        if(!content) return;
         content.innerHTML = items.map(item => `
             <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-[2rem] shadow-sm border dark:border-slate-700 mb-6">
                 <h3 class="font-bold text-emerald-700 dark:text-emerald-400 text-lg mb-4 border-b dark:border-slate-700 pb-2">${item.judul}</h3>
@@ -1082,10 +1080,12 @@
         const bmCard = document.getElementById('quran-bookmark-card');
         const bmData = getDB('dzikra_quran_bm');
         if(bmData && bmData.surahName) {
-            document.getElementById('quran-bm-surah').innerText = bmData.surahName;
-            document.getElementById('quran-bm-ayat').innerText = bmData.ayahNum;
-            bmCard.classList.remove('hidden');
-        } else bmCard.classList.add('hidden');
+            setElText('quran-bm-surah', bmData.surahName);
+            setElText('quran-bm-ayat', bmData.ayahNum);
+            if(bmCard) bmCard.classList.remove('hidden');
+        } else {
+            if(bmCard) bmCard.classList.add('hidden');
+        }
 
         const cachedList = localStorage.getItem('quran_list');
         if(surahDataCache.length > 0) { renderSurahList(surahDataCache); return; }
@@ -1101,12 +1101,13 @@
             localStorage.setItem('quran_list', JSON.stringify(surahDataCache));
             renderSurahList(surahDataCache); 
         } catch(e) { 
-            if(!cachedList) document.getElementById('quran-list').innerHTML = "<p class='text-center text-rose-500 font-bold'>Anda sedang offline dan data belum terunduh.</p>"; 
+            if(!cachedList) setElHTML('quran-list', "<p class='text-center text-rose-500 font-bold'>Anda sedang offline dan data belum terunduh.</p>"); 
         }
     }
     
     function renderSurahList(data) {
         const list = document.getElementById('quran-list');
+        if(!list) return;
         list.innerHTML = data.map(s => {
             const safeName = escapeJS(s.namaLatin);
             return `<div onclick="openSurah(${s.nomor}, '${safeName}')" class="bg-white dark:bg-slate-800 p-4 rounded-2xl border dark:border-slate-700 shadow-sm flex justify-between cursor-pointer hover:border-emerald-300 dark:hover:border-emerald-500 mb-3"><div class="flex items-center"><div class="w-10 h-10 bg-emerald-50 dark:bg-slate-700 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center font-bold mr-4">${s.nomor}</div><div><h3 class="font-bold text-slate-800 dark:text-white">${s.namaLatin}</h3><p class="text-xs text-slate-500 dark:text-slate-400">${s.arti} • ${s.jumlahAyat} Ayat</p></div></div><div class="font-arabic text-3xl text-emerald-700 dark:text-emerald-500 pt-1">${s.nama}</div></div>`;
@@ -1114,78 +1115,81 @@
     }
     
     function filterSurah() {
-        const q = document.getElementById('search-surah').value.toLowerCase();
+        const searchEl = document.getElementById('search-surah');
+        const q = searchEl ? searchEl.value.toLowerCase() : '';
         renderSurahList(surahDataCache.filter(s => s.namaLatin.toLowerCase().includes(q) || s.arti.toLowerCase().includes(q)));
     }
     
     async function openSurah(id, name, scrollToBookmark = false) {
         scrollPositions['baca-quran'] = 0; 
-        switchView('baca-quran'); document.getElementById('baca-surah-title').innerText = name;
+        switchView('baca-quran'); 
+        setElText('baca-surah-title', name);
         
         const btnUnduh = document.getElementById('btn-unduh-surah');
-        btnUnduh.onclick = () => unduhSurahOffline(id, name);
+        if(btnUnduh) btnUnduh.onclick = () => unduhSurahOffline(id, name);
         
         const c = document.getElementById('baca-quran-content'); 
-        c.innerHTML = `<div class="text-center py-20"><i class="ph-duotone ph-spinner-gap animate-spin text-4xl text-emerald-500 mb-3"></i><p class="text-slate-500">Memuat Surah...</p></div>`;
+        if(c) c.innerHTML = `<div class="text-center py-20"><i class="ph-duotone ph-spinner-gap animate-spin text-4xl text-emerald-500 mb-3"></i><p class="text-slate-500">Memuat Surah...</p></div>`;
         
         try {
             let dataObj;
             const cached = localStorage.getItem(`quran_surah_${id}`);
             if (cached) {
                 dataObj = JSON.parse(cached);
-                btnUnduh.innerHTML = `<i class="ph-fill ph-check-circle text-emerald-500"></i>`;
+                if(btnUnduh) btnUnduh.innerHTML = `<i class="ph-fill ph-check-circle text-emerald-500"></i>`;
             } else {
-                btnUnduh.innerHTML = `<i class="ph-bold ph-download-simple"></i>`;
+                if(btnUnduh) btnUnduh.innerHTML = `<i class="ph-bold ph-download-simple"></i>`;
                 const res = await fetch(`https://equran.id/api/v2/surat/${id}`);
                 const data = await res.json();
                 dataObj = data.data;
-                // Auto cache untuk meminimalkan beban internet berikutnya
                 localStorage.setItem(`quran_surah_${id}`, JSON.stringify(dataObj));
-                btnUnduh.innerHTML = `<i class="ph-fill ph-check-circle text-emerald-500"></i>`;
+                if(btnUnduh) btnUnduh.innerHTML = `<i class="ph-fill ph-check-circle text-emerald-500"></i>`;
             }
             
             const ayahs = dataObj.ayat;
-            c.innerHTML = id !== 1 && id !== 9 ? `<div class="text-center font-arabic text-4xl my-8 text-emerald-800 dark:text-emerald-400 leading-loose">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>` : '';
-            const bmData = getDB('dzikra_quran_bm');
-            const safeSurahName = escapeJS(name);
-            
-            ayahs.forEach((ayah) => {
-                const isBM = bmData && bmData.surahId === id && bmData.ayahNum === ayah.nomorAyat;
-                const bgClass = isBM ? 'bg-emerald-50 dark:bg-emerald-900/40 border-emerald-300 dark:border-emerald-600 ring-2 ring-emerald-500/20 shadow-md' : 'bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700 shadow-sm';
-                const btnClass = isBM ? 'bg-emerald-600 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 hover:bg-slate-200';
+            if(c) {
+                c.innerHTML = id !== 1 && id !== 9 ? `<div class="text-center font-arabic text-4xl my-8 text-emerald-800 dark:text-emerald-400 leading-loose">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>` : '';
+                const bmData = getDB('dzikra_quran_bm');
+                const safeSurahName = escapeJS(name);
                 
-                c.innerHTML += `
-                    <div id="ayah-${ayah.nomorAyat}" class="${bgClass} p-6 rounded-3xl mb-4 border transition-all">
-                        <div class="flex justify-between items-start mb-4">
-                            <div class="flex flex-col space-y-2 items-center mr-4">
-                                <span class="w-8 h-8 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">${ayah.nomorAyat}</span>
-                                <button onclick="tandaiAyat(${id}, '${safeSurahName}', ${ayah.nomorAyat})" class="px-2 py-1 rounded text-[10px] font-bold ${btnClass} shadow-sm transition-colors whitespace-nowrap" title="Tandai terakhir dibaca">Tandai</button>
+                ayahs.forEach((ayah) => {
+                    const isBM = bmData && bmData.surahId === id && bmData.ayahNum === ayah.nomorAyat;
+                    const bgClass = isBM ? 'bg-emerald-50 dark:bg-emerald-900/40 border-emerald-300 dark:border-emerald-600 ring-2 ring-emerald-500/20 shadow-md' : 'bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700 shadow-sm';
+                    const btnClass = isBM ? 'bg-emerald-600 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 hover:bg-slate-200';
+                    
+                    c.innerHTML += `
+                        <div id="ayah-${ayah.nomorAyat}" class="${bgClass} p-6 rounded-3xl mb-4 border transition-all">
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="flex flex-col space-y-2 items-center mr-4">
+                                    <span class="w-8 h-8 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">${ayah.nomorAyat}</span>
+                                    <button onclick="tandaiAyat(${id}, '${safeSurahName}', ${ayah.nomorAyat})" class="px-2 py-1 rounded text-[10px] font-bold ${btnClass} shadow-sm transition-colors whitespace-nowrap" title="Tandai terakhir dibaca">Tandai</button>
+                                </div>
+                                <div class="flex-1 w-full">
+                                    <p class="font-arabic text-3xl md:text-4xl leading-[2.2] md:leading-[2.5] text-right text-slate-800 dark:text-white mb-4" dir="rtl">${ayah.teksArab}</p>
+                                </div>
                             </div>
-                            <div class="flex-1 w-full">
-                                <p class="font-arabic text-3xl md:text-4xl leading-[2.2] md:leading-[2.5] text-right text-slate-800 dark:text-white mb-4" dir="rtl">${ayah.teksArab}</p>
+                            <div class="border-t border-slate-100 dark:border-slate-700 pt-4">
+                                <p class="text-sm text-emerald-600 dark:text-emerald-400 font-medium leading-relaxed mb-2 font-sans" dir="ltr">${ayah.teksLatin}</p>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">${ayah.teksIndonesia}</p>
                             </div>
-                        </div>
-                        <div class="border-t border-slate-100 dark:border-slate-700 pt-4">
-                            <p class="text-sm text-emerald-600 dark:text-emerald-400 font-medium leading-relaxed mb-2 font-sans" dir="ltr">${ayah.teksLatin}</p>
-                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-sans">${ayah.teksIndonesia}</p>
-                        </div>
-                    </div>`;
-            });
+                        </div>`;
+                });
+            }
             if(scrollToBookmark && bmData && bmData.surahId === id) { setTimeout(() => { const el = document.getElementById(`ayah-${bmData.ayahNum}`); if(el) el.scrollIntoView({behavior: 'smooth', block: 'center'}); }, 300); }
-        } catch(e) { c.innerHTML = "<p class='text-center py-10 text-rose-500 font-bold'>Gagal memuat ayat. Anda sedang offline dan surah belum diunduh.</p>"; }
+        } catch(e) { if(c) c.innerHTML = "<p class='text-center py-10 text-rose-500 font-bold'>Gagal memuat ayat. Anda sedang offline dan surah belum diunduh.</p>"; }
     }
 
     async function unduhSurahOffline(id, name) {
         const btn = document.getElementById('btn-unduh-surah');
-        btn.innerHTML = `<i class="ph-duotone ph-spinner animate-spin"></i>`;
+        if(btn) btn.innerHTML = `<i class="ph-duotone ph-spinner animate-spin"></i>`;
         try {
             const res = await fetch(`https://equran.id/api/v2/surat/${id}`);
             const dataObj = await res.json();
             localStorage.setItem(`quran_surah_${id}`, JSON.stringify(dataObj.data));
-            btn.innerHTML = `<i class="ph-fill ph-check-circle text-emerald-500"></i>`;
+            if(btn) btn.innerHTML = `<i class="ph-fill ph-check-circle text-emerald-500"></i>`;
             alert(`Surah ${name} berhasil disimpan untuk dibaca offline!`);
         } catch(e) {
-            btn.innerHTML = `<i class="ph-bold ph-download-simple"></i>`;
+            if(btn) btn.innerHTML = `<i class="ph-bold ph-download-simple"></i>`;
             alert(`Gagal mengunduh Surah ${name}. Periksa koneksi internet Anda.`);
         }
     }
@@ -1198,13 +1202,12 @@
 
     function initClockAndDate() { 
         const opt = { day: 'numeric', month: 'long', year: 'numeric' };
-        document.getElementById('masehi-date').innerText = new Date().toLocaleDateString('id-ID', opt);
+        setElText('masehi-date', new Date().toLocaleDateString('id-ID', opt));
         
         const updateTime = () => { 
             let now = new Date();
             let hr = now.getHours().toString().padStart(2,'0'); let mn = now.getMinutes().toString().padStart(2,'0'); let sc = now.getSeconds().toString().padStart(2,'0');
-            let el = document.getElementById('realtime-clock');
-            if(el) el.innerHTML = `${hr}:${mn}<span class="text-xl md:text-2xl opacity-70 ml-1 font-medium">:${sc}</span>`; 
+            setElHTML('realtime-clock', `${hr}:${mn}<span class="text-xl md:text-2xl opacity-70 ml-1 font-medium">:${sc}</span>`); 
             
             if(sc === '00' && jadwalHariIni.length > 0) {
                 let check = jadwalHariIni.find(j => j.waktu === `${hr}:${mn}` && j.id !== "Sunrise" && j.id !== "Imsak");
@@ -1222,7 +1225,7 @@
             const t = data.data.timings;
             const hd = data.data.date.hijri;
             
-            document.getElementById('hijri-date').innerText = `${hd.day} ${hijriMonths[hd.month.number]} ${hd.year} H`;
+            setElText('hijri-date', `${hd.day} ${hijriMonths[hd.month.number]} ${hd.year} H`);
             
             jadwalHariIni = [
                 { id: "Imsak", nama: "IMSAK", waktu: t.Imsak }, { id: "Fajr", nama: "SUBUH", waktu: t.Fajr },
@@ -1232,13 +1235,16 @@
             const now = new Date(); const curMin = now.getHours() * 60 + now.getMinutes();
             let nextIndex = jadwalHariIni.findIndex(j => { let p = j.waktu.split(':'); return (parseInt(p[0])*60 + parseInt(p[1])) > curMin; });
             if(nextIndex === -1) nextIndex = 0;
-            document.getElementById('next-prayer-name').innerText = jadwalHariIni[nextIndex].nama;
+            setElText('next-prayer-name', jadwalHariIni[nextIndex].nama);
             
-            const grid = document.getElementById('prayer-grid'); grid.innerHTML = '';
-            jadwalHariIni.forEach((s, i) => {
-                let active = i === nextIndex ? 'bg-white text-emerald-700 ring-4 ring-emerald-500/30 scale-105 transform z-10 font-bold shadow-lg' : 'bg-white/10 text-emerald-50 border border-white/20';
-                grid.innerHTML += `<div class="rounded-2xl py-3 px-1 transition-all ${active}"><p class="text-[9px] mb-1 tracking-widest">${s.nama}</p><p class="text-sm font-bold">${s.waktu}</p></div>`;
-            });
+            const grid = document.getElementById('prayer-grid'); 
+            if(grid) {
+                grid.innerHTML = '';
+                jadwalHariIni.forEach((s, i) => {
+                    let active = i === nextIndex ? 'bg-white text-emerald-700 ring-4 ring-emerald-500/30 scale-105 transform z-10 font-bold shadow-lg' : 'bg-white/10 text-emerald-50 border border-white/20';
+                    grid.innerHTML += `<div class="rounded-2xl py-3 px-1 transition-all ${active}"><p class="text-[9px] mb-1 tracking-widest">${s.nama}</p><p class="text-sm font-bold">${s.waktu}</p></div>`;
+                });
+            }
         } catch(e) {}
     }
     
@@ -1247,10 +1253,11 @@
             try {
                 if (!adzanAudio.src) adzanAudio.src = "https://www.islamcan.com/audio/adhan/azan1.mp3";
                 await adzanAudio.play(); isAdzanPlaying = true; 
-                document.getElementById('icon-adzan').style.color = '#fbbf24';
+                const icon = document.getElementById('icon-adzan');
+                if(icon) icon.style.color = '#fbbf24';
             } catch (err) { console.error("Audio error", err); }
         }
-        else { adzanAudio.pause(); adzanAudio.currentTime = 0; isAdzanPlaying = false; document.getElementById('icon-adzan').style.color = 'inherit'; }
+        else { adzanAudio.pause(); adzanAudio.currentTime = 0; isAdzanPlaying = false; const icon = document.getElementById('icon-adzan'); if(icon) icon.style.color = 'inherit'; }
     }
     function testAdzan() { playAdzan(); }
 
@@ -1291,9 +1298,11 @@
 
         const totalPages = Math.ceil(articles.length / itemsPerPage);
         const paginatedArticles = articles.slice((page - 1) * itemsPerPage, page * itemsPerPage);
-        const list = document.getElementById('home-article-list'); list.innerHTML = '';
+        const list = document.getElementById('home-article-list'); 
+        if(!list) return;
+        list.innerHTML = '';
         
-        if(paginatedArticles.length === 0) list.innerHTML = `<div class="col-span-1 md:col-span-2 text-center py-10 text-slate-400 font-sans">Tidak ada artikel ditemukan.</div>`;
+        if(paginatedArticles.length === 0) { list.innerHTML = `<div class="col-span-1 md:col-span-2 text-center py-10 text-slate-400 font-sans">Tidak ada artikel ditemukan.</div>`; return; }
 
         paginatedArticles.forEach(art => {
             let d = new Date(art.tanggal); let tgl = isNaN(d) ? art.tanggal : d.toLocaleDateString('id-ID', {day:'numeric',month:'short',year:'numeric'});
@@ -1301,7 +1310,9 @@
             list.innerHTML += `<div onclick="bacaArtikel(${art.id})" class="fade-in bg-white dark:bg-slate-800 p-6 rounded-[2rem] border dark:border-slate-700 shadow-sm hover:shadow-premium hover:-translate-y-1.5 hover:border-emerald-300 dark:hover:border-emerald-600 transition-all duration-300 cursor-pointer flex flex-col justify-between group font-sans"><div>${imgHtml}<div class="flex justify-between items-center mb-3"><span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-slate-900 px-3 py-1 rounded-full uppercase tracking-wider inline-block">${art.kategori}</span><div class="flex items-center text-xs text-slate-400 space-x-2 font-bold"><span class="flex items-center">👁 ${art.views || 0}</span><span class="flex items-center text-amber-500">★ ${art.rating || '0.0'}</span></div></div><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-2 leading-snug group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">${art.judul}</h3>${art.subjudul ? `<p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3 line-clamp-1">${art.subjudul}</p>` : ''}<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed mb-4">${art.konten.replace(/<[^>]*>?/gm, '')}</p></div><div class="flex items-center pt-4 border-t border-slate-50 dark:border-slate-700 mt-auto"><div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center mr-3 text-slate-400 dark:text-slate-300"><i class="ph-fill ph-user"></i></div><div><p class="text-xs font-bold text-slate-700 dark:text-slate-200">${art.penulis}</p><p class="text-[10px] text-slate-400">${tgl}</p></div></div></div>`;
         });
 
-        const pagDiv = document.getElementById('article-pagination'); pagDiv.innerHTML = '';
+        const pagDiv = document.getElementById('article-pagination'); 
+        if(!pagDiv) return;
+        pagDiv.innerHTML = '';
         if(totalPages > 1) {
             pagDiv.innerHTML += `<button onclick="renderArticlesHome(${page-1})" ${page === 1 ? 'disabled class="opacity-50"' : ''} class="px-3 py-1.5 bg-white dark:bg-slate-800 border dark:border-slate-700 text-slate-700 dark:text-slate-300 rounded-lg font-sans">&laquo;</button>`;
             for(let i=1; i<=totalPages; i++) pagDiv.innerHTML += `<button onclick="renderArticlesHome(${i})" class="px-3.5 py-1.5 rounded-lg text-sm font-bold transition-colors font-sans ${i === page ? 'bg-emerald-600 text-white' : 'bg-white dark:bg-slate-800 border dark:border-slate-700 text-slate-700 dark:text-slate-300'}">${i}</button>`;
@@ -1320,33 +1331,55 @@
         switchView('article-detail'); addLog("Membaca artikel: " + art.judul);
         
         let d = new Date(art.tanggal);
-        document.getElementById('detail-kategori').innerText = art.kategori; document.getElementById('detail-judul').innerText = art.judul;
-        document.getElementById('detail-subjudul').innerText = art.subjudul || ''; document.getElementById('detail-penulis').innerText = art.penulis;
-        document.getElementById('detail-tanggal').innerText = isNaN(d) ? art.tanggal : d.toLocaleDateString('id-ID', {day:'numeric',month:'long',year:'numeric'});
-        document.getElementById('detail-views').innerText = art.views; document.getElementById('detail-rating').innerText = parseFloat(art.rating || 0).toFixed(1);
-        document.getElementById('detail-konten').innerHTML = art.konten;
+        setElText('detail-kategori', art.kategori);
+        setElText('detail-judul', art.judul);
+        setElText('detail-subjudul', art.subjudul || '');
+        setElText('detail-penulis', art.penulis);
+        setElText('detail-tanggal', isNaN(d) ? art.tanggal : d.toLocaleDateString('id-ID', {day:'numeric',month:'long',year:'numeric'}));
+        setElText('detail-views', art.views);
+        setElText('detail-rating', parseFloat(art.rating || 0).toFixed(1));
+        setElHTML('detail-konten', art.konten);
         
         const coverCont = document.getElementById('detail-cover-container');
-        if(art.cover && !art.cover.includes(window.location.href)) { document.getElementById('detail-cover').src = art.cover; coverCont.classList.remove('hidden'); document.getElementById('detail-content-wrapper').classList.add('-mt-16', 'bg-white', 'dark:bg-slate-900', 'rounded-t-[3rem]', 'shadow-[0_-20px_40px_rgba(0,0,0,0.1)]'); } 
-        else { coverCont.classList.add('hidden'); document.getElementById('detail-content-wrapper').classList.remove('-mt-16', 'bg-white', 'dark:bg-slate-900', 'rounded-t-[3rem]', 'shadow-[0_-20px_40px_rgba(0,0,0,0.1)]'); }
+        const detailCover = document.getElementById('detail-cover');
+        const contentWrapper = document.getElementById('detail-content-wrapper');
+        
+        if(art.cover && !art.cover.includes(window.location.href)) { 
+            if(detailCover) detailCover.src = art.cover; 
+            if(coverCont) coverCont.classList.remove('hidden'); 
+            if(contentWrapper) contentWrapper.classList.add('-mt-16', 'bg-white', 'dark:bg-slate-900', 'rounded-t-[3rem]', 'shadow-[0_-20px_40px_rgba(0,0,0,0.1)]'); 
+        } else { 
+            if(coverCont) coverCont.classList.add('hidden'); 
+            if(contentWrapper) contentWrapper.classList.remove('-mt-16', 'bg-white', 'dark:bg-slate-900', 'rounded-t-[3rem]', 'shadow-[0_-20px_40px_rgba(0,0,0,0.1)]'); 
+        }
 
-        const container = document.getElementById('rating-stars-container'); document.getElementById('rating-thanks').classList.add('hidden'); container.innerHTML = '';
-        for(let i=1; i<=5; i++) {
-            container.innerHTML += `<span class="cursor-pointer transition-colors star-rating text-slate-300 dark:text-slate-600" onclick="rateArticle(${id}, ${i})" onmouseover="hoverStars(${i})" onmouseout="resetStars()">★</span>`;
+        const container = document.getElementById('rating-stars-container'); 
+        const ratingThanks = document.getElementById('rating-thanks');
+        if(ratingThanks) ratingThanks.classList.add('hidden'); 
+        
+        if(container) {
+            container.innerHTML = '';
+            for(let i=1; i<=5; i++) {
+                container.innerHTML += `<span class="cursor-pointer transition-colors star-rating text-slate-300 dark:text-slate-600" onclick="rateArticle(${id}, ${i})" onmouseover="hoverStars(${i})" onmouseout="resetStars()">★</span>`;
+            }
         }
 
         const btnPrev = document.getElementById('btn-prev-article');
         const btnNext = document.getElementById('btn-next-article');
         
-        if(artIdx < articles.length - 1) { 
-            btnPrev.style.visibility = 'visible';
-            btnPrev.onclick = () => bacaArtikel(articles[artIdx + 1].id); 
-        } else btnPrev.style.visibility = 'hidden';
+        if(btnPrev) {
+            if(artIdx < articles.length - 1) { 
+                btnPrev.style.visibility = 'visible';
+                btnPrev.onclick = () => bacaArtikel(articles[artIdx + 1].id); 
+            } else btnPrev.style.visibility = 'hidden';
+        }
 
-        if(artIdx > 0) { 
-            btnNext.style.visibility = 'visible';
-            btnNext.onclick = () => bacaArtikel(articles[artIdx - 1].id); 
-        } else btnNext.style.visibility = 'hidden';
+        if(btnNext) {
+            if(artIdx > 0) { 
+                btnNext.style.visibility = 'visible';
+                btnNext.onclick = () => bacaArtikel(articles[artIdx - 1].id); 
+            } else btnNext.style.visibility = 'hidden';
+        }
     }
 
     function rateArticle(id, score) {
@@ -1354,11 +1387,14 @@
         let art = articles[idx]; let cur = parseFloat(art.rating || 0); let count = art.ratingCount || 0;
         art.rating = (((cur * count) + score) / (count + 1)).toFixed(1); art.ratingCount = count + 1;
         articles[idx] = art; setDB('dzikra_articles', articles);
-        document.getElementById('detail-rating').innerText = art.rating; document.getElementById('rating-thanks').classList.remove('hidden');
+        setElText('detail-rating', art.rating); 
+        const ratingThanks = document.getElementById('rating-thanks');
+        if(ratingThanks) ratingThanks.classList.remove('hidden');
     }
     
     function shareArticle() {
-        const title = document.getElementById('detail-judul').innerText;
+        const titleEl = document.getElementById('detail-judul');
+        const title = titleEl ? titleEl.innerText : 'Artikel';
         if (navigator.share) navigator.share({ title: title, text: `Baca kajian menarik "${title}" di MKI App!`, url: window.location.href }).catch(console.error);
         else alert("Fitur Share (Bagikan) tidak didukung browser Anda.");
     }
@@ -1369,29 +1405,41 @@
         if(todo.date !== today) { todo = { date: today, s: [false,false,false,false,false], d1: false, d2: false, d3: false, qcb: false, qtext: "" }; setDB('dzikra_todo', todo); }
     }
     function loadTodo() {
-        const todo = getDB('dzikra_todo'); document.getElementById('todo-date-display').innerText = todo.date;
-        for(let i=0; i<5; i++) document.getElementById(`td-s${i+1}`).checked = todo.s[i];
-        document.getElementById('td-d1').checked = todo.d1; document.getElementById('td-d2').checked = todo.d2; document.getElementById('td-d3').checked = todo.d3;
-        document.getElementById('td-qcb').checked = todo.qcb; document.getElementById('td-qtext').value = todo.qtext;
+        const todo = getDB('dzikra_todo'); setElText('todo-date-display', todo.date);
+        for(let i=0; i<5; i++) { const el = document.getElementById(`td-s${i+1}`); if(el) el.checked = todo.s[i]; }
+        const td1 = document.getElementById('td-d1'); if(td1) td1.checked = todo.d1; 
+        const td2 = document.getElementById('td-d2'); if(td2) td2.checked = todo.d2; 
+        const td3 = document.getElementById('td-d3'); if(td3) td3.checked = todo.d3;
+        const qcb = document.getElementById('td-qcb'); if(qcb) qcb.checked = todo.qcb; 
+        setElVal('td-qtext', todo.qtext);
         calcTodoProgress();
     }
     function updateTodo() {
-        setDB('dzikra_todo', { date: new Date().toLocaleDateString('id-ID'), s: [document.getElementById('td-s1').checked, document.getElementById('td-s2').checked, document.getElementById('td-s3').checked, document.getElementById('td-s4').checked, document.getElementById('td-s5').checked], d1: document.getElementById('td-d1').checked, d2: document.getElementById('td-d2').checked, d3: document.getElementById('td-d3').checked, qcb: document.getElementById('td-qcb').checked, qtext: document.getElementById('td-qtext').value });
+        const getChk = (id) => { const el = document.getElementById(id); return el ? el.checked : false; };
+        const getVal = (id) => { const el = document.getElementById(id); return el ? el.value : ''; };
+        setDB('dzikra_todo', { date: new Date().toLocaleDateString('id-ID'), s: [getChk('td-s1'), getChk('td-s2'), getChk('td-s3'), getChk('td-s4'), getChk('td-s5')], d1: getChk('td-d1'), d2: getChk('td-d2'), d3: getChk('td-d3'), qcb: getChk('td-qcb'), qtext: getVal('td-qtext') });
         calcTodoProgress();
     }
     function calcTodoProgress() {
         let total = 9; let done = 0; const todo = getDB('dzikra_todo');
-        todo.s.forEach(val => { if(val) done++; }); if(todo.d1) done++; if(todo.d2) done++; if(todo.d3) done++; if(todo.qcb) done++;
-        let pct = Math.round((done/total)*100); document.getElementById('todo-progress-bar').style.width = `${pct}%`; document.getElementById('todo-progress-text').innerText = pct;
+        if(todo.s) todo.s.forEach(val => { if(val) done++; }); if(todo.d1) done++; if(todo.d2) done++; if(todo.d3) done++; if(todo.qcb) done++;
+        let pct = Math.round((done/total)*100); 
+        const bar = document.getElementById('todo-progress-bar'); if(bar) bar.style.width = `${pct}%`; 
+        setElText('todo-progress-text', pct);
     }
 
     // --- CMS, ADMIN, USERS & LOGS ---
     function handleLogin(e) {
-        e.preventDefault(); const userInp = document.getElementById('username').value; const passInp = document.getElementById('password').value;
-        const users = getDB('dzikra_users'); const foundUser = users.find(u => u.username === userInp && u.password === passInp);
+        e.preventDefault(); 
+        const userEl = document.getElementById('username');
+        const passEl = document.getElementById('password');
+        const userInp = userEl ? userEl.value : ''; 
+        const passInp = passEl ? passEl.value : '';
+        const users = getDB('dzikra_users'); 
+        const foundUser = users.find(u => u.username === userInp && u.password === passInp);
         if (foundUser) {
             localStorage.setItem('dzikra_auth_username', foundUser.username); localStorage.setItem('dzikra_auth_role', foundUser.role); localStorage.setItem('dzikra_auth_nama', foundUser.nama);
-            document.getElementById('username').value = ''; document.getElementById('password').value = '';
+            if(userEl) userEl.value = ''; if(passEl) passEl.value = '';
             addLog("Login ke dalam sistem CMS"); switchView('admin');
         } else alert('Gagal! Username atau password salah.');
     }
@@ -1405,12 +1453,12 @@
         const role = localStorage.getItem('dzikra_auth_role'); 
         const nama = localStorage.getItem('dzikra_auth_nama');
         
-        document.getElementById('admin-welcome').innerText = nama; 
-        document.getElementById('admin-role-badge').innerText = role;
+        setElText('admin-welcome', nama);
+        setElText('admin-role-badge', role);
         
-        document.getElementById('btn-admin-users').classList.toggle('hidden', role !== 'superadmin');
-        document.getElementById('btn-admin-qris').classList.toggle('hidden', role !== 'superadmin');
-        document.getElementById('btn-admin-log').classList.toggle('hidden', role !== 'superadmin');
+        const btnUsers = document.getElementById('btn-admin-users'); if(btnUsers) btnUsers.classList.toggle('hidden', role !== 'superadmin');
+        const btnQris = document.getElementById('btn-admin-qris'); if(btnQris) btnQris.classList.toggle('hidden', role !== 'superadmin');
+        const btnLog = document.getElementById('btn-admin-log'); if(btnLog) btnLog.classList.toggle('hidden', role !== 'superadmin');
         
         const btnTulis = document.getElementById('btn-admin-tulis');
         if(btnTulis) btnTulis.classList.toggle('hidden', role === 'sales');
@@ -1451,23 +1499,28 @@
         const dataViews = sortedViews.map(a => a.views || 0);
 
         if (windowViewsChart) windowViewsChart.destroy();
-        const ctxViews = document.getElementById('chartViews').getContext('2d');
-        windowViewsChart = new Chart(ctxViews, {
-            type: 'bar',
-            data: { labels: labelsViews, datasets: [{ label: 'Total Views', data: dataViews, backgroundColor: '#10b981', borderRadius: 4 }] },
-            options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
-        });
+        const elViews = document.getElementById('chartViews');
+        if(elViews) {
+            const ctxViews = elViews.getContext('2d');
+            windowViewsChart = new Chart(ctxViews, {
+                type: 'bar',
+                data: { labels: labelsViews, datasets: [{ label: 'Total Views', data: dataViews, backgroundColor: '#10b981', borderRadius: 4 }] },
+                options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+            });
+        }
 
-        // Dummy Sales Data
         const labelsSales = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'];
-        const dataSales = [12, 19, 15, 25, 22, 30]; // Mocked trend
+        const dataSales = [12, 19, 15, 25, 22, 30]; 
         if (windowSalesChart) windowSalesChart.destroy();
-        const ctxSales = document.getElementById('chartSales').getContext('2d');
-        windowSalesChart = new Chart(ctxSales, {
-            type: 'line',
-            data: { labels: labelsSales, datasets: [{ label: 'Produk Terjual (Estimasi)', data: dataSales, borderColor: '#3b82f6', tension: 0.4, fill: true, backgroundColor: 'rgba(59, 130, 246, 0.2)' }] },
-            options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
-        });
+        const elSales = document.getElementById('chartSales');
+        if(elSales) {
+            const ctxSales = elSales.getContext('2d');
+            windowSalesChart = new Chart(ctxSales, {
+                type: 'line',
+                data: { labels: labelsSales, datasets: [{ label: 'Produk Terjual (Estimasi)', data: dataSales, borderColor: '#3b82f6', tension: 0.4, fill: true, backgroundColor: 'rgba(59, 130, 246, 0.2)' }] },
+                options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+            });
+        }
     }
     
     function renderAdminTable() {
@@ -1477,7 +1530,9 @@
         
         if (role === 'penulis') articles = articles.filter(a => a.penulis === nama);
         
-        const tbody = document.getElementById('admin-table-body'); tbody.innerHTML = '';
+        const tbody = document.getElementById('admin-table-body'); 
+        if(!tbody) return;
+        tbody.innerHTML = '';
         if(articles.length === 0) tbody.innerHTML = `<tr><td colspan="3" class="text-center text-slate-400 py-6 font-sans">Tidak ada artikel.</td></tr>`;
         
         articles.forEach((art) => {
@@ -1500,17 +1555,36 @@
     }
 
     function toggleCMSEditor() {
-        currentEditId = null; document.getElementById('cms-title').innerHTML = ''; document.getElementById('cms-subtitle').innerHTML = ''; document.getElementById('cms-content').innerHTML = '';
-        document.getElementById('cms-cover-preview').src = ''; document.getElementById('cms-cover-url').value = ''; document.getElementById('cms-cover-preview').classList.add('hidden');
-        document.getElementById('cms-author-name').value = localStorage.getItem('dzikra_auth_nama') || "Admin MKI";
-        document.getElementById('view-cms-editor').classList.toggle('hidden');
+        currentEditId = null; 
+        setElHTML('cms-title', '');
+        setElHTML('cms-subtitle', '');
+        setElHTML('cms-content', '');
+        
+        const coverPrev = document.getElementById('cms-cover-preview');
+        if(coverPrev) { coverPrev.src = ''; coverPrev.classList.add('hidden'); }
+        setElVal('cms-cover-url', '');
+        
+        setElVal('cms-author-name', localStorage.getItem('dzikra_auth_nama') || "Admin MKI");
+        const editor = document.getElementById('view-cms-editor');
+        if(editor) editor.classList.toggle('hidden');
     }
 
     function simpanArtikel() {
-        const judul = document.getElementById('cms-title').innerText.trim(); const subjudul = document.getElementById('cms-subtitle').innerText.trim();
-        const konten = document.getElementById('cms-content').innerHTML.trim(); const kategori = document.getElementById('cms-kategori').value;
-        const penulis = document.getElementById('cms-author-name').value.trim(); 
-        const cover = document.getElementById('cms-cover-url').value.trim() || document.getElementById('cms-cover-preview').src;
+        const titleEl = document.getElementById('cms-title');
+        const subEl = document.getElementById('cms-subtitle');
+        const contentEl = document.getElementById('cms-content');
+        const katEl = document.getElementById('cms-kategori');
+        const authEl = document.getElementById('cms-author-name');
+        const urlEl = document.getElementById('cms-cover-url');
+        const prevEl = document.getElementById('cms-cover-preview');
+
+        const judul = titleEl ? titleEl.innerText.trim() : ''; 
+        const subjudul = subEl ? subEl.innerText.trim() : '';
+        const konten = contentEl ? contentEl.innerHTML.trim() : ''; 
+        const kategori = katEl ? katEl.value : '';
+        const penulis = authEl ? authEl.value.trim() : ''; 
+        const cover = (urlEl && urlEl.value.trim()) ? urlEl.value.trim() : (prevEl ? prevEl.src : '');
+        
         if(!judul || !konten) { alert("Judul dan Konten wajib diisi!"); return; }
 
         let articles = getDB('dzikra_articles');
@@ -1521,63 +1595,94 @@
         } else {
             articles.unshift({ id: Date.now(), judul, subjudul, kategori, tanggal: new Date().toISOString(), penulis, cover, konten, views: 0, rating: "0.0", ratingCount: 0 }); addLog("Mempublikasikan artikel: " + judul);
         }
-        setDB('dzikra_articles', articles); document.getElementById('view-cms-editor').classList.add('hidden'); renderAdminTable(); renderArticlesHome(1); alert("Tersimpan!");
+        setDB('dzikra_articles', articles); 
+        const editor = document.getElementById('view-cms-editor'); if(editor) editor.classList.add('hidden');
+        renderAdminTable(); renderArticlesHome(1); alert("Tersimpan!");
     }
 
     function editArtikel(id) {
         const art = getDB('dzikra_articles').find(a => a.id === id); if(!art) return;
-        currentEditId = id; document.getElementById('cms-title').innerText = art.judul; document.getElementById('cms-subtitle').innerText = art.subjudul || '';
-        document.getElementById('cms-content').innerHTML = art.konten; document.getElementById('cms-kategori').value = art.kategori; document.getElementById('cms-author-name').value = art.penulis;
-        if(art.cover && !art.cover.includes(window.location.href)) { document.getElementById('cms-cover-url').value = art.cover; document.getElementById('cms-cover-preview').src = art.cover; document.getElementById('cms-cover-preview').classList.remove('hidden'); } 
-        else { document.getElementById('cms-cover-url').value = ''; document.getElementById('cms-cover-preview').src = ''; document.getElementById('cms-cover-preview').classList.add('hidden'); }
-        document.getElementById('view-cms-editor').classList.remove('hidden');
+        currentEditId = id; 
+        setElText('cms-title', art.judul);
+        setElText('cms-subtitle', art.subjudul || '');
+        setElHTML('cms-content', art.konten);
+        setElVal('cms-kategori', art.kategori);
+        setElVal('cms-author-name', art.penulis);
+        
+        const coverPrev = document.getElementById('cms-cover-preview');
+        
+        if(art.cover && !art.cover.includes(window.location.href)) { 
+            setElVal('cms-cover-url', art.cover);
+            if(coverPrev) { coverPrev.src = art.cover; coverPrev.classList.remove('hidden'); }
+        } 
+        else { 
+            setElVal('cms-cover-url', '');
+            if(coverPrev) { coverPrev.src = ''; coverPrev.classList.add('hidden'); }
+        }
+        const editor = document.getElementById('view-cms-editor');
+        if(editor) editor.classList.remove('hidden');
     }
 
-    function execCmd(command, value = null) { document.execCommand(command, false, value); document.getElementById('cms-content').focus(); }
+    function execCmd(command, value = null) { document.execCommand(command, false, value); const c = document.getElementById('cms-content'); if(c) c.focus(); }
     function insertImagePrompt() { let url = prompt("Masukkan URL Gambar:"); if(url) execCmd('insertImage', url); }
-    function previewCover(event) { const file = event.target.files[0]; if(file) { const reader = new FileReader(); reader.onload = function(e) { document.getElementById('cms-cover-preview').src = e.target.result; document.getElementById('cms-cover-preview').classList.remove('hidden'); document.getElementById('cms-cover-text').classList.add('hidden'); }; reader.readAsDataURL(file); } }
 
-    function bukaModalUsers() { renderUsersTable(); document.getElementById('modal-users').classList.remove('hidden'); }
-    function tutupModalUsers() { document.getElementById('modal-users').classList.add('hidden'); }
+    function bukaModalUsers() { renderUsersTable(); const m = document.getElementById('modal-users'); if(m) m.classList.remove('hidden'); }
+    function tutupModalUsers() { const m = document.getElementById('modal-users'); if(m) m.classList.add('hidden'); }
     function renderUsersTable() {
-        const tbody = document.getElementById('users-table-body'); tbody.innerHTML = '';
+        const tbody = document.getElementById('users-table-body'); 
+        if(!tbody) return;
+        tbody.innerHTML = '';
         getDB('dzikra_users').forEach(u => { tbody.innerHTML += `<tr class="border-b dark:border-slate-700 font-sans"><td class="p-3"><p class="font-bold text-slate-800 dark:text-white">${u.nama}</p><p class="text-[10px] text-slate-400">@${u.username}</p></td><td class="p-3"><span class="bg-purple-50 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 px-2 py-1 rounded text-[10px] font-bold uppercase">${u.role}</span></td><td class="p-3 text-right">${u.username !== 'admin' ? `<button onclick="hapusUserAcc(${u.id})" class="text-rose-500 dark:text-rose-400 font-bold text-xs">Hapus</button>` : '-'}</td></tr>`; });
     }
     function tambahUser(e) {
-        e.preventDefault(); const uname = document.getElementById('new-user-uname').value.trim();
+        e.preventDefault(); 
+        const unameEl = document.getElementById('new-user-uname');
+        const passEl = document.getElementById('new-user-pass');
+        const roleEl = document.getElementById('new-user-role');
+        const namaEl = document.getElementById('new-user-nama');
+        
+        const uname = unameEl ? unameEl.value.trim() : '';
         let users = getDB('dzikra_users'); if(users.find(u => u.username === uname)) { alert('Username sudah digunakan!'); return; }
-        users.push({ id: Date.now(), username: uname, password: document.getElementById('new-user-pass').value, role: document.getElementById('new-user-role').value, nama: document.getElementById('new-user-nama').value.trim() });
+        users.push({ id: Date.now(), username: uname, password: (passEl ? passEl.value : ''), role: (roleEl ? roleEl.value : ''), nama: (namaEl ? namaEl.value.trim() : '') });
         setDB('dzikra_users', users); addLog(`Membuat akun baru: ${uname}`); alert('Akun dibuat!'); e.target.reset(); renderUsersTable();
     }
     function hapusUserAcc(id) { if(confirm('Hapus akun ini?')) { setDB('dzikra_users', getDB('dzikra_users').filter(u => u.id !== id)); addLog("Menghapus akun pengguna"); renderUsersTable(); } }
 
-    function bukaModalGantiPassword() { document.getElementById('old-password').value = ''; document.getElementById('new-password').value = ''; document.getElementById('modal-ganti-password').classList.remove('hidden'); }
-    function tutupModalGantiPassword() { document.getElementById('modal-ganti-password').classList.add('hidden'); }
+    function bukaModalGantiPassword() { setElVal('old-password', ''); setElVal('new-password', ''); const m = document.getElementById('modal-ganti-password'); if(m) m.classList.remove('hidden'); }
+    function tutupModalGantiPassword() { const m = document.getElementById('modal-ganti-password'); if(m) m.classList.add('hidden'); }
     function prosesGantiPassword(e) {
-        e.preventDefault(); const oldPass = document.getElementById('old-password').value; const newPass = document.getElementById('new-password').value;
+        e.preventDefault(); 
+        const oldEl = document.getElementById('old-password');
+        const newEl = document.getElementById('new-password');
+        const oldPass = oldEl ? oldEl.value : ''; 
+        const newPass = newEl ? newEl.value : '';
         let users = getDB('dzikra_users'); let uIdx = users.findIndex(u => u.username === localStorage.getItem('dzikra_auth_username'));
         if (uIdx !== -1 && users[uIdx].password === oldPass) { users[uIdx].password = newPass; setDB('dzikra_users', users); addLog("Mengganti password"); alert("Password diubah!"); tutupModalGantiPassword(); } 
         else alert("Password lama salah!");
     }
 
     function showLogsModal() {
-        const container = document.getElementById('logs-container'); container.innerHTML = '';
+        const container = document.getElementById('logs-container'); 
+        if(!container) return;
+        container.innerHTML = '';
         const logs = getDB('dzikra_logs');
         if(logs.length === 0) container.innerHTML = `<p class="text-center py-6 text-slate-400 text-sm font-sans">Belum ada log aktivitas.</p>`;
         else logs.forEach(log => { container.innerHTML += `<div class="bg-slate-50 dark:bg-slate-900 p-3 rounded-xl border dark:border-slate-700 flex justify-between font-sans"><div><p class="text-sm font-semibold">${log.aksi}</p><p class="text-[10px] text-slate-500">Oleh: ${log.user}</p></div><span class="text-[10px] text-slate-400 bg-white dark:bg-slate-800 border dark:border-slate-700 px-2 py-1 rounded-md">${log.waktu}</span></div>`; });
-        document.getElementById('modal-logs').classList.remove('hidden');
+        const modal = document.getElementById('modal-logs'); if(modal) modal.classList.remove('hidden');
     }
-    function tutupLogsModal() { document.getElementById('modal-logs').classList.add('hidden'); }
+    function tutupLogsModal() { const m = document.getElementById('modal-logs'); if(m) m.classList.add('hidden'); }
 
     // --- TOOLS ---
     let tasbihCounter = 0;
     function hitTasbih() { 
         tasbihCounter++; 
-        let c = document.getElementById('tasbih-count'); 
-        c.innerText = tasbihCounter; 
+        setElText('tasbih-count', tasbihCounter); 
         
-        c.classList.remove('scale-110'); void c.offsetWidth; c.classList.add('scale-110');
-        setTimeout(() => c.classList.remove('scale-110'), 150);
+        const c = document.getElementById('tasbih-count');
+        if(c) {
+            c.classList.remove('scale-110'); void c.offsetWidth; c.classList.add('scale-110');
+            setTimeout(() => c.classList.remove('scale-110'), 150);
+        }
 
         let cycle = tasbihCounter % 100; 
         let countInCycle = cycle === 0 && tasbihCounter > 0 ? 100 : cycle;
@@ -1588,46 +1693,51 @@
         else if (countInCycle <= 99) { arab = "ٱللَّٰهُ أَكْبَرُ"; latin = "Allahu Akbar"; target = `${countInCycle - 66} / 33`; } 
         else { arab = "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ"; latin = "Laa Ilaaha Illallah"; target = `1 / 1`; }
         
-        document.getElementById('tasbih-bacaan-arab').innerText = arab;
-        document.getElementById('tasbih-bacaan-latin').innerText = latin;
-        document.getElementById('tasbih-target').innerText = target;
+        setElText('tasbih-bacaan-arab', arab);
+        setElText('tasbih-bacaan-latin', latin);
+        setElText('tasbih-target', target);
         
         if(navigator.vibrate) navigator.vibrate(50);
     }
     
     function resetTasbih() { 
         tasbihCounter = 0; 
-        document.getElementById('tasbih-count').innerText = 0; 
-        document.getElementById('tasbih-bacaan-arab').innerText = "سُبْحَانَ ٱللَّٰهِ";
-        document.getElementById('tasbih-bacaan-latin').innerText = "Subhanallah";
-        document.getElementById('tasbih-target').innerText = "0 / 33";
+        setElText('tasbih-count', 0); 
+        setElText('tasbih-bacaan-arab', "سُبْحَانَ ٱللَّٰهِ");
+        setElText('tasbih-bacaan-latin', "Subhanallah");
+        setElText('tasbih-target', "0 / 33");
     }
 
     function hitungZakat() {
-        const u = parseFloat(document.getElementById('zakat-uang').value)||0; 
-        const a = parseFloat(document.getElementById('zakat-aset').value)||0;
+        const uangEl = document.getElementById('zakat-uang');
+        const asetEl = document.getElementById('zakat-aset');
+        const u = uangEl ? (parseFloat(uangEl.value)||0) : 0; 
+        const a = asetEl ? (parseFloat(asetEl.value)||0) : 0;
         const tot = u+a; const nisab = 85000000;
-        document.getElementById('zakat-result').classList.remove('hidden');
+        
+        const resCont = document.getElementById('zakat-result'); if(resCont) resCont.classList.remove('hidden');
         const resEl = document.getElementById('zakat-total');
-        if(tot >= nisab) { 
-            resEl.innerText = "Rp "+(tot*0.025).toLocaleString('id-ID'); 
-            resEl.classList.remove('text-rose-600', 'dark:text-rose-400');
-            resEl.classList.add('text-emerald-600', 'dark:text-emerald-400'); 
-        } else { 
-            resEl.innerText = "Belum Wajib Zakat"; 
-            resEl.classList.remove('text-emerald-600', 'dark:text-emerald-400');
-            resEl.classList.add('text-rose-600', 'dark:text-rose-400'); 
+        if(resEl) {
+            if(tot >= nisab) { 
+                resEl.innerText = "Rp "+(tot*0.025).toLocaleString('id-ID'); 
+                resEl.classList.remove('text-rose-600', 'dark:text-rose-400');
+                resEl.classList.add('text-emerald-600', 'dark:text-emerald-400'); 
+            } else { 
+                resEl.innerText = "Belum Wajib Zakat"; 
+                resEl.classList.remove('text-emerald-600', 'dark:text-emerald-400');
+                resEl.classList.add('text-rose-600', 'dark:text-rose-400'); 
+            }
         }
     }
 
     function bukaDonasi() { 
-        document.getElementById('modal-donasi').classList.remove('hidden'); 
+        const modal = document.getElementById('modal-donasi'); if(modal) modal.classList.remove('hidden'); 
         
         const qrisData = localStorage.getItem('dzikra_qris') || 'https://i.imgur.com/Mly81cj.jpeg'; 
         const imgDisplay = document.getElementById('img-qris-display');
         const imgPlaceholder = document.getElementById('img-qris-placeholder');
         
-        if(qrisData) { 
+        if(qrisData && imgDisplay && imgPlaceholder) { 
             imgDisplay.src = qrisData; 
             imgDisplay.classList.remove('hidden'); 
             imgPlaceholder.classList.add('hidden'); 
@@ -1636,29 +1746,26 @@
         const rekData = localStorage.getItem('dzikra_rekening');
         const rekDisplay = document.getElementById('rekening-display');
         
-        if(rekData && rekData.trim() !== '') {
+        if(rekData && rekData.trim() !== '' && rekDisplay && imgPlaceholder) {
             rekDisplay.innerHTML = rekData.replace(/\n/g, '<br>');
             rekDisplay.classList.remove('hidden');
             imgPlaceholder.classList.add('hidden');
-        } else {
+        } else if (rekDisplay) {
             rekDisplay.classList.add('hidden');
         }
 
-        if(!qrisData && (!rekData || rekData.trim() === '')) {
+        if(!qrisData && (!rekData || rekData.trim() === '') && imgPlaceholder) {
             imgPlaceholder.classList.remove('hidden');
         }
     }
-    function tutupDonasi() { document.getElementById('modal-donasi').classList.add('hidden'); }
-    function toggleSetQRIS() { document.getElementById('form-qris').classList.toggle('hidden'); }
+    function tutupDonasi() { const m = document.getElementById('modal-donasi'); if(m) m.classList.add('hidden'); }
+    function toggleSetQRIS() { const f = document.getElementById('form-qris'); if(f) f.classList.toggle('hidden'); }
     function simpanQRIS() { 
         const fileInput = document.getElementById('input-qris'); 
         const urlInput = document.getElementById('input-qris-url');
         const rekInput = document.getElementById('input-rekening');
         
-        // Simpan Rekening Data
-        if(rekInput) {
-            localStorage.setItem('dzikra_rekening', rekInput.value);
-        }
+        if(rekInput) localStorage.setItem('dzikra_rekening', rekInput.value);
 
         if(urlInput && urlInput.value) {
             localStorage.setItem('dzikra_qris', urlInput.value); 
@@ -1670,13 +1777,12 @@
         }
     }
 
-    // --- COMPASS IMPLEMENTATION (LOW-PASS FILTER SMOOTHING) ---
     let compassHandler;
     let lastHeading = 0;
 
     function startCompass() { 
         if(typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') { 
-            document.getElementById('btn-izin-kompas').classList.remove('hidden'); 
+            const btn = document.getElementById('btn-izin-kompas'); if(btn) btn.classList.remove('hidden'); 
         } else { 
             initCompassSensor(); 
         } 
@@ -1685,7 +1791,7 @@
     function requestCompassPermission() { 
         DeviceOrientationEvent.requestPermission().then(r => { 
             if(r == 'granted') { 
-                initCompassSensor(); document.getElementById('btn-izin-kompas').classList.add('hidden'); 
+                initCompassSensor(); const btn = document.getElementById('btn-izin-kompas'); if(btn) btn.classList.add('hidden'); 
             } 
         }).catch(console.error); 
     }
@@ -1711,8 +1817,9 @@
                 const kiblatHeading = 295;
                 let needleRotation = lastHeading - kiblatHeading;
 
-                document.getElementById('compass-needle').style.transform = `rotate(${-needleRotation}deg)`;
-                document.getElementById('kompas-status').innerText = `Derajat: ${Math.round(lastHeading)}°`;
+                const needle = document.getElementById('compass-needle');
+                if(needle) needle.style.transform = `rotate(${-needleRotation}deg)`;
+                setElText('kompas-status', `Derajat: ${Math.round(lastHeading)}°`);
             }
         };
         window.addEventListener('deviceorientationabsolute', compassHandler, true); 
@@ -1726,7 +1833,7 @@
         } 
     }
     
-    function togglePassword(id, icon) { const el = document.getElementById(id); if(el.type === 'password') { el.type = 'text'; document.getElementById(icon).classList.replace('ph-eye', 'ph-eye-slash'); } else { el.type = 'password'; document.getElementById(icon).classList.replace('ph-eye-slash', 'ph-eye'); } }
+    function togglePassword(id, icon) { const el = document.getElementById(id); const iconEl = document.getElementById(icon); if(el && iconEl) { if(el.type === 'password') { el.type = 'text'; iconEl.classList.replace('ph-eye', 'ph-eye-slash'); } else { el.type = 'password'; iconEl.classList.replace('ph-eye-slash', 'ph-eye'); } } }
 </script>
 </body>
 </html>
