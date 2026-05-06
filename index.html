@@ -19,6 +19,9 @@
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     
+    <!-- Chart.js untuk Grafik Statistik -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <!-- Konfigurasi Tailwind Custom (Termasuk Dark Mode) -->
     <script>
         tailwind.config = {
@@ -141,7 +144,7 @@
         </div>
         <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-1">Ahlan wa Sahlan!</h3>
         <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-4 uppercase tracking-widest">Majelis Keluarga Indonesia</p>
-        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Selamat datang di aplikasi kami. Untuk pengalaman <b>Layar Penuh (Fullscreen)</b> dan penggunaan <b>Offline</b>, silakan install aplikasi ini ke layar utama HP Anda.</p>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">Selamat datang di aplikasi mobile kami. Untuk pengalaman <b>Layar Penuh (Fullscreen)</b> dan penggunaan <b>Offline</b>, silakan install aplikasi ini ke layar utama HP Anda.</p>
         
         <label class="flex items-center justify-center space-x-2 text-xs text-slate-500 dark:text-slate-400 mb-6 cursor-pointer group">
             <input type="checkbox" id="chk-dont-show" class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300 dark:border-slate-600 cursor-pointer">
@@ -202,7 +205,7 @@
                 <div>
                     <div class="flex items-center text-[10px] sm:text-xs font-medium bg-white/20 backdrop-blur-md w-max px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-2 sm:mb-3 border border-white/10">
                         <i class="ph-fill ph-map-pin mr-1 sm:mr-1.5 text-emerald-200"></i> <span id="lokasi-teks">Jakarta, ID</span>
-                        <span id="sync-status" class="ml-2 bg-white/20 px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] animate-pulse">Syncing GAS...</span>
+                        <span id="sync-status" class="ml-2 bg-white/20 px-1.5 sm:px-2 py-0.5 rounded-full text-[8px] sm:text-[9px] animate-pulse">Syncing DATA...</span>
                     </div>
                     <p class="text-[10px] sm:text-xs text-emerald-200 uppercase tracking-widest font-bold mb-0.5">Tanggal Hijriah & Masehi</p>
                     <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-0.5 sm:mb-1 drop-shadow-md" id="hijri-date">Memuat Tanggal...</h2>
@@ -327,7 +330,7 @@
     <div id="view-marketplace" class="hidden min-h-screen bg-slate-50 dark:bg-slate-900 relative pb-10 overflow-y-auto">
         <div class="sticky top-0 bg-white dark:bg-slate-800 px-4 py-4 flex items-center shadow-sm z-50">
             <button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mr-4 shadow-inner hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300"><i class="ph-bold ph-arrow-left"></i></button>
-            <h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100">MKI STORE</h2>
+            <h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100">Market MKI</h2>
         </div>
         <div class="max-w-5xl mx-auto p-4 mt-2">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6" id="marketplace-list"></div>
@@ -336,16 +339,17 @@
 
     <!-- ==================== VIEW MODAL DONASI ==================== -->
     <div id="modal-donasi" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in">
-        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-sm w-full p-6 relative border dark:border-slate-700">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-md w-full p-6 relative border dark:border-slate-700 max-h-[90vh] overflow-y-auto">
             <button onclick="tutupDonasi()" class="absolute top-4 right-4 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-600"><i class="ph-bold ph-x"></i></button>
             <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/40 text-orange-500 dark:text-orange-400 rounded-full flex items-center justify-center mx-auto mb-3 animate-float"><i class="ph-fill ph-heart text-3xl"></i></div>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">Donasi Program</h3>
-                <p class="text-sm text-slate-500 dark:text-slate-400">Dukung pengembangan MKI melalui QRIS di bawah ini.</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Dukung kami melalui QRIS atau Rekening Bank di bawah ini.</p>
             </div>
-            <div class="bg-slate-50 dark:bg-slate-900 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-2xl p-2 mb-6 flex justify-center min-h-[250px]">
-                <img id="img-qris-display" src="" class="max-w-full max-h-[250px] object-contain rounded-xl hidden">
-                <p id="img-qris-placeholder" class="text-slate-400 text-sm text-center m-auto">QRIS Belum diatur oleh Admin.</p>
+            <div class="bg-slate-50 dark:bg-slate-900 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-2xl p-2 mb-6 flex flex-col justify-center min-h-[150px] items-center text-center">
+                <img id="img-qris-display" src="" class="max-w-full max-h-[250px] object-contain rounded-xl hidden mb-4">
+                <div id="rekening-display" class="text-sm w-full bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border dark:border-slate-700 hidden text-slate-700 dark:text-slate-300 font-medium whitespace-pre-wrap"></div>
+                <p id="img-qris-placeholder" class="text-slate-400 text-sm m-auto">Belum ada info donasi.</p>
             </div>
         </div>
     </div>
@@ -359,7 +363,7 @@
                 <input type="text" id="username" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-3 mb-4 outline-none focus:border-emerald-500" required placeholder="Username">
                 <div class="relative">
                     <input type="password" id="password" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-3 pr-12 mb-6 outline-none focus:border-emerald-500" required placeholder="Password">
-                    <button type="button" onclick="togglePassword('password', 'eye-icon')" class="absolute right-4 top-3 text-slate-400"><i class="ph-bold ph-eye" id="eye-icon"></i></button>
+                    <button type="button" onclick="togglePassword('password', 'eye-icon-login')" class="absolute right-4 top-3 text-slate-400 hover:text-emerald-500 transition-colors"><i class="ph-bold ph-eye" id="eye-icon-login"></i></button>
                 </div>
                 <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3.5 rounded-xl shadow-3d active:shadow-3d-active active:translate-y-[6px] transition-all">Masuk</button>
             </form>
@@ -374,7 +378,7 @@
                 <div class="flex flex-wrap gap-2">
                     <button onclick="switchView('home')" class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-bold shadow-sm hover:bg-slate-200 dark:hover:bg-slate-600">Beranda</button>
                     <button id="btn-admin-users" onclick="bukaModalUsers()" class="px-4 py-2 bg-purple-50 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-purple-100 dark:hover:bg-purple-800/60">Pengguna</button>
-                    <button id="btn-admin-qris" onclick="toggleSetQRIS()" class="px-4 py-2 bg-orange-50 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-orange-100 dark:hover:bg-orange-800/60">QRIS</button>
+                    <button id="btn-admin-qris" onclick="toggleSetQRIS()" class="px-4 py-2 bg-orange-50 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-orange-100 dark:hover:bg-orange-800/60">Pengaturan Donasi</button>
                     <button id="btn-admin-log" onclick="showLogsModal()" class="px-4 py-2 bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-blue-100 dark:hover:bg-blue-800/60">Log Aktivitas</button>
                     <button onclick="bukaModalGantiPassword()" class="px-4 py-2 bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 rounded-lg text-sm font-bold shadow-sm hover:bg-indigo-100 dark:hover:bg-indigo-800/60">Ganti Password</button>
                     
@@ -385,12 +389,33 @@
                 </div>
             </div>
 
-            <div id="form-qris" class="hidden bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm mb-6 fade-in border dark:border-slate-700">
-                <h3 class="font-bold mb-4 border-b dark:border-slate-700 pb-2 text-slate-800 dark:text-slate-100">Pengaturan QRIS Donasi</h3>
-                <input type="text" id="input-qris-url" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white text-sm mb-4 px-4 py-2.5 rounded-xl outline-none" placeholder="Masukkan Link URL QRIS (contoh: https://i.imgur.com/...jpg)">
-                <button onclick="simpanQRIS()" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-md hover:bg-emerald-700">Simpan Tautan QRIS</button>
+            <!-- ANALISIS & STATISTIK (Hanya Superadmin) -->
+            <div id="admin-analytics" class="hidden grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border dark:border-slate-700">
+                    <h3 class="font-bold text-slate-700 dark:text-slate-200 mb-4"><i class="ph-fill ph-chart-bar mr-2 text-emerald-500"></i> Statistik Artikel (Views)</h3>
+                    <canvas id="chartViews" height="200"></canvas>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border dark:border-slate-700">
+                    <h3 class="font-bold text-slate-700 dark:text-slate-200 mb-4"><i class="ph-fill ph-trend-up mr-2 text-blue-500"></i> Analisis Penjualan Toko</h3>
+                    <canvas id="chartSales" height="200"></canvas>
+                </div>
             </div>
 
+            <div id="form-qris" class="hidden bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm mb-6 fade-in border dark:border-slate-700">
+                <h3 class="font-bold mb-4 border-b dark:border-slate-700 pb-2 text-slate-800 dark:text-slate-100">Pengaturan Data Donasi</h3>
+                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Tautan Gambar QRIS (URL)</label>
+                <input type="url" id="input-qris-url" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white text-sm mb-4 px-4 py-2.5 rounded-xl outline-none" placeholder="https://i.imgur.com/...">
+                
+                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Atau Upload Gambar QRIS</label>
+                <input type="file" id="input-qris" accept="image/*" class="w-full text-sm mb-4 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 cursor-pointer">
+                
+                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Informasi Rekening Bank (Boleh lebih dari satu baris)</label>
+                <textarea id="input-rekening" rows="3" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white text-sm mb-6 px-4 py-2.5 rounded-xl outline-none" placeholder="Contoh:&#10;BSI 12345678 a.n Majelis Keluarga&#10;Mandiri 98765432 a.n MKI"></textarea>
+                
+                <button onclick="simpanQRIS()" class="w-full bg-emerald-600 text-white px-4 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-emerald-700">Simpan Informasi Donasi</button>
+            </div>
+
+            <!-- Tabel Manajemen Artikel -->
             <div id="section-artikel" class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-sm border dark:border-slate-700 mb-8">
                 <div class="p-5 bg-slate-50 dark:bg-slate-800/50 border-b dark:border-slate-700 flex justify-between items-center">
                     <h2 class="font-bold text-lg text-slate-700 dark:text-slate-200"><i class="ph-fill ph-books mr-2 text-emerald-600"></i> Manajemen Artikel</h2>
@@ -403,13 +428,14 @@
                 </div>
             </div>
 
+            <!-- Tabel Manajemen Produk (Toko) -->
             <div id="section-produk" class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-sm border dark:border-slate-700">
                 <div class="p-5 bg-slate-50 dark:bg-slate-800/50 border-b dark:border-slate-700 flex justify-between items-center">
                     <h2 class="font-bold text-lg text-slate-700 dark:text-slate-200"><i class="ph-fill ph-storefront mr-2 text-teal-600"></i> Manajemen Produk Toko</h2>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm whitespace-nowrap text-slate-700 dark:text-slate-300">
-                        <thead><tr class="border-b dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400"><th class="p-4 w-16">Foto</th><th class="p-4">Nama Produk & Kategori</th><th class="p-4">Harga</th><th class="p-4 text-right">Aksi</th></tr></thead>
+                        <thead><tr class="border-b dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-400"><th class="p-4 w-16">Foto</th><th class="p-4">Nama Produk & Kategori</th><th class="p-4">Harga Jual</th><th class="p-4 text-right">Aksi</th></tr></thead>
                         <tbody id="admin-produk-body"></tbody>
                     </table>
                 </div>
@@ -419,16 +445,21 @@
 
     <!-- MODAL USERS, DLL -->
     <div id="modal-users" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in">
-        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-4xl w-full p-6 relative flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto border dark:border-slate-700"><button onclick="tutupModalUsers()" class="absolute top-4 right-4 bg-slate-100 dark:bg-slate-700 w-8 h-8 rounded-full text-slate-500 dark:text-slate-300 hover:bg-slate-200"><i class="ph-bold ph-x"></i></button><div class="w-full md:w-1/3 md:border-r dark:border-slate-700 pb-6 md:pb-0 md:pr-6"><h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">Tambah Akun</h3><form onsubmit="tambahUser(event)"><input type="text" id="new-user-nama" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Nama Lengkap"><input type="text" id="new-user-uname" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Username"><input type="password" id="new-user-pass" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Password"><select id="new-user-role" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-4 py-2.5 mb-4 text-sm"><option value="penulis">Penulis</option><option value="editor">Editor</option><option value="sales">Sales (Toko)</option><option value="superadmin">Super Admin</option></select><button type="submit" class="w-full bg-purple-600 text-white font-bold py-2.5 rounded-xl text-sm">Buat Akun Baru</button></form></div><div class="w-full md:w-2/3"><h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">Daftar Pengguna</h3><div class="overflow-x-auto bg-slate-50 dark:bg-slate-900 rounded-2xl border dark:border-slate-700"><table class="w-full text-left text-sm text-slate-700 dark:text-slate-300"><thead><tr class="text-slate-400 dark:text-slate-500 border-b dark:border-slate-700"><th class="p-3">Pengguna</th><th class="p-3">Role</th><th class="p-3 text-right">Aksi</th></tr></thead><tbody id="users-table-body"></tbody></table></div></div></div>
+        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-4xl w-full p-6 relative flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto border dark:border-slate-700"><button onclick="tutupModalUsers()" class="absolute top-4 right-4 bg-slate-100 dark:bg-slate-700 w-8 h-8 rounded-full text-slate-500 dark:text-slate-300 hover:bg-slate-200"><i class="ph-bold ph-x"></i></button><div class="w-full md:w-1/3 md:border-r dark:border-slate-700 pb-6 md:pb-0 md:pr-6"><h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">Tambah Akun</h3><form onsubmit="tambahUser(event)"><input type="text" id="new-user-nama" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Nama Lengkap"><input type="text" id="new-user-uname" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Username">
+            <div class="relative mb-3"><input type="password" id="new-user-pass" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-4 py-2.5 pr-10 text-sm" required placeholder="Password"><button type="button" onclick="togglePassword('new-user-pass', 'eye-icon-add')" class="absolute right-3 top-2.5 text-slate-400 hover:text-emerald-500 transition-colors"><i class="ph-bold ph-eye" id="eye-icon-add"></i></button></div>
+            <select id="new-user-role" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-4 py-2.5 mb-4 text-sm"><option value="penulis">Penulis</option><option value="editor">Editor</option><option value="sales">Sales (Toko)</option><option value="superadmin">Super Admin</option></select><button type="submit" class="w-full bg-purple-600 text-white font-bold py-2.5 rounded-xl text-sm shadow-md">Buat Akun Baru</button></form></div><div class="w-full md:w-2/3"><h3 class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">Daftar Pengguna</h3><div class="overflow-x-auto bg-slate-50 dark:bg-slate-900 rounded-2xl border dark:border-slate-700"><table class="w-full text-left text-sm text-slate-700 dark:text-slate-300"><thead><tr class="text-slate-400 dark:text-slate-500 border-b dark:border-slate-700"><th class="p-3">Pengguna</th><th class="p-3">Role</th><th class="p-3 text-right">Aksi</th></tr></thead><tbody id="users-table-body"></tbody></table></div></div></div>
     </div>
     
     <div id="modal-ganti-password" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in">
-        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-sm w-full p-6 relative border dark:border-slate-700"><button onclick="tutupModalGantiPassword()" class="absolute top-4 right-4 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 w-8 h-8 rounded-full hover:bg-slate-200"><i class="ph-bold ph-x"></i></button><div class="text-center mb-6"><h3 class="text-lg font-bold text-slate-800 dark:text-white">Ganti Password</h3></div><form onsubmit="prosesGantiPassword(event)"><input type="password" id="old-password" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-3 mb-4" required placeholder="Password Lama"><input type="password" id="new-password" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-3 mb-6" required minlength="6" placeholder="Password Baru"><button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl">Simpan Password</button></form></div>
+        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-sm w-full p-6 relative border dark:border-slate-700"><button onclick="tutupModalGantiPassword()" class="absolute top-4 right-4 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 w-8 h-8 rounded-full hover:bg-slate-200"><i class="ph-bold ph-x"></i></button><div class="text-center mb-6"><h3 class="text-lg font-bold text-slate-800 dark:text-white">Ganti Password</h3></div><form onsubmit="prosesGantiPassword(event)">
+            <div class="relative mb-4"><input type="password" id="old-password" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-3 pr-10" required placeholder="Password Lama"><button type="button" onclick="togglePassword('old-password', 'eye-icon-old')" class="absolute right-4 top-3.5 text-slate-400 hover:text-emerald-500"><i class="ph-bold ph-eye" id="eye-icon-old"></i></button></div>
+            <div class="relative mb-6"><input type="password" id="new-password" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-3 pr-10" required minlength="6" placeholder="Password Baru"><button type="button" onclick="togglePassword('new-password', 'eye-icon-new')" class="absolute right-4 top-3.5 text-slate-400 hover:text-emerald-500"><i class="ph-bold ph-eye" id="eye-icon-new"></i></button></div>
+            <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl shadow-md">Simpan Password</button></form></div>
     </div>
 
     <div id="modal-logs" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in"><div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-2xl w-full p-6 relative flex flex-col max-h-[80vh] border dark:border-slate-700"><button onclick="tutupLogsModal()" class="absolute top-4 right-4 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 w-8 h-8 rounded-full hover:bg-slate-200"><i class="ph-bold ph-x"></i></button><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4 border-b dark:border-slate-700 pb-4">Log Aktivitas Sistem</h3><div class="overflow-y-auto flex-1 pr-2 space-y-3 text-slate-700 dark:text-slate-300" id="logs-container"></div></div></div>
 
-    <!-- MODAL FORM PRODUK -->
+    <!-- MODAL FORM PRODUK TOKO (CMS) -->
     <div id="modal-form-produk" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[9999999] flex items-center justify-center p-4 fade-in">
         <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-lg w-full p-6 relative overflow-y-auto max-h-[90vh] border dark:border-slate-700">
             <button onclick="tutupModalProduk()" class="absolute top-4 right-4 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-200"><i class="ph-bold ph-x"></i></button>
@@ -444,12 +475,13 @@
                     </div>
                     <img id="preview-foto-produk" src="" class="w-full h-40 object-cover rounded-2xl hidden">
                 </div>
+
                 <div class="grid grid-cols-2 gap-4 mb-4">
                     <div class="col-span-2">
                         <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Nama Produk</label>
                         <input type="text" id="prd-nama" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500" required>
                     </div>
-                    <div>
+                    <div class="col-span-2">
                         <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Kategori</label>
                         <select id="prd-kategori" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500">
                             <option value="Buku">Buku</option>
@@ -458,25 +490,37 @@
                             <option value="Lainnya">Lainnya</option>
                         </select>
                     </div>
+                    <!-- Pembaruan Struktur Harga -->
                     <div>
-                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Harga (Rp)</label>
-                        <input type="number" id="prd-harga" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500" required min="0">
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Harga Modal (Rp)</label>
+                        <input type="number" id="prd-harga-modal" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500" required min="0">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Harga Jual (Rp)</label>
+                        <input type="number" id="prd-harga-jual" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500" required min="0">
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Diskon Penjualan (%) *Bisa dikosongkan</label>
+                        <input type="number" id="prd-diskon" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500" min="0" max="100" placeholder="0">
                     </div>
                 </div>
+
                 <div class="mb-4">
-                    <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Tautan Pembelian</label>
+                    <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Tautan Pembelian (Link WhatsApp / Toko)</label>
                     <input type="url" id="prd-link" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500" placeholder="https://wa.me/628...">
                 </div>
+
                 <div class="mb-6">
                     <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Deskripsi Singkat</label>
                     <textarea id="prd-deskripsi" rows="3" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500" required></textarea>
                 </div>
+
                 <button type="submit" class="w-full bg-emerald-600 text-white font-bold py-3.5 rounded-xl shadow-md hover:bg-emerald-700 transition-colors">Simpan Produk</button>
             </form>
         </div>
     </div>
 
-    <!-- VIEW CMS EDITOR -->
+    <!-- VIEW CMS EDITOR (MEDIUM STYLE) -->
     <div id="view-cms-editor" class="hidden fixed inset-0 bg-white dark:bg-slate-900 z-[9999999] overflow-y-auto">
         <div class="sticky top-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b dark:border-slate-700 px-4 py-3 flex justify-between items-center z-50 shadow-sm">
             <button onclick="toggleCMSEditor()" class="text-slate-500 dark:text-slate-300 font-bold bg-slate-100 dark:bg-slate-700 px-4 py-1.5 rounded-full text-sm">Batal</button>
@@ -535,7 +579,7 @@
         <div class="max-w-3xl mx-auto p-4 mt-2" id="baca-quran-content"></div>
     </div>
 
-    <!-- VIEW LISTING, TODO, ARTICLE DETAIL, ZAKAT, TASBIH, KOMPAS -->
+    <!-- VIEW LISTING, TODO, ZAKAT, TASBIH, KOMPAS -->
     <div id="view-listing" class="hidden min-h-screen bg-slate-50 dark:bg-slate-900 relative pb-10 overflow-y-auto">
         <div class="sticky top-0 gradient-emerald text-white px-4 py-5 flex items-center z-50 shadow-md"><button onclick="switchView('home')" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4 hover:bg-white/30"><i class="ph-bold ph-arrow-left"></i></button><h2 class="text-lg font-bold" id="listing-title">Daftar</h2></div>
         <div class="max-w-3xl mx-auto p-4 mt-4 space-y-4" id="listing-content"></div>
@@ -554,24 +598,6 @@
                 <label class="bg-white dark:bg-slate-800 p-4 rounded-2xl border dark:border-slate-700 shadow-sm flex items-center justify-between cursor-pointer"><div class="font-bold text-slate-800 dark:text-slate-200 text-sm">Dzikir Petang</div><input type="checkbox" class="w-6 h-6 rounded text-emerald-500 cursor-pointer" id="td-d2" onchange="updateTodo()"></label>
                 <label class="bg-white dark:bg-slate-800 p-4 rounded-2xl border dark:border-slate-700 shadow-sm flex items-center justify-between cursor-pointer"><div class="font-bold text-slate-800 dark:text-slate-200 text-sm">Doa Harian</div><input type="checkbox" class="w-6 h-6 rounded text-emerald-500 cursor-pointer" id="td-d3" onchange="updateTodo()"></label>
                 <div class="bg-white dark:bg-slate-800 p-5 rounded-2xl border dark:border-slate-700 shadow-sm"><h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm mb-3 flex items-center justify-between"><span>Tilawah Al-Qur'an</span><input type="checkbox" class="w-5 h-5 rounded cursor-pointer" id="td-qcb" onchange="updateTodo()"></h4><input type="text" id="td-qtext" onchange="updateTodo()" placeholder="Catatan: Juz 1..." class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-lg px-3 py-2 text-sm outline-none shadow-inner"></div>
-            </div>
-        </div>
-    </div>
-
-    <div id="view-article-detail" class="hidden min-h-screen bg-white dark:bg-slate-900 relative pb-20 overflow-y-auto">
-        <div class="sticky top-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b dark:border-slate-700 px-4 py-4 flex justify-between z-50 shadow-sm"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full font-bold text-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">&laquo;</button><button onclick="shareArticle()" class="bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 px-4 py-2 rounded-full font-bold text-xs hover:bg-emerald-100 dark:hover:bg-emerald-800/60 transition-colors">Bagikan</button></div>
-        <div id="detail-cover-container" class="w-full h-48 sm:h-64 md:h-96 bg-slate-100 dark:bg-slate-800 hidden relative"><img id="detail-cover" class="w-full h-full object-cover"></div>
-        <div class="max-w-3xl mx-auto px-5 sm:px-6 py-6 sm:py-8 bg-white dark:bg-slate-900" id="detail-content-wrapper">
-            <span id="detail-kategori" class="text-[10px] font-bold text-white bg-emerald-600 px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-sm">Kategori</span>
-            <h1 id="detail-judul" class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-3">Judul</h1>
-            <h2 id="detail-subjudul" class="text-lg text-slate-500 dark:text-slate-400 mb-6 font-sans"></h2>
-            <div class="flex items-center justify-between mb-8 pb-8 border-b border-slate-100 dark:border-slate-800"><div class="flex items-center"><div><p id="detail-penulis" class="font-bold text-slate-800 dark:text-slate-200 font-sans">Penulis</p><p id="detail-tanggal" class="text-xs text-slate-500 dark:text-slate-400 font-sans">Tanggal</p></div></div><div class="text-right text-xs font-bold text-slate-400 font-sans"><p><span id="detail-views">0</span>x dibaca</p><p class="text-amber-500"><i class="ph-fill ph-star"></i> <span id="detail-rating">0.0</span></p></div></div>
-            <div id="detail-konten" class="article-body text-lg text-slate-700 font-charter"></div>
-            <div class="mt-12 pt-8 border-t border-slate-100 dark:border-slate-800 text-center font-sans"><p class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3">Beri nilai artikel ini</p><div class="flex justify-center space-x-2 text-3xl text-slate-300 dark:text-slate-600" id="rating-stars-container"></div><p id="rating-thanks" class="text-emerald-600 dark:text-emerald-400 text-sm mt-3 hidden">Terima kasih!</p></div>
-            
-            <div class="flex justify-between items-center mt-10 pt-6 border-t border-slate-100 dark:border-slate-800 font-sans">
-                <button id="btn-prev-article" class="flex items-center text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"><i class="ph-bold ph-arrow-left mr-2 text-lg"></i> Artikel Sebelumnya</button>
-                <button id="btn-next-article" class="flex items-center text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Artikel Selanjutnya <i class="ph-bold ph-arrow-right ml-2 text-lg"></i></button>
             </div>
         </div>
     </div>
@@ -625,6 +651,7 @@
             ]);
         }
         if (!localStorage.getItem('dzikra_logs')) setDB('dzikra_logs', []);
+        if (!localStorage.getItem('dzikra_rekening')) localStorage.setItem('dzikra_rekening', 'BSI 7155662288 a.n Majelis Keluarga Indonesia\nMandiri 133001556677 a.n MKI Pusat');
         
         if (!localStorage.getItem('dzikra_articles')) {
             setDB('dzikra_articles', [
@@ -636,10 +663,10 @@
 
         if (!localStorage.getItem('dzikra_products')) {
             setDB('dzikra_products', [
-                { id: 1, nama: "Buku Parenting Islami", deskripsi: "Membahas tuntas cara mendidik anak sesuai sunnah Nabi Muhammad SAW.", harga: 75000, gambar: "https://placehold.co/400x400/1e40af/FFFFFF?text=Buku+Parenting", link: "https://wa.me/6281234567890", kategori: "Buku" },
-                { id: 2, nama: "Madu Murni Habbatussauda", deskripsi: "Madu murni yang dicampur dengan ekstrak habbatussauda untuk menjaga imunitas.", harga: 120000, gambar: "https://placehold.co/400x400/f59e0b/FFFFFF?text=Madu+Murni", link: "https://wa.me/6281234567890", kategori: "Herbal" },
-                { id: 3, nama: "Sajadah Busa Tebal Anti Sakit", deskripsi: "Sajadah tebal yang sangat nyaman untuk sholat berjamaah dan sujud berlama-lama.", harga: 150000, gambar: "https://placehold.co/400x400/10b981/FFFFFF?text=Sajadah+Busa", link: "https://wa.me/6281234567890", kategori: "Perlengkapan" },
-                { id: 4, nama: "Kurma Ajwa Al-Madinah", deskripsi: "Kurma nabi asli didatangkan langsung dari Madinah yang kaya akan manfaat.", harga: 95000, gambar: "https://placehold.co/400x400/8b5cf6/FFFFFF?text=Kurma+Ajwa", link: "https://wa.me/6281234567890", kategori: "Herbal" }
+                { id: 1, nama: "Buku Parenting Islami", deskripsi: "Membahas tuntas cara mendidik anak sesuai sunnah Nabi Muhammad SAW.", hargaModal: 50000, hargaJual: 75000, diskon: 0, gambar: "https://placehold.co/400x400/1e40af/FFFFFF?text=Buku+Parenting", link: "https://wa.me/6281234567890", kategori: "Buku" },
+                { id: 2, nama: "Madu Murni Habbatussauda", deskripsi: "Madu murni yang dicampur dengan ekstrak habbatussauda untuk menjaga imunitas.", hargaModal: 100000, hargaJual: 120000, diskon: 10, gambar: "https://placehold.co/400x400/f59e0b/FFFFFF?text=Madu+Murni", link: "https://wa.me/6281234567890", kategori: "Herbal" },
+                { id: 3, nama: "Sajadah Busa Tebal Anti Sakit", deskripsi: "Sajadah tebal yang sangat nyaman untuk sholat berjamaah dan sujud berlama-lama.", hargaModal: 110000, hargaJual: 150000, diskon: 5, gambar: "https://placehold.co/400x400/10b981/FFFFFF?text=Sajadah+Busa", link: "https://wa.me/6281234567890", kategori: "Perlengkapan" },
+                { id: 4, nama: "Kurma Ajwa Al-Madinah", deskripsi: "Kurma nabi asli didatangkan langsung dari Madinah yang kaya akan manfaat.", hargaModal: 80000, hargaJual: 95000, diskon: 0, gambar: "https://placehold.co/400x400/8b5cf6/FFFFFF?text=Kurma+Ajwa", link: "https://wa.me/6281234567890", kategori: "Herbal" }
             ]);
         }
     };
@@ -798,15 +825,29 @@
 
         products.forEach(p => {
             const imgSrc = p.gambar && p.gambar.startsWith('data:image') ? p.gambar : (p.gambar || 'https://placehold.co/300x300?text=No+Image');
+            const hJual = parseInt(p.hargaJual) || parseInt(p.harga) || 0; // Kompatibilitas mundur
+            const dsk = parseInt(p.diskon) || 0;
+            const hAkhir = dsk > 0 ? hJual - (hJual * dsk / 100) : hJual;
+            
+            let hrgHtml = `<p class="text-emerald-600 dark:text-emerald-400 font-extrabold text-base sm:text-lg mb-2 sm:mb-3">Rp ${hAkhir.toLocaleString('id-ID')}</p>`;
+            if (dsk > 0) {
+                hrgHtml = `
+                    <div class="mb-2 sm:mb-3">
+                        <span class="text-xs text-slate-400 line-through mr-2">Rp ${hJual.toLocaleString('id-ID')}</span>
+                        <span class="text-[10px] bg-rose-100 text-rose-600 px-1.5 py-0.5 rounded font-bold">-${dsk}%</span>
+                        <p class="text-emerald-600 dark:text-emerald-400 font-extrabold text-base sm:text-lg">Rp ${hAkhir.toLocaleString('id-ID')}</p>
+                    </div>`;
+            }
+
             list.innerHTML += `
-                <div class="bg-white dark:bg-slate-800 rounded-[1.5rem] shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden flex flex-col group hover:shadow-premium-hover transition-all">
+                <div class="fade-in bg-white dark:bg-slate-800 rounded-[1.5rem] shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden flex flex-col group hover:shadow-premium hover:-translate-y-1.5 transition-all duration-300">
                     <div class="relative overflow-hidden w-full h-40 sm:h-48">
                         <img src="${imgSrc}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <div class="absolute top-2 left-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-[10px] sm:text-xs font-bold text-emerald-600 dark:text-emerald-400 px-2.5 py-1 rounded-full shadow-sm">${p.kategori}</div>
                     </div>
                     <div class="p-4 sm:p-5 flex flex-col flex-1">
                         <h3 class="font-bold text-slate-800 dark:text-white text-sm sm:text-base mb-1 line-clamp-2 leading-snug group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">${p.nama}</h3>
-                        <p class="text-emerald-600 dark:text-emerald-400 font-extrabold text-base sm:text-lg mb-2 sm:mb-3">Rp ${parseInt(p.harga).toLocaleString('id-ID')}</p>
+                        ${hrgHtml}
                         <p class="text-[10px] sm:text-xs text-slate-500 dark:text-slate-400 mb-4 sm:mb-6 line-clamp-2 leading-relaxed flex-1">${p.deskripsi}</p>
                         <a href="${p.link}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white text-center text-xs sm:text-sm font-bold py-2.5 sm:py-3 rounded-xl shadow-3d active:shadow-3d-active active:translate-y-[4px] transition-all">
                             Beli Sekarang
@@ -828,6 +869,10 @@
 
         products.forEach(p => {
             const imgSrc = p.gambar && p.gambar.startsWith('data:image') ? p.gambar : (p.gambar || 'https://placehold.co/40x40?text=Img');
+            const hjual = parseInt(p.hargaJual) || parseInt(p.harga) || 0;
+            const hmodal = parseInt(p.hargaModal) || 0;
+            const dsk = parseInt(p.diskon) || 0;
+
             tbody.innerHTML += `
                 <tr class="border-b dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/50 font-sans">
                     <td class="p-4 w-16"><img src="${imgSrc}" class="w-10 h-10 object-cover rounded-lg border border-slate-200 dark:border-slate-700"></td>
@@ -835,7 +880,10 @@
                         <p class="font-bold text-slate-800 dark:text-white line-clamp-1">${p.nama}</p>
                         <p class="text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded w-max mt-1 uppercase font-bold">${p.kategori}</p>
                     </td>
-                    <td class="p-4 font-bold text-emerald-600 dark:text-emerald-400">Rp ${parseInt(p.harga).toLocaleString('id-ID')}</td>
+                    <td class="p-4">
+                        <p class="text-xs text-slate-400">Modal: Rp ${hmodal.toLocaleString('id-ID')}</p>
+                        <p class="font-bold text-emerald-600 dark:text-emerald-400">Jual: Rp ${hjual.toLocaleString('id-ID')} <span class="text-[10px] text-rose-500">(-${dsk}%)</span></p>
+                    </td>
                     <td class="p-4 text-right whitespace-nowrap">
                         <button onclick="editProduk(${p.id})" class="text-blue-600 dark:text-blue-400 font-bold text-xs bg-blue-50 dark:bg-blue-900/40 hover:bg-blue-100 px-3 py-1.5 rounded-full mr-2 transition-colors">Edit</button>
                         <button onclick="hapusProduk(${p.id})" class="text-rose-600 dark:text-rose-400 font-bold text-xs bg-rose-50 dark:bg-rose-900/40 hover:bg-rose-100 px-3 py-1.5 rounded-full transition-colors">Hapus</button>
@@ -855,7 +903,9 @@
             if(prod) {
                 document.getElementById('prd-nama').value = prod.nama;
                 document.getElementById('prd-kategori').value = prod.kategori;
-                document.getElementById('prd-harga').value = prod.harga;
+                document.getElementById('prd-harga-modal').value = prod.hargaModal || 0;
+                document.getElementById('prd-harga-jual').value = prod.hargaJual || prod.harga || 0;
+                document.getElementById('prd-diskon').value = prod.diskon || 0;
                 document.getElementById('prd-link').value = prod.link;
                 document.getElementById('prd-deskripsi').value = prod.deskripsi;
                 
@@ -883,7 +933,9 @@
         e.preventDefault();
         const nama = document.getElementById('prd-nama').value.trim();
         const kategori = document.getElementById('prd-kategori').value;
-        const harga = document.getElementById('prd-harga').value;
+        const hargaModal = parseInt(document.getElementById('prd-harga-modal').value) || 0;
+        const hargaJual = parseInt(document.getElementById('prd-harga-jual').value) || 0;
+        const diskon = parseInt(document.getElementById('prd-diskon').value) || 0;
         const link = document.getElementById('prd-link').value.trim() || "#";
         const deskripsi = document.getElementById('prd-deskripsi').value.trim();
         const gambar = document.getElementById('prd-foto-url').value.trim() || document.getElementById('preview-foto-produk').src;
@@ -893,11 +945,11 @@
         if (currentEditProdukId) {
             const idx = products.findIndex(p => p.id === currentEditProdukId);
             if(idx !== -1) {
-                products[idx] = { id: currentEditProdukId, nama, kategori, harga: parseInt(harga), link, deskripsi, gambar };
+                products[idx] = { id: currentEditProdukId, nama, kategori, hargaModal, hargaJual, diskon, link, deskripsi, gambar };
                 addLog("Mengedit produk toko: " + nama);
             }
         } else {
-            products.unshift({ id: Date.now(), nama, kategori, harga: parseInt(harga), link, deskripsi, gambar });
+            products.unshift({ id: Date.now(), nama, kategori, hargaModal, hargaJual, diskon, link, deskripsi, gambar });
             addLog("Menambahkan produk baru: " + nama);
         }
         
@@ -918,6 +970,23 @@
             renderAdminProducts();
         }
     }
+
+    // --- FITUR RATING BINTANG EFEK HOVER KUNING ---
+    window.hoverStars = function(val) {
+        const stars = document.querySelectorAll('.star-rating');
+        stars.forEach((s, idx) => {
+            if(idx < val) { s.classList.add('text-amber-400'); s.classList.remove('text-slate-300', 'dark:text-slate-600'); }
+            else { s.classList.remove('text-amber-400'); s.classList.add('text-slate-300', 'dark:text-slate-600'); }
+        });
+    };
+
+    window.resetStars = function() {
+        const stars = document.querySelectorAll('.star-rating');
+        stars.forEach((s) => {
+            s.classList.remove('text-amber-400');
+            s.classList.add('text-slate-300', 'dark:text-slate-600');
+        });
+    };
 
     const asmaulHusnaData = [
         { id: 1, latin: "Ar Rahman", arab: "الرَّحْمَنُ", arti: "Yang Maha Pengasih" }, { id: 2, latin: "Ar Rahiim", arab: "الرَّحِيمُ", arti: "Yang Maha Penyayang" },
@@ -1148,13 +1217,11 @@
     
     async function fetchRealPrayerTimes() { 
         try {
-            // API Kemenag RI (Method 20)
             const res = await fetch('https://api.aladhan.com/v1/timingsByCity?city=Jakarta&country=Indonesia&method=20');
             const data = await res.json(); 
             const t = data.data.timings;
             const hd = data.data.date.hijri;
             
-            // Format Bulan Kemenag RI
             document.getElementById('hijri-date').innerText = `${hd.day} ${hijriMonths[hd.month.number]} ${hd.year} H`;
             
             jadwalHariIni = [
@@ -1231,7 +1298,6 @@
         paginatedArticles.forEach(art => {
             let d = new Date(art.tanggal); let tgl = isNaN(d) ? art.tanggal : d.toLocaleDateString('id-ID', {day:'numeric',month:'short',year:'numeric'});
             let imgHtml = art.cover && !art.cover.includes(window.location.href) ? `<img src="${art.cover}" class="w-full h-40 object-cover mb-4 rounded-2xl">` : '';
-            // Penambahan animasi transisi pada card
             list.innerHTML += `<div onclick="bacaArtikel(${art.id})" class="fade-in bg-white dark:bg-slate-800 p-6 rounded-[2rem] border dark:border-slate-700 shadow-sm hover:shadow-premium hover:-translate-y-1.5 hover:border-emerald-300 dark:hover:border-emerald-600 transition-all duration-300 cursor-pointer flex flex-col justify-between group font-sans"><div>${imgHtml}<div class="flex justify-between items-center mb-3"><span class="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-slate-900 px-3 py-1 rounded-full uppercase tracking-wider inline-block">${art.kategori}</span><div class="flex items-center text-xs text-slate-400 space-x-2 font-bold"><span class="flex items-center">👁 ${art.views || 0}</span><span class="flex items-center text-amber-500">★ ${art.rating || '0.0'}</span></div></div><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-2 leading-snug group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">${art.judul}</h3>${art.subjudul ? `<p class="text-sm font-medium text-slate-500 dark:text-slate-400 mb-3 line-clamp-1">${art.subjudul}</p>` : ''}<p class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed mb-4">${art.konten.replace(/<[^>]*>?/gm, '')}</p></div><div class="flex items-center pt-4 border-t border-slate-50 dark:border-slate-700 mt-auto"><div class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center mr-3 text-slate-400 dark:text-slate-300"><i class="ph-fill ph-user"></i></div><div><p class="text-xs font-bold text-slate-700 dark:text-slate-200">${art.penulis}</p><p class="text-[10px] text-slate-400">${tgl}</p></div></div></div>`;
         });
 
@@ -1265,9 +1331,10 @@
         else { coverCont.classList.add('hidden'); document.getElementById('detail-content-wrapper').classList.remove('-mt-16', 'bg-white', 'dark:bg-slate-900', 'rounded-t-[3rem]', 'shadow-[0_-20px_40px_rgba(0,0,0,0.1)]'); }
 
         const container = document.getElementById('rating-stars-container'); document.getElementById('rating-thanks').classList.add('hidden'); container.innerHTML = '';
-        for(let i=1; i<=5; i++) container.innerHTML += `<span class="cursor-pointer hover:text-amber-400 transition-colors" onclick="rateArticle(${id}, ${i})">★</span>`;
+        for(let i=1; i<=5; i++) {
+            container.innerHTML += `<span class="cursor-pointer transition-colors star-rating text-slate-300 dark:text-slate-600" onclick="rateArticle(${id}, ${i})" onmouseover="hoverStars(${i})" onmouseout="resetStars()">★</span>`;
+        }
 
-        // Navigasi Artikel
         const btnPrev = document.getElementById('btn-prev-article');
         const btnNext = document.getElementById('btn-next-article');
         
@@ -1331,6 +1398,9 @@
     function logout() { addLog("Keluar (Logout) dari sistem CMS"); localStorage.removeItem('dzikra_auth_role'); localStorage.removeItem('dzikra_auth_nama'); localStorage.removeItem('dzikra_auth_username'); switchView('home'); }
     function checkLoginState() { /* Silent check */ }
     
+    let windowViewsChart = null;
+    let windowSalesChart = null;
+
     function renderAdminUI() {
         const role = localStorage.getItem('dzikra_auth_role'); 
         const nama = localStorage.getItem('dzikra_auth_nama');
@@ -1354,10 +1424,50 @@
         const secProduk = document.getElementById('section-produk');
         if(secProduk) secProduk.classList.toggle('hidden', (role !== 'superadmin' && role !== 'sales'));
 
+        const secAnalytics = document.getElementById('admin-analytics');
+        if(secAnalytics) {
+            if(role === 'superadmin') {
+                secAnalytics.classList.remove('hidden');
+                secAnalytics.classList.add('grid');
+                renderCharts();
+            } else {
+                secAnalytics.classList.remove('grid');
+                secAnalytics.classList.add('hidden');
+            }
+        }
+
         renderAdminTable();
         if(role === 'superadmin' || role === 'sales') {
             renderAdminProducts();
         }
+    }
+
+    function renderCharts() {
+        if (typeof Chart === 'undefined') return;
+
+        const articles = getDB('dzikra_articles');
+        const sortedViews = [...articles].sort((a,b) => (b.views||0) - (a.views||0)).slice(0, 5);
+        const labelsViews = sortedViews.map(a => a.judul.substring(0, 15) + '...');
+        const dataViews = sortedViews.map(a => a.views || 0);
+
+        if (windowViewsChart) windowViewsChart.destroy();
+        const ctxViews = document.getElementById('chartViews').getContext('2d');
+        windowViewsChart = new Chart(ctxViews, {
+            type: 'bar',
+            data: { labels: labelsViews, datasets: [{ label: 'Total Views', data: dataViews, backgroundColor: '#10b981', borderRadius: 4 }] },
+            options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+        });
+
+        // Dummy Sales Data
+        const labelsSales = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'];
+        const dataSales = [12, 19, 15, 25, 22, 30]; // Mocked trend
+        if (windowSalesChart) windowSalesChart.destroy();
+        const ctxSales = document.getElementById('chartSales').getContext('2d');
+        windowSalesChart = new Chart(ctxSales, {
+            type: 'line',
+            data: { labels: labelsSales, datasets: [{ label: 'Produk Terjual (Estimasi)', data: dataSales, borderColor: '#3b82f6', tension: 0.4, fill: true, backgroundColor: 'rgba(59, 130, 246, 0.2)' }] },
+            options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+        });
     }
     
     function renderAdminTable() {
@@ -1510,19 +1620,54 @@
         }
     }
 
-    function bukaDonasi() { document.getElementById('modal-donasi').classList.remove('hidden'); const qrisData = localStorage.getItem('dzikra_qris') || 'https://i.imgur.com/Mly81cj.jpeg'; if(qrisData) { document.getElementById('img-qris-display').src = qrisData; document.getElementById('img-qris-display').classList.remove('hidden'); document.getElementById('img-qris-placeholder').classList.add('hidden'); } }
+    function bukaDonasi() { 
+        document.getElementById('modal-donasi').classList.remove('hidden'); 
+        
+        const qrisData = localStorage.getItem('dzikra_qris') || 'https://i.imgur.com/Mly81cj.jpeg'; 
+        const imgDisplay = document.getElementById('img-qris-display');
+        const imgPlaceholder = document.getElementById('img-qris-placeholder');
+        
+        if(qrisData) { 
+            imgDisplay.src = qrisData; 
+            imgDisplay.classList.remove('hidden'); 
+            imgPlaceholder.classList.add('hidden'); 
+        }
+
+        const rekData = localStorage.getItem('dzikra_rekening');
+        const rekDisplay = document.getElementById('rekening-display');
+        
+        if(rekData && rekData.trim() !== '') {
+            rekDisplay.innerHTML = rekData.replace(/\n/g, '<br>');
+            rekDisplay.classList.remove('hidden');
+            imgPlaceholder.classList.add('hidden');
+        } else {
+            rekDisplay.classList.add('hidden');
+        }
+
+        if(!qrisData && (!rekData || rekData.trim() === '')) {
+            imgPlaceholder.classList.remove('hidden');
+        }
+    }
     function tutupDonasi() { document.getElementById('modal-donasi').classList.add('hidden'); }
     function toggleSetQRIS() { document.getElementById('form-qris').classList.toggle('hidden'); }
     function simpanQRIS() { 
         const fileInput = document.getElementById('input-qris'); 
         const urlInput = document.getElementById('input-qris-url');
+        const rekInput = document.getElementById('input-rekening');
         
+        // Simpan Rekening Data
+        if(rekInput) {
+            localStorage.setItem('dzikra_rekening', rekInput.value);
+        }
+
         if(urlInput && urlInput.value) {
             localStorage.setItem('dzikra_qris', urlInput.value); 
-            addLog("Memperbarui link QRIS"); alert('Link QRIS disimpan!'); toggleSetQRIS();
-        } else if(fileInput.files && fileInput.files[0]) { 
-            const reader = new FileReader(); reader.onload = function(e) { localStorage.setItem('dzikra_qris', e.target.result); addLog("Memperbarui gambar QRIS"); alert('Gambar QRIS disimpan!'); toggleSetQRIS(); }; reader.readAsDataURL(fileInput.files[0]); 
-        } else alert('Pilih gambar atau masukkan link tautan dahulu.'); 
+            addLog("Memperbarui link QRIS dan Rekening"); alert('Informasi Donasi disimpan!'); toggleSetQRIS();
+        } else if(fileInput && fileInput.files && fileInput.files[0]) { 
+            const reader = new FileReader(); reader.onload = function(e) { localStorage.setItem('dzikra_qris', e.target.result); addLog("Memperbarui gambar QRIS dan Rekening"); alert('Informasi Donasi disimpan!'); toggleSetQRIS(); }; reader.readAsDataURL(fileInput.files[0]); 
+        } else {
+            addLog("Memperbarui Informasi Rekening"); alert('Informasi Donasi disimpan!'); toggleSetQRIS();
+        }
     }
 
     // --- COMPASS IMPLEMENTATION (LOW-PASS FILTER SMOOTHING) ---
