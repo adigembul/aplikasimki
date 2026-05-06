@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#1e40af">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Majelis Keluarga Indonesia</title>
+    <title>Majelis Keluarga Indonesia Apps</title>
     
     <!-- Google Fonts: Poppins, Amiri & Charter fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,13 +45,6 @@
     </script>
 
     <style>
-        @font-face {
-            font-family: 'LPMQ';
-            src: url('https://cdn.jsdelivr.net/gh/lpmq-mushaf-kemenag/lpmq-mushaf-kemenag@master/fonts/lpmq.woff2') format('woff2'),
-                 url('https://cdn.jsdelivr.net/gh/lpmq-mushaf-kemenag/lpmq-mushaf-kemenag@master/fonts/lpmq.woff') format('woff');
-            font-weight: normal; font-style: normal; font-display: swap;
-        }
-
         body, html { margin: 0 !important; padding: 0 !important; overflow: hidden !important; background-color: #f8fafc; }
         .bg-photo-overlay, #navbar-iframe, .post-title, .post-header, .post-footer, #sidebar, #header, .comments { display: none !important; }
         
@@ -120,7 +113,7 @@
             <button id="btn-install-pwa" onclick="installPWA()" class="hidden w-full bg-emerald-600 text-white font-bold py-3.5 rounded-xl shadow-3d active:shadow-3d-active active:translate-y-[6px] transition-all flex justify-center items-center">
                 <i class="ph-bold ph-download-simple mr-2"></i> Install Layar Penuh
             </button>
-            <button onclick="tutupModalWelcome()" class="w-full bg-slate-100 text-slate-600 font-bold py-3.5 rounded-xl hover:bg-slate-200 transition-colors">
+            <button onclick="mulaiAplikasiFullscreen()" class="w-full bg-slate-100 text-slate-600 font-bold py-3.5 rounded-xl hover:bg-slate-200 transition-colors">
                 Mulai Aplikasi <i class="ph-bold ph-arrow-right ml-1"></i>
             </button>
         </div>
@@ -139,7 +132,8 @@
                     <p class="text-[9px] sm:text-[10px] md:text-xs text-emerald-600 font-bold tracking-widest uppercase mb-0.5 sm:mb-1 flex items-center">
                         Majelis Keluarga Indonesia
                     </p>
-                                    </div>
+                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-slate-800 tracking-tight" id="greeting-text">Selamat Siang</h1>
+                </div>
             </div>
             <div class="flex space-x-1.5 sm:space-x-2">
                 <button onclick="startTour()" class="w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:px-4 rounded-full bg-slate-100 border border-slate-200 text-slate-600 hover:bg-slate-200 flex items-center justify-center shadow-sm">
@@ -148,7 +142,6 @@
                 <button onclick="bukaDonasi()" class="w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:px-4 rounded-full bg-orange-50 border border-orange-100 text-orange-600 hover:bg-orange-100 flex items-center justify-center shadow-sm">
                     <i class="ph-bold ph-heart text-base sm:text-lg md:mr-1.5"></i> <span class="hidden md:inline text-sm font-bold">Donasi</span>
                 </button>
-                <!-- Tombol Marketplace (Toko) -->
                 <button onclick="switchView('marketplace')" class="w-9 h-9 sm:w-10 sm:h-10 md:w-auto md:px-4 rounded-full bg-blue-50 border border-blue-100 text-blue-600 hover:bg-blue-100 flex items-center justify-center shadow-sm">
                     <i class="ph-bold ph-storefront text-base sm:text-lg md:mr-1.5"></i> <span class="hidden md:inline text-sm font-bold">Toko</span>
                 </button>
@@ -158,6 +151,7 @@
             </div>
         </div>
 
+        <!-- WIDGET SHOLAT -->
         <div id="widget-sholat" class="gradient-emerald rounded-[2rem] p-5 sm:p-6 md:p-8 text-white shadow-3d mb-8 relative overflow-hidden group border-b-4 border-indigo-900">
             <div class="absolute -right-10 -top-10 opacity-10 rotate-12 pointer-events-none"><i class="ph-fill ph-moon-stars text-[150px] sm:text-[200px]"></i></div>
             <button onclick="testAdzan()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/40 p-1.5 sm:p-2 rounded-full backdrop-blur-sm transition-all" title="Putar/Hentikan Adzan">
@@ -182,15 +176,14 @@
             </div>
         </div>
 
+        <!-- MENU UTAMA -->
         <div id="menu-grid-container" class="grid grid-cols-4 gap-2.5 sm:gap-4 md:gap-6 mb-10 md:mb-12">
-            <!-- Menu 1 -->
             <button onclick="openMenu('quran')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
                 <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
                     <i class="ph-duotone ph-book-open-text text-2xl sm:text-3xl drop-shadow-md"></i>
                 </div>
                 <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Al-Qur'an</span>
             </button>
-            <!-- Menu 2 -->
             <button onclick="openMenu('todo')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group relative bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
                 <div class="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-8 sm:h-8 bg-rose-100 rounded-full flex items-center justify-center text-[8px] sm:text-[10px] font-bold text-rose-600 z-10 shadow-sm border border-white">New</div>
                 <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
@@ -198,42 +191,36 @@
                 </div>
                 <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Progres</span>
             </button>
-            <!-- Menu 3 -->
             <button onclick="openMenu('dzikir')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
                 <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
                     <i class="ph-duotone ph-sun-horizon text-2xl sm:text-3xl drop-shadow-md"></i>
                 </div>
                 <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Dzikir</span>
             </button>
-            <!-- Menu 4 -->
             <button onclick="openMenu('doa')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
                 <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
                     <i class="ph-duotone ph-hands-praying text-2xl sm:text-3xl drop-shadow-md"></i>
                 </div>
                 <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Doa</span>
             </button>
-            <!-- Menu 5 -->
             <button onclick="openMenu('asmaul')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
                 <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
                     <i class="ph-duotone ph-star text-2xl sm:text-3xl drop-shadow-md"></i>
                 </div>
                 <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Asmaul</span>
             </button>
-            <!-- Menu 6 -->
             <button onclick="openMenu('tasbih')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
                 <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
                     <i class="ph-duotone ph-link text-2xl sm:text-3xl drop-shadow-md"></i>
                 </div>
                 <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Tasbih</span>
             </button>
-            <!-- Menu 7 -->
             <button onclick="openMenu('zakat')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
                 <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
                     <i class="ph-duotone ph-calculator text-2xl sm:text-3xl drop-shadow-md"></i>
                 </div>
                 <span class="text-[9px] sm:text-[11px] md:text-sm font-extrabold text-slate-700 text-center leading-tight">Zakat</span>
             </button>
-            <!-- Menu 8 -->
             <button onclick="openMenu('kompas')" class="glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white border-b-4 border-slate-200 active:border-b-0 active:translate-y-1">
                 <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white text-emerald-600 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50">
                     <i class="ph-duotone ph-compass text-2xl sm:text-3xl drop-shadow-md"></i>
@@ -242,7 +229,7 @@
             </button>
         </div>
 
-        <!-- ARTIKEL FEED DENGAN TOMBOL FILTER KATEGORI -->
+        <!-- ARTIKEL FEED & KATEGORI -->
         <div class="flex flex-col mb-6" id="artikel-header">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 space-y-4 md:space-y-0">
                 <h3 class="text-xl font-bold text-slate-800 flex items-center w-full md:w-auto"><i class="ph-fill ph-books text-emerald-600 mr-2"></i> Artikel Islami</h3>
@@ -257,7 +244,6 @@
                 </div>
             </div>
             
-            <!-- Tombol Kategori -->
             <div id="kategori-container" class="flex space-x-2 overflow-x-auto hide-scrollbar pb-2">
                 <button data-cat="" onclick="setKategori('')" class="px-4 py-1.5 rounded-full bg-emerald-600 text-white text-xs font-bold whitespace-nowrap transition-colors shadow-md">Semua</button>
                 <button data-cat="Artikel" onclick="setKategori('Artikel')" class="px-4 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 text-xs font-bold whitespace-nowrap transition-colors shadow-sm">Artikel</button>
@@ -272,7 +258,7 @@
 
         <div class="text-center pb-8 text-slate-400 text-xs mt-10 border-t border-slate-200 pt-8">
             <p class="font-bold text-slate-500 mb-1">MAJELIS KELUARGA INDONESIA</p>
-            <p>COPYRIGHT © 2026.RUMAH EDUKASI DIGITAL.</p>
+            <p>COPYRIGHT © 2026. RUMAH EDUKASI DIGITAL.</p>
         </div>
     </div>
 
@@ -280,13 +266,10 @@
     <div id="view-marketplace" class="hidden min-h-screen bg-slate-50 relative pb-10 overflow-y-auto">
         <div class="sticky top-0 bg-white px-4 py-4 flex items-center shadow-sm z-50">
             <button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center mr-4 shadow-inner hover:bg-slate-200"><i class="ph-bold ph-arrow-left"></i></button>
-            <h2 class="text-base sm:text-lg font-bold">Toko Muslim MKI</h2>
+            <h2 class="text-base sm:text-lg font-bold">Toko MKI</h2>
         </div>
         <div class="max-w-5xl mx-auto p-4 mt-2">
-            <!-- Grid Daftar Produk -->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6" id="marketplace-list">
-                <!-- Produk di-render melalui JavaScript -->
-            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6" id="marketplace-list"></div>
         </div>
     </div>
 
@@ -310,7 +293,7 @@
     <div id="view-login" class="hidden min-h-screen flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md z-50 fixed inset-0">
         <div class="glass-panel w-full max-w-md p-8 rounded-[2rem] shadow-2xl relative bg-white">
             <button onclick="switchView('home')" class="absolute top-6 right-6 text-slate-400 bg-slate-100 w-8 h-8 rounded-full flex items-center justify-center"><i class="ph-bold ph-x"></i></button>
-            <div class="text-center mb-8"><h2 class="text-2xl font-bold">LOGIN</h2><p class="text-xs text-slate-500">Member Access</p></div>
+            <div class="text-center mb-8"><h2 class="text-2xl font-bold">LOGIN</h2><p class="text-xs text-slate-500">Member Area</p></div>
             <form onsubmit="handleLogin(event)">
                 <input type="text" id="username" class="w-full bg-slate-50 border rounded-xl px-4 py-3 mb-4 outline-none" required placeholder="Username">
                 <div class="relative">
@@ -326,15 +309,17 @@
     <div id="view-admin" class="hidden min-h-screen p-4 md:p-8 bg-slate-50 relative overflow-y-auto">
         <div class="max-w-5xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between mb-8 bg-white p-6 rounded-3xl shadow-sm border">
-                <div class="mb-4 md:mb-0"><h1 class="text-2xl font-bold">PANEL MKI</h1><p class="text-sm font-medium">Selamat bertugas, <span id="admin-welcome" class="text-emerald-600">Admin</span> <span id="admin-role-badge" class="ml-2 text-[10px] bg-slate-100 px-2 py-1 rounded-md uppercase">Role</span></p></div>
+                <div class="mb-4 md:mb-0"><h1 class="text-2xl font-bold">CMS MKI</h1><p class="text-sm font-medium">Selamat bertugas, <span id="admin-welcome" class="text-emerald-600">Admin</span> <span id="admin-role-badge" class="ml-2 text-[10px] bg-slate-100 px-2 py-1 rounded-md uppercase">Role</span></p></div>
                 <div class="flex flex-wrap gap-2">
                     <button onclick="switchView('home')" class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-bold shadow-sm hover:bg-slate-200">Beranda</button>
-                    <button id="btn-admin-users" onclick="bukaModalUsers()" class="px-4 py-2 bg-purple-50 text-purple-600 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-purple-100">Pengguna</button>
-                    <button id="btn-admin-qris" onclick="toggleSetQRIS()" class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-orange-100">QRIS</button>
-                    <button id="btn-admin-log" onclick="showLogsModal()" class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-blue-100">Log Aktivitas</button>
+                    <button id="btn-admin-users" onclick="bukaModalUsers()" class="px-4 py-2 bg-purple-50 text-purple-600 rounded-lg text-sm font-bold shadow-sm hover:bg-purple-100">Pengguna</button>
+                    <button id="btn-admin-qris" onclick="toggleSetQRIS()" class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg text-sm font-bold shadow-sm hover:bg-orange-100">QRIS</button>
+                    <button id="btn-admin-log" onclick="showLogsModal()" class="px-4 py-2 bg-blue-50 text-blue-600 rounded-lg text-sm font-bold shadow-sm hover:bg-blue-100">Log Aktivitas</button>
                     <button onclick="bukaModalGantiPassword()" class="px-4 py-2 bg-indigo-50 text-indigo-600 rounded-lg text-sm font-bold shadow-sm hover:bg-indigo-100">Ganti Password</button>
-                    <button onclick="toggleCMSEditor()" class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold shadow-md hover:bg-emerald-700">Tulis Artikel</button>
+                    
+                    <button id="btn-admin-tulis" onclick="toggleCMSEditor()" class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold shadow-md hover:bg-emerald-700">Tulis Artikel</button>
                     <button id="btn-admin-tambah-produk" onclick="bukaModalProduk()" class="px-4 py-2 bg-teal-600 text-white rounded-lg text-sm font-bold shadow-md hover:bg-teal-700">Tambah Produk</button>
+                    
                     <button onclick="logout()" class="px-4 py-2 bg-rose-50 text-rose-600 rounded-lg text-sm font-bold shadow-sm hover:bg-rose-100">Keluar</button>
                 </div>
             </div>
@@ -346,7 +331,7 @@
             </div>
 
             <!-- Tabel Manajemen Artikel -->
-            <div class="bg-white rounded-3xl overflow-hidden shadow-sm border mb-8">
+            <div id="section-artikel" class="bg-white rounded-3xl overflow-hidden shadow-sm border mb-8">
                 <div class="p-5 bg-slate-50 border-b flex justify-between items-center">
                     <h2 class="font-bold text-lg text-slate-700"><i class="ph-fill ph-books mr-2 text-emerald-600"></i> Manajemen Artikel</h2>
                 </div>
@@ -359,7 +344,7 @@
             </div>
 
             <!-- Tabel Manajemen Produk (Toko) -->
-            <div class="bg-white rounded-3xl overflow-hidden shadow-sm border">
+            <div id="section-produk" class="bg-white rounded-3xl overflow-hidden shadow-sm border">
                 <div class="p-5 bg-slate-50 border-b flex justify-between items-center">
                     <h2 class="font-bold text-lg text-slate-700"><i class="ph-fill ph-storefront mr-2 text-teal-600"></i> Manajemen Produk Toko</h2>
                 </div>
@@ -375,7 +360,7 @@
 
     <!-- MODAL USERS, PASSWORD, LOGS -->
     <div id="modal-users" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-6 relative flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto"><button onclick="tutupModalUsers()" class="absolute top-4 right-4 bg-slate-100 w-8 h-8 rounded-full"><i class="ph-bold ph-x"></i></button><div class="w-full md:w-1/3 md:border-r pb-6 md:pb-0 md:pr-6"><h3 class="text-lg font-bold mb-4">Tambah Akun</h3><form onsubmit="tambahUser(event)"><input type="text" id="new-user-nama" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Nama Lengkap"><input type="text" id="new-user-uname" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Username"><input type="password" id="new-user-pass" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Password"><select id="new-user-role" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-4 text-sm"><option value="penulis">Penulis</option><option value="editor">Editor</option><option value="superadmin">Super Admin</option></select><button type="submit" class="w-full bg-purple-600 text-white font-bold py-2.5 rounded-xl text-sm">Buat Akun Baru</button></form></div><div class="w-full md:w-2/3"><h3 class="text-lg font-bold mb-4">Daftar Pengguna</h3><div class="overflow-x-auto bg-slate-50 rounded-2xl border"><table class="w-full text-left text-sm"><thead><tr class="text-slate-400 border-b"><th class="p-3">Pengguna</th><th class="p-3">Role</th><th class="p-3 text-right">Aksi</th></tr></thead><tbody id="users-table-body"></tbody></table></div></div></div>
+        <div class="bg-white rounded-3xl shadow-2xl max-w-4xl w-full p-6 relative flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto"><button onclick="tutupModalUsers()" class="absolute top-4 right-4 bg-slate-100 w-8 h-8 rounded-full"><i class="ph-bold ph-x"></i></button><div class="w-full md:w-1/3 md:border-r pb-6 md:pb-0 md:pr-6"><h3 class="text-lg font-bold mb-4">Tambah Akun</h3><form onsubmit="tambahUser(event)"><input type="text" id="new-user-nama" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Nama Lengkap"><input type="text" id="new-user-uname" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Username"><input type="password" id="new-user-pass" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-3 text-sm" required placeholder="Password"><select id="new-user-role" class="w-full bg-slate-50 border rounded-xl px-4 py-2.5 mb-4 text-sm"><option value="penulis">Penulis</option><option value="editor">Editor</option><option value="sales">Sales (Toko)</option><option value="superadmin">Super Admin</option></select><button type="submit" class="w-full bg-purple-600 text-white font-bold py-2.5 rounded-xl text-sm">Buat Akun Baru</button></form></div><div class="w-full md:w-2/3"><h3 class="text-lg font-bold mb-4">Daftar Pengguna</h3><div class="overflow-x-auto bg-slate-50 rounded-2xl border"><table class="w-full text-left text-sm"><thead><tr class="text-slate-400 border-b"><th class="p-3">Pengguna</th><th class="p-3">Role</th><th class="p-3 text-right">Aksi</th></tr></thead><tbody id="users-table-body"></tbody></table></div></div></div>
     </div>
     
     <div id="modal-ganti-password" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in">
@@ -391,7 +376,6 @@
             <h3 class="text-xl font-bold text-slate-800 mb-6 border-b pb-3">Form Data Produk</h3>
             
             <form onsubmit="simpanProduk(event)">
-                <!-- Image Upload -->
                 <div class="mb-4">
                     <label class="block text-xs font-bold text-slate-500 mb-2">Foto Produk</label>
                     <div class="border-2 border-dashed border-slate-200 rounded-2xl h-40 flex items-center justify-center bg-slate-50 cursor-pointer relative overflow-hidden group" onclick="document.getElementById('input-foto-produk').click()">
@@ -545,7 +529,12 @@
     // INIT DB MOCK
     const initLocalDB = () => {
         if (!localStorage.getItem('dzikra_users')) {
-            setDB('dzikra_users', [{ id: 1, username: 'admin', password: 'edudigital', role: 'superadmin', nama: 'Super Admin MKI' }, { id: 2, username: 'editor', password: 'edudigital', role: 'editor', nama: 'Tim Editor MKI' }, { id: 3, username: 'penulis', password: 'edudigital', role: 'penulis', nama: 'Penulis MKI' }]);
+            setDB('dzikra_users', [
+                { id: 1, username: 'admin', password: 'edudigital', role: 'superadmin', nama: 'Super Admin MKI' }, 
+                { id: 2, username: 'editor', password: 'edudigital', role: 'editor', nama: 'Tim Editor MKI' }, 
+                { id: 3, username: 'penulis', password: 'edudigital', role: 'penulis', nama: 'Penulis MKI' },
+                { id: 4, username: 'sales', password: 'edudigital', role: 'sales', nama: 'Sales MKI' }
+            ]);
         }
         if (!localStorage.getItem('dzikra_logs')) setDB('dzikra_logs', []);
         
@@ -590,13 +579,21 @@
     document.addEventListener("DOMContentLoaded", () => {
         initLocalDB(); initClockAndDate(); fetchRealPrayerTimes(); setKategori(''); syncWithGAS(); checkLoginState(); initTodo();
         
-        // Modal PWA saat awal masuk
         setTimeout(() => {
             if (localStorage.getItem('mki_install_prompt') !== 'dismissed') {
                 document.getElementById('modal-welcome').classList.remove('hidden');
             }
         }, 1500);
     });
+
+    function mulaiAplikasiFullscreen() {
+        tutupModalWelcome();
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen().catch((err) => {
+                console.warn(`Gagal masuk ke mode Fullscreen: ${err.message}`);
+            });
+        }
+    }
 
     function tutupModalWelcome() {
         document.getElementById('modal-welcome').classList.add('hidden');
@@ -616,7 +613,11 @@
     });
 
     async function installPWA() {
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen().catch((err) => console.warn(err.message));
+        }
         tutupModalWelcome();
+        
         if (deferredPrompt) {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
@@ -1176,24 +1177,57 @@
     function checkLoginState() { /* Silent check */ }
     
     function renderAdminUI() {
-        const role = localStorage.getItem('dzikra_auth_role'); const nama = localStorage.getItem('dzikra_auth_nama');
-        document.getElementById('admin-welcome').innerText = nama; document.getElementById('admin-role-badge').innerText = role;
+        const role = localStorage.getItem('dzikra_auth_role'); 
+        const nama = localStorage.getItem('dzikra_auth_nama');
+        
+        document.getElementById('admin-welcome').innerText = nama; 
+        document.getElementById('admin-role-badge').innerText = role;
+        
         document.getElementById('btn-admin-users').classList.toggle('hidden', role !== 'superadmin');
         document.getElementById('btn-admin-qris').classList.toggle('hidden', role !== 'superadmin');
         document.getElementById('btn-admin-log').classList.toggle('hidden', role !== 'superadmin');
         
+        // Hide/Show Tulis Artikel
+        const btnTulis = document.getElementById('btn-admin-tulis');
+        if(btnTulis) btnTulis.classList.toggle('hidden', role === 'sales');
+        
+        // Hide/Show Tambah Produk
+        const btnProduk = document.getElementById('btn-admin-tambah-produk');
+        if(btnProduk) btnProduk.classList.toggle('hidden', (role !== 'superadmin' && role !== 'sales'));
+        
+        // Hide/Show Sections
+        const secArtikel = document.getElementById('section-artikel');
+        if(secArtikel) secArtikel.classList.toggle('hidden', role === 'sales');
+        
+        const secProduk = document.getElementById('section-produk');
+        if(secProduk) secProduk.classList.toggle('hidden', (role !== 'superadmin' && role !== 'sales'));
+
         // Render tabel artikel dan produk di panel admin
         renderAdminTable();
-        renderAdminProducts();
+        if(role === 'superadmin' || role === 'sales') {
+            renderAdminProducts();
+        }
     }
     
     function renderAdminTable() {
-        let articles = getDB('dzikra_articles'); const role = localStorage.getItem('dzikra_auth_role'); const nama = localStorage.getItem('dzikra_auth_nama');
+        let articles = getDB('dzikra_articles'); 
+        const role = localStorage.getItem('dzikra_auth_role'); 
+        const nama = localStorage.getItem('dzikra_auth_nama');
+        
         if (role === 'penulis') articles = articles.filter(a => a.penulis === nama);
+        
         const tbody = document.getElementById('admin-table-body'); tbody.innerHTML = '';
         if(articles.length === 0) tbody.innerHTML = `<tr><td colspan="3" class="text-center text-slate-400 py-6 font-sans">Tidak ada artikel.</td></tr>`;
+        
         articles.forEach((art) => {
-            tbody.innerHTML += `<tr class="border-b hover:bg-slate-50 font-sans"><td class="p-4"><p class="font-bold text-slate-800">${art.judul}</p><p class="text-[10px] text-slate-400">Oleh: ${art.penulis}</p></td><td class="p-4"><span class="bg-slate-100 border px-2 py-1 rounded text-[10px] font-bold uppercase">${art.kategori}</span></td><td class="p-4 text-right whitespace-nowrap"><button onclick="editArtikel(${art.id})" class="text-blue-600 font-bold text-xs bg-blue-50 px-3 py-1.5 rounded-full mr-2">Edit</button><button onclick="hapusArtikel(${art.id})" class="text-rose-600 font-bold text-xs bg-rose-50 px-3 py-1.5 rounded-full">Hapus</button></td></tr>`;
+            let actionsHtml = '';
+            if(role === 'superadmin' || role === 'editor') {
+                actionsHtml = `<button onclick="editArtikel(${art.id})" class="text-blue-600 font-bold text-xs bg-blue-50 px-3 py-1.5 rounded-full mr-2 transition-colors">Edit</button><button onclick="hapusArtikel(${art.id})" class="text-rose-600 font-bold text-xs bg-rose-50 px-3 py-1.5 rounded-full transition-colors">Hapus</button>`;
+            } else if (role === 'penulis') {
+                actionsHtml = `<span class="text-[10px] text-slate-400 italic font-medium bg-slate-100 px-2 py-1 rounded">Terkunci (Hanya Editor)</span>`;
+            }
+            
+            tbody.innerHTML += `<tr class="border-b hover:bg-slate-50 font-sans"><td class="p-4"><p class="font-bold text-slate-800">${art.judul}</p><p class="text-[10px] text-slate-400">Oleh: ${art.penulis}</p></td><td class="p-4"><span class="bg-slate-100 border px-2 py-1 rounded text-[10px] font-bold uppercase">${art.kategori}</span></td><td class="p-4 text-right whitespace-nowrap">${actionsHtml}</td></tr>`;
         });
     }
 
@@ -1331,7 +1365,7 @@
 
     // --- COMPASS IMPLEMENTATION (LOW-PASS FILTER SMOOTHING) ---
     let compassHandler;
-    let lastHeading = 0; // Menyimpan heading sebelumnya untuk keperluan smoothing
+    let lastHeading = 0;
 
     function startCompass() { 
         if(typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') { 
@@ -1351,27 +1385,23 @@
     
     function initCompassSensor() {
         compassHandler = (e) => {
-            // Dapatkan heading dari API iOS atau Alpha dari Android
             let heading = e.webkitCompassHeading;
             if (typeof heading === 'undefined' || heading === null) {
                 heading = 360 - e.alpha; 
             }
 
             if(heading !== null && heading !== undefined) {
-                // Algoritma Low-Pass Filter (Smoothing)
                 let diff = heading - lastHeading;
                 
-                // Menangani lonpatan sudut saat melewati angka utara (360 derajat ke 0 derajat)
                 if (diff > 180) diff -= 360;
                 else if (diff < -180) diff += 360;
 
-                // Faktor smoothing, ubah angka 0.15 jika butuh lebih kaku atau lebih lambat
                 lastHeading += diff * 0.15; 
                 
                 if(lastHeading < 0) lastHeading += 360;
                 if(lastHeading >= 360) lastHeading -= 360;
 
-                const kiblatHeading = 295; // Arah kiblat patokan untuk Indonesia (relatif)
+                const kiblatHeading = 295;
                 let needleRotation = lastHeading - kiblatHeading;
 
                 document.getElementById('compass-needle').style.transform = `rotate(${-needleRotation}deg)`;
