@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#1e40af">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Majelis Keluarga Indonesia</title>
+    <title>Majelis Keluarga Indonesia - Rumah Edukasi Digital</title>
     
     <!-- Google Fonts: Poppins, Amiri & Charter fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,17 +99,21 @@
         .medium-content:empty:before { content: attr(data-placeholder); color: #94a3b8; }
         .medium-title:focus, .medium-content:focus { outline: none; }
         
-        /* Typography Artikel (Font Charter) */
-        .article-body { font-family: 'Charter', 'Bitstream Charter', 'Sitka Text', 'Cambria', serif; }
+        /* Typography Artikel & Pembatasan Overflow (Simetris) */
+        .article-body { font-family: 'Charter', 'Bitstream Charter', 'Sitka Text', 'Cambria', serif; word-wrap: break-word; overflow-wrap: break-word; max-width: 100%; }
         .article-body p { margin-bottom: 1.2rem; line-height: 1.8; color: #334155; }
         .dark .article-body p { color: #cbd5e1; }
         .article-body h2 { font-size: 1.5rem; font-weight: 700; margin-top: 2rem; color: #0f172a; font-family: 'Poppins', sans-serif;}
         .dark .article-body h2 { color: #f8fafc; }
         .article-body blockquote { border-left: 4px solid #4f46e5; padding: 1rem; background: #eef2ff; border-radius: 0.5rem; font-style: italic; }
         .dark .article-body blockquote { background: #1e293b; border-left-color: #6366f1; color: #cbd5e1; }
+        
+        /* Responsif Media (Gambar & Video/Embed) */
         .article-body img { border-radius: 1rem; margin-bottom: 1rem; width: 100%; object-fit: cover; max-height: 400px;}
+        .article-body iframe, .article-body embed, .article-body video { width: 100%; max-width: 100%; border-radius: 0.75rem; margin: 1.5rem 0; aspect-ratio: 16/9; display: block; border: none; }
+        .article-body .tiktok-embed { max-width: 100% !important; border-radius: 0.75rem; overflow: hidden; margin: 1.5rem auto;}
 
-        #compass-needle { transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1); }
+        #compass-needle { transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
         .tour-highlight { position: relative; z-index: 9999999 !important; border-radius: 1.5rem; box-shadow: 0 0 0 4px #fbbf24, 0 0 0 9999px rgba(15,23,42,0.7); background: white; pointer-events: none; }
         .todo-cb:checked + div { background-color: #4f46e5; border-color: #4f46e5; }
         .todo-cb:checked + div svg { display: block; }
@@ -168,15 +172,16 @@
     <div id="view-home" class="max-w-5xl mx-auto px-4 py-6 md:py-10 relative fade-in pb-28 md:pb-12">
         
         <div class="flex justify-between items-center mb-6 md:mb-8">
-            <div class="flex items-center">
-                <img src="logo-MKI-150.png" alt="Logo MKI" class="h-10 w-auto sm:h-12 md:h-14 mr-3 rounded-md shadow-sm border-2 border-amber-400 animate-float" onerror="this.src='https://placehold.co/40x40?text=MKI'">
-                <div>
-                    <p class="text-[9px] sm:text-[10px] md:text-xs text-emerald-600 dark:text-emerald-400 font-bold tracking-widest uppercase mb-0.5 sm:mb-1 flex items-center">
-                        Majelis Keluarga Indonesia
+            <div class="flex items-center w-full md:w-auto overflow-hidden">
+                <img src="logo-MKI-150.png" alt="Logo MKI" class="h-10 w-auto sm:h-12 md:h-14 mr-3 rounded-md shadow-sm border-2 border-amber-400 animate-float flex-shrink-0" onerror="this.src='https://placehold.co/40x40?text=MKI'">
+                <div class="flex-1 min-w-0">
+                    <h1 class="text-base sm:text-xl md:text-2xl font-bold text-slate-800 dark:text-white tracking-tight truncate">Majelis Keluarga Indonesia</h1>
+                    <p class="text-[9px] sm:text-[10px] md:text-xs text-emerald-600 dark:text-emerald-400 font-bold tracking-widest uppercase truncate">
+                        Rumah Edukasi Digital
                     </p>
-                                    </div>
+                </div>
             </div>
-            <div class="flex space-x-1.5 sm:space-x-2 overflow-x-auto hide-scrollbar max-w-[50vw] md:max-w-none py-1">
+            <div class="flex space-x-1.5 sm:space-x-2 overflow-x-auto hide-scrollbar pl-2 md:pl-0 py-1">
                 <button onclick="toggleTheme()" class="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 md:w-auto md:px-4 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center shadow-sm">
                     <i class="ph-bold ph-moon text-sm sm:text-lg md:mr-1.5" id="theme-icon-display"></i> <span class="hidden md:inline text-sm font-bold">Tema</span>
                 </button>
@@ -195,6 +200,7 @@
             </div>
         </div>
 
+        <!-- WIDGET SHOLAT -->
         <div id="widget-sholat" class="gradient-emerald rounded-[2rem] p-5 sm:p-6 md:p-8 text-white shadow-3d mb-8 relative overflow-hidden group border-b-4 border-indigo-900 transition-all hover:shadow-[0_15px_30px_rgba(0,0,0,0.3)]">
             <div class="absolute -right-10 -top-10 opacity-10 rotate-12 pointer-events-none transition-transform duration-700 group-hover:rotate-45"><i class="ph-fill ph-moon-stars text-[150px] sm:text-[200px]"></i></div>
             <button onclick="testAdzan()" class="absolute top-4 right-4 bg-white/20 hover:bg-white/40 p-1.5 sm:p-2 rounded-full backdrop-blur-sm transition-all hover:scale-110" title="Putar/Hentikan Adzan">
@@ -221,6 +227,7 @@
             </div>
         </div>
 
+        <!-- MENU UTAMA -->
         <div id="menu-grid-container" class="grid grid-cols-4 gap-2.5 sm:gap-4 md:gap-6 mb-10 md:mb-12">
             <button onclick="openMenu('quran')" class="fade-in stagger-1 glass-panel p-2 sm:p-4 md:p-6 rounded-[1rem] sm:rounded-2xl shadow-glass-3d hover:shadow-premium-hover transition-all flex flex-col items-center justify-center group bg-white dark:bg-slate-800 border-b-4 border-slate-200 dark:border-slate-700 active:border-b-0 active:translate-y-1">
                 <div class="w-11 h-11 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-[0.8rem] sm:rounded-2xl bg-gradient-to-br from-emerald-100 to-white dark:from-emerald-900 dark:to-slate-700 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-1.5 sm:mb-2 transition-transform group-hover:scale-110 shadow-inner border border-emerald-50 dark:border-slate-600">
@@ -273,9 +280,10 @@
             </button>
         </div>
 
+        <!-- ARTIKEL FEED DENGAN TOMBOL FILTER KATEGORI -->
         <div class="flex flex-col mb-6" id="artikel-header">
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 space-y-4 md:space-y-0">
-                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 flex items-center w-full md:w-auto"><i class="ph-fill ph-books text-emerald-600 dark:text-emerald-400 mr-2"></i> Artikel Islami</h3>
+                <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 flex items-center w-full md:w-auto"><i class="ph-fill ph-books text-emerald-600 dark:text-emerald-400 mr-2"></i> Media Dakwah</h3>
                 <div class="flex w-full md:w-auto space-x-2">
                     <select id="sort-artikel" onchange="renderArticlesHome(1)" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm rounded-full px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 outline-none cursor-pointer">
                         <option value="terbaru">Terbaru</option>
@@ -283,7 +291,7 @@
                         <option value="az">A-Z</option>
                         <option value="za">Z-A</option>
                     </select>
-                    <input type="text" id="search-artikel" placeholder="Cari artikel..." class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm rounded-full px-4 py-2.5 text-sm outline-none w-full md:w-56 text-slate-800 dark:text-slate-100" onkeyup="renderArticlesHome(1)">
+                    <input type="text" id="search-artikel" placeholder="Cari info dakwah..." class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm rounded-full px-4 py-2.5 text-sm outline-none w-full md:w-56 text-slate-800 dark:text-slate-100" onkeyup="renderArticlesHome(1)">
                 </div>
             </div>
             
@@ -293,6 +301,7 @@
                 <button data-cat="Keluarga" onclick="setKategori('Keluarga')" class="flex-shrink-0 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-bold whitespace-nowrap transition-colors shadow-sm">Keluarga</button>
                 <button data-cat="Fiqih" onclick="setKategori('Fiqih')" class="flex-shrink-0 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-bold whitespace-nowrap transition-colors shadow-sm">Fiqih</button>
                 <button data-cat="Khutbah Jumat" onclick="setKategori('Khutbah Jumat')" class="flex-shrink-0 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-bold whitespace-nowrap transition-colors shadow-sm">Khutbah Jumat</button>
+                <button data-cat="Video" onclick="setKategori('Video')" class="flex-shrink-0 px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 text-xs font-bold whitespace-nowrap transition-colors shadow-sm">Video</button>
             </div>
         </div>
 
@@ -301,7 +310,7 @@
 
         <div class="text-center pb-8 text-slate-400 dark:text-slate-500 text-xs mt-10 border-t border-slate-200 dark:border-slate-700 pt-8">
             <p class="font-bold text-slate-500 dark:text-slate-400 mb-2">MAJELIS KELUARGA INDONESIA</p>
-            <p class="mb-5">COPYRIGHT © 2026. RUMAH EDUKASI DIGITAL.</p>
+            <p class="mb-5">COPYRIGHT © 2026. ALL RIGHTS RESERVED.</p>
             
             <div class="flex justify-center items-center space-x-5">
                 <a href="#" class="flex flex-col items-center text-slate-400 hover:text-red-500 transition-all hover:-translate-y-1 group">
@@ -327,7 +336,7 @@
     <div id="view-marketplace" class="hidden min-h-screen bg-slate-50 dark:bg-slate-900 relative pb-10 overflow-y-auto">
         <div class="sticky top-0 bg-white dark:bg-slate-800 px-4 py-4 flex items-center shadow-sm z-50">
             <button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mr-4 shadow-inner hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-600 dark:text-slate-300"><i class="ph-bold ph-arrow-left"></i></button>
-            <h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100">Toko Muslim MKI</h2>
+            <h2 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100">Market MKI</h2>
         </div>
         <div class="max-w-5xl mx-auto p-4 mt-2">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6" id="marketplace-list"></div>
@@ -341,12 +350,11 @@
             <div class="text-center mb-6">
                 <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/40 text-orange-500 dark:text-orange-400 rounded-full flex items-center justify-center mx-auto mb-3 animate-float"><i class="ph-fill ph-heart text-3xl"></i></div>
                 <h3 class="text-xl font-bold text-slate-800 dark:text-slate-100">Donasi Program</h3>
-                <p class="text-sm text-slate-500 dark:text-slate-400">Dukung kami melalui QRIS atau Rekening Bank di bawah ini.</p>
+                <p class="text-sm text-slate-500 dark:text-slate-400">Dukung kami melalui Rekening Bank di bawah ini.</p>
             </div>
-            <div class="bg-slate-50 dark:bg-slate-900 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-2xl p-2 mb-6 flex flex-col justify-center min-h-[150px] items-center text-center">
-                <img id="img-qris-display" src="" class="max-w-full max-h-[250px] object-contain rounded-xl hidden mb-4">
-                <div id="rekening-display" class="text-sm w-full bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border dark:border-slate-700 hidden text-slate-700 dark:text-slate-300 font-medium whitespace-pre-wrap"></div>
-                <p id="img-qris-placeholder" class="text-slate-400 text-sm m-auto">Belum ada info donasi.</p>
+            <div class="bg-slate-50 dark:bg-slate-900 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-2xl p-4 mb-6 flex flex-col justify-center min-h-[150px] items-center text-center">
+                <div id="rekening-display" class="text-sm w-full bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border dark:border-slate-700 hidden text-slate-700 dark:text-slate-300 font-medium whitespace-pre-wrap leading-loose"></div>
+                <p id="rekening-placeholder" class="text-slate-400 text-sm m-auto">Belum ada info donasi rekening.</p>
             </div>
         </div>
     </div>
@@ -355,7 +363,7 @@
     <div id="view-login" class="hidden min-h-screen flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md z-50 fixed inset-0">
         <div class="bg-white dark:bg-slate-800 w-full max-w-md p-8 rounded-[2rem] shadow-2xl relative border dark:border-slate-700">
             <button onclick="switchView('home')" class="absolute top-6 right-6 text-slate-400 bg-slate-100 dark:bg-slate-700 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-600"><i class="ph-bold ph-x"></i></button>
-            <div class="text-center mb-8"><h2 class="text-2xl font-bold text-slate-800 dark:text-white">LOGIN</h2><p class="text-xs text-slate-500 dark:text-slate-400">Member Access</p></div>
+            <div class="text-center mb-8"><h2 class="text-2xl font-bold text-slate-800 dark:text-white">Portal CMS</h2><p class="text-xs text-slate-500 dark:text-slate-400">Admin Access</p></div>
             <form onsubmit="handleLogin(event)">
                 <input type="text" id="username" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-3 mb-4 outline-none focus:border-emerald-500" required placeholder="Username">
                 <div class="relative">
@@ -375,11 +383,11 @@
                 <div class="flex flex-wrap gap-2">
                     <button onclick="switchView('home')" class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-bold shadow-sm hover:bg-slate-200 dark:hover:bg-slate-600">Beranda</button>
                     <button id="btn-admin-users" onclick="bukaModalUsers()" class="px-4 py-2 bg-purple-50 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-purple-100 dark:hover:bg-purple-800/60">Pengguna</button>
-                    <button id="btn-admin-qris" onclick="toggleSetQRIS()" class="px-4 py-2 bg-orange-50 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-orange-100 dark:hover:bg-orange-800/60">Pengaturan Donasi</button>
+                    <button id="btn-admin-donasi" onclick="toggleSetDonasi()" class="px-4 py-2 bg-orange-50 dark:bg-orange-900/40 text-orange-600 dark:text-orange-400 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-orange-100 dark:hover:bg-orange-800/60">Pengaturan Donasi</button>
                     <button id="btn-admin-log" onclick="showLogsModal()" class="px-4 py-2 bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 rounded-lg text-sm font-bold hidden shadow-sm hover:bg-blue-100 dark:hover:bg-blue-800/60">Log Aktivitas</button>
                     <button onclick="bukaModalGantiPassword()" class="px-4 py-2 bg-indigo-50 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 rounded-lg text-sm font-bold shadow-sm hover:bg-indigo-100 dark:hover:bg-indigo-800/60">Ganti Password</button>
                     
-                    <button id="btn-admin-tulis" onclick="toggleCMSEditor()" class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold shadow-md hover:bg-emerald-700">Tulis Artikel</button>
+                    <button id="btn-admin-tulis" onclick="toggleCMSEditor()" class="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-bold shadow-md hover:bg-emerald-700">Buat Media Dakwah</button>
                     <button id="btn-admin-tambah-produk" onclick="bukaModalProduk()" class="px-4 py-2 bg-teal-600 text-white rounded-lg text-sm font-bold shadow-md hover:bg-teal-700">Tambah Produk</button>
                     
                     <button onclick="logout()" class="px-4 py-2 bg-rose-50 dark:bg-rose-900/40 text-rose-600 dark:text-rose-400 rounded-lg text-sm font-bold shadow-sm hover:bg-rose-100 dark:hover:bg-rose-800/60">Keluar</button>
@@ -389,33 +397,27 @@
             <!-- ANALISIS & STATISTIK (Hanya Superadmin) -->
             <div id="admin-analytics" class="hidden grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border dark:border-slate-700">
-                    <h3 class="font-bold text-slate-700 dark:text-slate-200 mb-4"><i class="ph-fill ph-chart-bar mr-2 text-emerald-500"></i> Statistik Artikel (Views)</h3>
+                    <h3 class="font-bold text-slate-700 dark:text-slate-200 mb-4"><i class="ph-fill ph-chart-bar mr-2 text-emerald-500"></i> Statistik (Views)</h3>
                     <canvas id="chartViews" height="200"></canvas>
                 </div>
                 <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm border dark:border-slate-700">
-                    <h3 class="font-bold text-slate-700 dark:text-slate-200 mb-4"><i class="ph-fill ph-trend-up mr-2 text-blue-500"></i> Analisis Penjualan Toko</h3>
+                    <h3 class="font-bold text-slate-700 dark:text-slate-200 mb-4"><i class="ph-fill ph-trend-up mr-2 text-blue-500"></i> Analisis Market</h3>
                     <canvas id="chartSales" height="200"></canvas>
                 </div>
             </div>
 
-            <div id="form-qris" class="hidden bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm mb-6 fade-in border dark:border-slate-700">
+            <!-- FORM PENGATURAN DONASI REKENING -->
+            <div id="form-donasi" class="hidden bg-white dark:bg-slate-800 p-6 rounded-3xl shadow-sm mb-6 fade-in border dark:border-slate-700">
                 <h3 class="font-bold mb-4 border-b dark:border-slate-700 pb-2 text-slate-800 dark:text-slate-100">Pengaturan Data Donasi</h3>
-                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Tautan Gambar QRIS (URL)</label>
-                <input type="url" id="input-qris-url" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white text-sm mb-4 px-4 py-2.5 rounded-xl outline-none" placeholder="https://i.imgur.com/...">
-                
-                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Atau Upload Gambar QRIS</label>
-                <input type="file" id="input-qris" accept="image/*" class="w-full text-sm mb-4 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-emerald-50 file:text-emerald-700 hover:file:bg-emerald-100 cursor-pointer">
-                
                 <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Informasi Rekening Bank (Boleh lebih dari satu baris)</label>
-                <textarea id="input-rekening" rows="3" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white text-sm mb-6 px-4 py-2.5 rounded-xl outline-none" placeholder="Contoh:&#10;BSI 12345678 a.n Majelis Keluarga&#10;Mandiri 98765432 a.n MKI"></textarea>
-                
-                <button onclick="simpanQRIS()" class="w-full bg-emerald-600 text-white px-4 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-emerald-700">Simpan Informasi Donasi</button>
+                <textarea id="input-rekening" rows="4" class="w-full bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white text-sm mb-6 px-4 py-2.5 rounded-xl outline-none" placeholder="Contoh:&#10;BSI 12345678 a.n Majelis Keluarga&#10;Mandiri 98765432 a.n MKI"></textarea>
+                <button onclick="simpanDonasi()" class="w-full bg-emerald-600 text-white px-4 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-emerald-700">Simpan Informasi Donasi</button>
             </div>
 
             <!-- Tabel Manajemen Artikel -->
             <div id="section-artikel" class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-sm border dark:border-slate-700 mb-8">
                 <div class="p-5 bg-slate-50 dark:bg-slate-800/50 border-b dark:border-slate-700 flex justify-between items-center">
-                    <h2 class="font-bold text-lg text-slate-700 dark:text-slate-200"><i class="ph-fill ph-books mr-2 text-emerald-600"></i> Manajemen Artikel</h2>
+                    <h2 class="font-bold text-lg text-slate-700 dark:text-slate-200"><i class="ph-fill ph-books mr-2 text-emerald-600"></i> Manajemen Media Dakwah</h2>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm whitespace-nowrap text-slate-700 dark:text-slate-300">
@@ -428,7 +430,7 @@
             <!-- Tabel Manajemen Produk (Toko) -->
             <div id="section-produk" class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-sm border dark:border-slate-700">
                 <div class="p-5 bg-slate-50 dark:bg-slate-800/50 border-b dark:border-slate-700 flex justify-between items-center">
-                    <h2 class="font-bold text-lg text-slate-700 dark:text-slate-200"><i class="ph-fill ph-storefront mr-2 text-teal-600"></i> Manajemen Produk Toko</h2>
+                    <h2 class="font-bold text-lg text-slate-700 dark:text-slate-200"><i class="ph-fill ph-storefront mr-2 text-teal-600"></i> Manajemen Market MKI</h2>
                 </div>
                 <div class="overflow-x-auto">
                     <table class="w-full text-left text-sm whitespace-nowrap text-slate-700 dark:text-slate-300">
@@ -456,7 +458,7 @@
 
     <div id="modal-logs" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[999999] flex items-center justify-center p-4 fade-in"><div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-2xl w-full p-6 relative flex flex-col max-h-[80vh] border dark:border-slate-700"><button onclick="tutupLogsModal()" class="absolute top-4 right-4 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 w-8 h-8 rounded-full hover:bg-slate-200"><i class="ph-bold ph-x"></i></button><h3 class="text-xl font-bold text-slate-800 dark:text-white mb-4 border-b dark:border-slate-700 pb-4">Log Aktivitas Sistem</h3><div class="overflow-y-auto flex-1 pr-2 space-y-3 text-slate-700 dark:text-slate-300" id="logs-container"></div></div></div>
 
-    <!-- MODAL FORM PRODUK TOKO (CMS) -->
+    <!-- MODAL FORM PRODUK MARKET (CMS) -->
     <div id="modal-form-produk" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[9999999] flex items-center justify-center p-4 fade-in">
         <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl max-w-lg w-full p-6 relative overflow-y-auto max-h-[90vh] border dark:border-slate-700">
             <button onclick="tutupModalProduk()" class="absolute top-4 right-4 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-200"><i class="ph-bold ph-x"></i></button>
@@ -487,7 +489,6 @@
                             <option value="Lainnya">Lainnya</option>
                         </select>
                     </div>
-                    <!-- Pembaruan Struktur Harga -->
                     <div>
                         <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Harga Modal (Rp)</label>
                         <input type="number" id="prd-harga-modal" class="w-full bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-white border dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500" required min="0">
@@ -517,18 +518,24 @@
         </div>
     </div>
 
-    <!-- VIEW CMS EDITOR (MEDIUM STYLE) -->
+    <!-- VIEW CMS EDITOR MEDIA DAKWAH -->
     <div id="view-cms-editor" class="hidden fixed inset-0 bg-white dark:bg-slate-900 z-[9999999] overflow-y-auto">
         <div class="sticky top-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b dark:border-slate-700 px-4 py-3 flex justify-between items-center z-50 shadow-sm">
             <button onclick="toggleCMSEditor()" class="text-slate-500 dark:text-slate-300 font-bold bg-slate-100 dark:bg-slate-700 px-4 py-1.5 rounded-full text-sm">Batal</button>
             <div class="flex space-x-3">
-                <select id="cms-kategori" class="bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-lg px-3 py-1.5 text-sm font-bold outline-none"><option value="Khutbah Jumat">Khutbah Jumat</option><option value="Artikel">Artikel</option><option value="Fiqih">Fiqih</option><option value="Keluarga">Keluarga</option></select>
+                <select id="cms-kategori" class="bg-slate-50 dark:bg-slate-900 border dark:border-slate-700 text-slate-800 dark:text-white rounded-lg px-3 py-1.5 text-sm font-bold outline-none">
+                    <option value="Khutbah Jumat">Khutbah Jumat</option>
+                    <option value="Artikel">Artikel</option>
+                    <option value="Fiqih">Fiqih</option>
+                    <option value="Keluarga">Keluarga</option>
+                    <option value="Video">Video</option>
+                </select>
                 <button onclick="simpanArtikel()" class="bg-emerald-600 text-white px-6 py-2 rounded-full font-bold text-sm shadow-md">Publikasikan</button>
             </div>
         </div>
         <div class="max-w-3xl mx-auto px-6 py-8">
             <div class="mb-8">
-                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Cover Artikel (URL / Upload File)</label>
+                <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">Cover Media (URL / Upload File)</label>
                 <div class="flex space-x-2 mb-2">
                     <input type="url" id="cms-cover-url" class="w-full bg-slate-50 dark:bg-slate-800 border dark:border-slate-700 text-slate-800 dark:text-white rounded-xl px-4 py-2.5 text-sm outline-none focus:border-emerald-500" placeholder="https://..." onchange="updateCoverPreview('cms-cover-preview', this.value)">
                     <button type="button" onclick="document.getElementById('cms-cover-file').click()" class="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 px-4 rounded-xl font-bold text-sm">Upload</button>
@@ -536,17 +543,18 @@
                 </div>
                 <img id="cms-cover-preview" src="" class="w-full h-48 object-cover rounded-2xl hidden">
             </div>
-            <div id="cms-title" class="medium-title text-4xl font-extrabold text-slate-800 dark:text-white outline-none mb-4" contenteditable="true" data-placeholder="Judul Artikel..."></div>
-            <div id="cms-subtitle" class="medium-title text-xl text-slate-400 dark:text-slate-500 mb-8 outline-none" contenteditable="true" data-placeholder="Subjudul..."></div>
+            <div id="cms-title" class="medium-title text-4xl font-extrabold text-slate-800 dark:text-white outline-none mb-4 break-words" contenteditable="true" data-placeholder="Judul Media..."></div>
+            <div id="cms-subtitle" class="medium-title text-xl text-slate-400 dark:text-slate-500 mb-8 outline-none break-words" contenteditable="true" data-placeholder="Subjudul..."></div>
             <input type="text" id="cms-author-name" class="font-bold text-sm outline-none w-full bg-transparent text-slate-800 dark:text-white mb-8" placeholder="Nama Penulis" readonly>
-            <div class="sticky top-[60px] bg-slate-800 dark:bg-slate-700 text-white rounded-xl p-2 flex space-x-1 mb-6 shadow-xl z-40 w-max mx-auto md:mx-0">
-                <button onclick="execCmd('bold')" class="w-8 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500"><b>B</b></button>
-                <button onclick="execCmd('italic')" class="w-8 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500"><i>I</i></button>
-                <button onclick="execCmd('formatBlock', 'H2')" class="w-8 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500 font-bold text-xs">H2</button>
-                <button onclick="execCmd('formatBlock', 'BLOCKQUOTE')" class="w-8 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500 text-xs font-bold">Quote</button>
-                <button onclick="insertImagePrompt()" class="w-8 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500 text-xs font-bold">Img</button>
+            <div class="sticky top-[60px] bg-slate-800 dark:bg-slate-700 text-white rounded-xl p-2 flex space-x-1 mb-6 shadow-xl z-40 w-max mx-auto md:mx-0 overflow-x-auto hide-scrollbar">
+                <button onclick="execCmd('bold')" class="flex-shrink-0 w-8 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500"><b>B</b></button>
+                <button onclick="execCmd('italic')" class="flex-shrink-0 w-8 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500"><i>I</i></button>
+                <button onclick="execCmd('formatBlock', 'H2')" class="flex-shrink-0 w-8 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500 font-bold text-xs">H2</button>
+                <button onclick="execCmd('formatBlock', 'BLOCKQUOTE')" class="flex-shrink-0 w-8 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500 text-xs font-bold">Quote</button>
+                <button onclick="insertImagePrompt()" class="flex-shrink-0 w-8 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500 text-xs font-bold">Img</button>
+                <button onclick="insertEmbedPrompt()" class="flex-shrink-0 px-2 h-8 rounded hover:bg-slate-600 dark:hover:bg-slate-500 text-xs font-bold text-emerald-300">Embed Video</button>
             </div>
-            <div id="cms-content" class="medium-content article-body text-lg text-slate-700 dark:text-slate-300 outline-none min-h-[40vh]" contenteditable="true" data-placeholder="Tuliskan isi artikel di sini..."></div>
+            <div id="cms-content" class="medium-content article-body text-lg text-slate-700 dark:text-slate-300 outline-none min-h-[40vh] break-words" contenteditable="true" data-placeholder="Tuliskan isi atau embed konten di sini..."></div>
         </div>
     </div>
 
@@ -567,19 +575,19 @@
         <div class="sticky top-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b dark:border-slate-700 px-4 py-4 flex items-center justify-between z-50 shadow-sm">
             <div class="flex items-center">
                 <button onclick="openMenu('quran')" class="w-10 h-10 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center mr-4 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-600"><i class="ph-bold ph-arrow-left"></i></button>
-                <h2 class="text-lg font-bold text-slate-800 dark:text-slate-100" id="baca-surah-title">Surah</h2>
+                <h2 class="text-lg font-bold text-slate-800 dark:text-slate-100 truncate max-w-[200px]" id="baca-surah-title">Surah</h2>
             </div>
             <button id="btn-unduh-surah" class="w-10 h-10 bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center shadow-sm" title="Unduh untuk offline">
                 <i class="ph-bold ph-download-simple"></i>
             </button>
         </div>
-        <div class="max-w-3xl mx-auto p-4 mt-2" id="baca-quran-content"></div>
+        <div class="max-w-3xl mx-auto p-4 mt-2 overflow-x-hidden" id="baca-quran-content"></div>
     </div>
 
     <!-- VIEW LISTING, TODO, ZAKAT, TASBIH, KOMPAS -->
     <div id="view-listing" class="hidden min-h-screen bg-slate-50 dark:bg-slate-900 relative pb-10 overflow-y-auto">
         <div class="sticky top-0 gradient-emerald text-white px-4 py-5 flex items-center z-50 shadow-md"><button onclick="switchView('home')" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4 hover:bg-white/30"><i class="ph-bold ph-arrow-left"></i></button><h2 class="text-lg font-bold" id="listing-title">Daftar</h2></div>
-        <div class="max-w-3xl mx-auto p-4 mt-4 space-y-4" id="listing-content"></div>
+        <div class="max-w-3xl mx-auto p-4 mt-4 space-y-4 overflow-x-hidden" id="listing-content"></div>
     </div>
 
     <div id="view-todo" class="hidden min-h-screen bg-slate-50 dark:bg-slate-900 relative pb-10 overflow-y-auto">
@@ -599,13 +607,13 @@
         </div>
     </div>
 
-    <div id="view-article-detail" class="hidden min-h-screen bg-white dark:bg-slate-900 relative pb-20 overflow-y-auto">
+    <div id="view-article-detail" class="hidden min-h-screen bg-white dark:bg-slate-900 relative pb-20 overflow-y-auto overflow-x-hidden">
         <div class="sticky top-0 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md border-b dark:border-slate-700 px-4 py-4 flex justify-between z-50 shadow-sm"><button onclick="switchView('home')" class="w-10 h-10 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full font-bold text-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">&laquo;</button><button onclick="shareArticle()" class="bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 px-4 py-2 rounded-full font-bold text-xs hover:bg-emerald-100 dark:hover:bg-emerald-800/60 transition-colors">Bagikan</button></div>
         <div id="detail-cover-container" class="w-full h-48 sm:h-64 md:h-96 bg-slate-100 dark:bg-slate-800 hidden relative"><img id="detail-cover" class="w-full h-full object-cover"></div>
         <div class="max-w-3xl mx-auto px-5 sm:px-6 py-6 sm:py-8 bg-white dark:bg-slate-900" id="detail-content-wrapper">
             <span id="detail-kategori" class="text-[10px] font-bold text-white bg-emerald-600 px-3 py-1 rounded-full uppercase mb-4 inline-block shadow-sm">Kategori</span>
-            <h1 id="detail-judul" class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-3">Judul</h1>
-            <h2 id="detail-subjudul" class="text-lg text-slate-500 dark:text-slate-400 mb-6 font-sans"></h2>
+            <h1 id="detail-judul" class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-3 break-words">Judul</h1>
+            <h2 id="detail-subjudul" class="text-lg text-slate-500 dark:text-slate-400 mb-6 font-sans break-words"></h2>
             <div class="flex items-center justify-between mb-8 pb-8 border-b border-slate-100 dark:border-slate-800"><div class="flex items-center"><div><p id="detail-penulis" class="font-bold text-slate-800 dark:text-slate-200 font-sans">Penulis</p><p id="detail-tanggal" class="text-xs text-slate-500 dark:text-slate-400 font-sans">Tanggal</p></div></div><div class="text-right text-xs font-bold text-slate-400 font-sans"><p><span id="detail-views">0</span>x dibaca</p><p class="text-amber-500"><i class="ph-fill ph-star"></i> <span id="detail-rating">0.0</span></p></div></div>
             <div id="detail-konten" class="article-body text-lg text-slate-700 font-charter"></div>
             <div class="mt-12 pt-8 border-t border-slate-100 dark:border-slate-800 text-center font-sans"><p class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3">Beri nilai artikel ini</p><div class="flex justify-center space-x-2 text-3xl text-slate-300 dark:text-slate-600" id="rating-stars-container"></div><p id="rating-thanks" class="text-emerald-600 dark:text-emerald-400 text-sm mt-3 hidden">Terima kasih!</p></div>
@@ -653,6 +661,7 @@
     }
 
     const initLocalDB = () => {
+        // Default Light Mode
         if (localStorage.theme === 'dark') {
             document.documentElement.classList.add('dark');
             const icon = document.getElementById('theme-icon-display'); if(icon) icon.className = "ph-bold ph-sun text-sm sm:text-lg md:mr-1.5 text-amber-400";
@@ -867,9 +876,11 @@
             let hrgHtml = `<p class="text-emerald-600 dark:text-emerald-400 font-extrabold text-base sm:text-lg mb-2 sm:mb-3">Rp ${hAkhir.toLocaleString('id-ID')}</p>`;
             if (dsk > 0) {
                 hrgHtml = `
-                    <div class="mb-2 sm:mb-3">
-                        <span class="text-xs text-slate-400 line-through mr-2">Rp ${hJual.toLocaleString('id-ID')}</span>
-                        <span class="text-[10px] bg-rose-100 text-rose-600 px-1.5 py-0.5 rounded font-bold">-${dsk}%</span>
+                    <div class="mb-2 sm:mb-3 flex flex-col">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-xs text-slate-400 line-through">Rp ${hJual.toLocaleString('id-ID')}</span>
+                            <span class="text-[10px] bg-rose-100 text-rose-600 px-1.5 py-0.5 rounded font-bold">-${dsk}%</span>
+                        </div>
                         <p class="text-emerald-600 dark:text-emerald-400 font-extrabold text-base sm:text-lg">Rp ${hAkhir.toLocaleString('id-ID')}</p>
                     </div>`;
             }
@@ -1036,6 +1047,59 @@
         });
     };
 
+    const asmaulHusnaData = [
+        { id: 1, latin: "Ar Rahman", arab: "الرَّحْمَنُ", arti: "Yang Maha Pengasih" }, { id: 2, latin: "Ar Rahiim", arab: "الرَّحِيمُ", arti: "Yang Maha Penyayang" },
+        { id: 3, latin: "Al Malik", arab: "الْمَلِكُ", arti: "Yang Maha Merajai" }, { id: 4, latin: "Al Quddus", arab: "الْقُدُّوسُ", arti: "Yang Maha Suci" },
+        { id: 5, latin: "As Salaam", arab: "السَّلَامُ", arti: "Yang Maha Memberi Kesejahteraan" }, { id: 6, latin: "Al Mu'min", arab: "الْمُؤْمِنُ", arti: "Yang Maha Memberi Keamanan" },
+        { id: 7, latin: "Al Muhaimin", arab: "الْمُهَيْمِنُ", arti: "Yang Maha Mengatur" }, { id: 8, latin: "Al 'Aziiz", arab: "الْعَزِيزُ", arti: "Yang Maha Perkasa" },
+        { id: 9, latin: "Al Jabbaar", arab: "الْجَبَّارُ", arti: "Yang Memiliki Mutlak Kegagahan" }, { id: 10, latin: "Al Mutakabbir", arab: "الْمُتَكَبِّرُ", arti: "Yang Maha Megah" },
+        { id: 11, latin: "Al Khaliq", arab: "الْخَالِقُ", arti: "Yang Maha Pencipta" }, { id: 12, latin: "Al Baari'", arab: "الْبَارِئُ", arti: "Yang Maha Melepaskan" },
+        { id: 13, latin: "Al Mushawwir", arab: "الْمُصَوِّرُ", arti: "Yang Maha Membentuk Rupa" }, { id: 14, latin: "Al Ghaffaar", arab: "الْغَفَّارُ", arti: "Yang Maha Pengampun" },
+        { id: 15, latin: "Al Qahhaar", arab: "الْقَهَّارُ", arti: "Yang Maha Memaksa" }, { id: 16, latin: "Al Wahhaab", arab: "الْوَهَّابُ", arti: "Yang Maha Pemberi Karunia" },
+        { id: 17, latin: "Ar Razzaaq", arab: "الرَّزَّاقُ", arti: "Yang Maha Pemberi Rezeki" }, { id: 18, latin: "Al Fattaah", arab: "الْفَتَّاحُ", arti: "Yang Maha Pembuka Rahmat" },
+        { id: 19, latin: "Al 'Aliim", arab: "الْعَلِيمُ", arti: "Yang Maha Mengetahui" }, { id: 20, latin: "Al Qaabidh", arab: "الْقَابِضُ", arti: "Yang Maha Menyempitkan" },
+        { id: 21, latin: "Al Baasith", arab: "الْبَاسِطُ", arti: "Yang Maha Melapangkan" }, { id: 22, latin: "Al Khaafidh", arab: "الْخَافِضُ", arti: "Yang Maha Merendahkan" },
+        { id: 23, latin: "Ar Raafi'", arab: "الرَّافِعُ", arti: "Yang Maha Meninggikan" }, { id: 24, latin: "Al Mu'izz", arab: "الْمُعِزُّ", arti: "Yang Maha Memuliakan" },
+        { id: 25, latin: "Al Mudzil", arab: "المُذِلُّ", arti: "Yang Maha Menghinakan" }, { id: 26, latin: "As Samii'", arab: "السَّمِيعُ", arti: "Yang Maha Mendengar" },
+        { id: 27, latin: "Al Bashiir", arab: "الْبَصِيرُ", arti: "Yang Maha Melihat" }, { id: 28, latin: "Al Hakam", arab: "الْحَكَمُ", arti: "Yang Maha Menetapkan" },
+        { id: 29, latin: "Al 'Adl", arab: "الْعَدْلُ", arti: "Yang Maha Adil" }, { id: 30, latin: "Al Lathiif", arab: "اللَّطِيفُ", arti: "Yang Maha Lembut" },
+        { id: 31, latin: "Al Khabiir", arab: "الْخَبِيرُ", arti: "Yang Maha Mengenal" }, { id: 32, latin: "Al Haliim", arab: "الْحَلِيمُ", arti: "Yang Maha Penyantun" },
+        { id: 33, latin: "Al 'Azhiim", arab: "الْعَظِيمُ", arti: "Yang Maha Agung" }, { id: 34, latin: "Al Ghafuur", arab: "الْغَفُورُ", arti: "Yang Maha Pengampun" },
+        { id: 35, latin: "As Syakuur", arab: "الشَّكُورُ", arti: "Yang Maha Pembalas Budi" }, { id: 36, latin: "Al 'Aliy", arab: "الْعَلِيُّ", arti: "Yang Maha Tinggi" },
+        { id: 37, latin: "Al Kabiir", arab: "الْكَبِيرُ", arti: "Yang Maha Besar" }, { id: 38, latin: "Al Hafizh", arab: "الْحَفِيظُ", arti: "Yang Maha Memelihara" },
+        { id: 39, latin: "Al Muqiit", arab: "الْمُقِيتُ", arti: "Yang Maha Pemberi Kecukupan" }, { id: 40, latin: "Al Hasiib", arab: "الْحَسِيبُ", arti: "Yang Maha Membuat Perhitungan" },
+        { id: 41, latin: "Al Jaliil", arab: "الْجَلِيلُ", arti: "Yang Maha Luhur" }, { id: 42, latin: "Al Kariim", arab: "الْكَرِيمُ", arti: "Yang Maha Mulia" },
+        { id: 43, latin: "Ar Raqiib", arab: "الرَّقِيبُ", arti: "Yang Maha Mengawasi" }, { id: 44, latin: "Al Mujiib", arab: "الْمُجِيبُ", arti: "Yang Maha Mengabulkan" },
+        { id: 45, latin: "Al Waasi'", arab: "الْوَاسِعُ", arti: "Yang Maha Luas" }, { id: 46, latin: "Al Hakiim", arab: "الْحَكِيمُ", arti: "Yang Maha Bijaksana" },
+        { id: 47, latin: "Al Waduud", arab: "الْوَدُودُ", arti: "Yang Maha Mengasihi" }, { id: 48, latin: "Al Majiid", arab: "الْمَجِيدُ", arti: "Yang Maha Mulia" },
+        { id: 49, latin: "Al Baa'its", arab: "الْبَاعِثُ", arti: "Yang Maha Membangkitkan" }, { id: 50, latin: "As Syahiid", arab: "الشَّهِيدُ", arti: "Yang Maha Menyaksikan" },
+        { id: 51, latin: "Al Haqq", arab: "الْحَقُّ", arti: "Yang Maha Benar" }, { id: 52, latin: "Al Wakiil", arab: "الْوَكِيلُ", arti: "Yang Maha Memelihara" },
+        { id: 53, latin: "Al Qawiyyu", arab: "الْقَوِيُّ", arti: "Yang Maha Kuat" }, { id: 54, latin: "Al Matiin", arab: "الْمَتِينُ", arti: "Yang Maha Kokoh" },
+        { id: 55, latin: "Al Waliyy", arab: "الْوَلِيُّ", arti: "Yang Maha Melindungi" }, { id: 56, latin: "Al Hamiid", arab: "الْحَمِيدُ", arti: "Yang Maha Terpuji" },
+        { id: 57, latin: "Al Muhshii", arab: "الْمُحْصِي", arti: "Yang Maha Menghitung" }, { id: 58, latin: "Al Mubdi'", arab: "الْمُبْدِئُ", arti: "Yang Maha Memulai" },
+        { id: 59, latin: "Al Mu'iid", arab: "الْمُعِيدُ", arti: "Yang Maha Mengembalikan" }, { id: 60, latin: "Al Muhyii", arab: "الْمُحْيِي", arti: "Yang Maha Menghidupkan" },
+        { id: 61, latin: "Al Mumiit", arab: "اَلْمُمِيتُ", arti: "Yang Maha Mematikan" }, { id: 62, latin: "Al Hayyu", arab: "الْحَيُّ", arti: "Yang Maha Hidup" },
+        { id: 63, latin: "Al Qayyuum", arab: "الْقَيُّومُ", arti: "Yang Maha Mandiri" }, { id: 64, latin: "Al Waajid", arab: "الْوَاجِدُ", arti: "Yang Maha Penemu" },
+        { id: 65, latin: "Al Maajid", arab: "الْمَاجِدُ", arti: "Yang Maha Mulia" }, { id: 66, latin: "Al Wahiid", arab: "الْواحِدُ", arti: "Yang Maha Tunggal" },
+        { id: 67, latin: "Al Ahad", arab: "الْأَحَدُ", arti: "Yang Maha Esa" }, { id: 68, latin: "As Shamad", arab: "الصَّمَدُ", arti: "Yang Maha Dibutuhkan" },
+        { id: 69, latin: "Al Qaadir", arab: "الْقَادِرُ", arti: "Yang Maha Menentukan" }, { id: 70, latin: "Al Muqtadir", arab: "الْمُقْتَدِرُ", arti: "Yang Maha Berkuasa" },
+        { id: 71, latin: "Al Muqaddim", arab: "الْمُقَدِّمُ", arti: "Yang Maha Mendahulukan" }, { id: 72, latin: "Al Mu'akkhir", arab: "الْمُؤَخِّرُ", arti: "Yang Maha Mengakhirkan" },
+        { id: 73, latin: "Al Awwal", arab: "الْأَوَّلُ", arti: "Yang Maha Awal" }, { id: 74, latin: "Al Aakhir", arab: "الْآخِرُ", arti: "Yang Maha Akhir" },
+        { id: 75, latin: "Az Zhaahir", arab: "الظَّاهِرُ", arti: "Yang Maha Nyata" }, { id: 76, latin: "Al Baathin", arab: "الْبَاطِنُ", arti: "Yang Maha Ghaib" },
+        { id: 77, latin: "Al Waali", arab: "الْوَالِي", arti: "Yang Maha Memerintah" }, { id: 78, latin: "Al Muta'aalii", arab: "الْمُتَعَالِي", arti: "Yang Maha Tinggi" },
+        { id: 79, latin: "Al Barru", arab: "الْبَرُّ", arti: "Yang Maha Penderma" }, { id: 80, latin: "At Tawwaab", arab: "التَّوَابُ", arti: "Yang Maha Penerima Tobat" },
+        { id: 81, latin: "Al Muntaqim", arab: "الْمُنْتَقِمُ", arti: "Yang Maha Pemberi Balasan" }, { id: 82, latin: "Al Afuww", arab: "العَفُوُّ", arti: "Yang Maha Pemaaf" },
+        { id: 83, latin: "Ar Ra`uuf", arab: "الرَّؤُوفُ", arti: "Yang Maha Pengasuh" }, { id: 84, latin: "Malikul Mulk", arab: "مَالِكُ الْمُلْكِ", arti: "Yang Maha Penguasa Kerajaan" },
+        { id: 85, latin: "Dzul Jalaali Wal Ikraam", arab: "ذُوالْجَلَالِ وَالْإِكْرَامِ", arti: "Pemilik Kebesaran dan Kemuliaan" }, { id: 86, latin: "Al Muqsit", arab: "الْمُقْسِطُ", arti: "Yang Maha Pemberi Keadilan" },
+        { id: 87, latin: "Al Jaami'", arab: "الْجَامِعُ", arti: "Yang Maha Mengumpulkan" }, { id: 88, latin: "Al Ghaniyy", arab: "الْغَنِيُّ", arti: "Yang Maha Kaya" },
+        { id: 89, latin: "Al Mughnii", arab: "الْمُغْنِي", arti: "Yang Maha Pemberi Kekayaan" }, { id: 90, latin: "Al Maani", arab: "اَلْمَانِعُ", arti: "Yang Maha Mencegah" },
+        { id: 91, latin: "Ad Dhaar", arab: "الضَّارُ", arti: "Yang Maha Penimpa Kemudharatan" }, { id: 92, latin: "An Nafii'", arab: "النَّافِعُ", arti: "Yang Maha Memberi Manfaat" },
+        { id: 93, latin: "An Nuur", arab: "النُّورُ", arti: "Yang Maha Bercahaya" }, { id: 94, latin: "Al Haadii", arab: "الْهَادِي", arti: "Yang Maha Pemberi Petunjuk" },
+        { id: 95, latin: "Al Badii'", arab: "الْبَدِيعُ", arti: "Yang Maha Pencipta" }, { id: 96, latin: "Al Baaqii", arab: "اَلْبَاقِي", arti: "Yang Maha Kekal" },
+        { id: 97, latin: "Al Waarits", arab: "الْوَارِثُ", arti: "Yang Maha Pewaris" }, { id: 98, latin: "Ar Rasyiid", arab: "الرَّشِيدُ", arti: "Yang Maha Pandai" },
+        { id: 99, latin: "As Shabuur", arab: "الصَّبُورُ", arti: "Yang Maha Sabar" }
+    ];
+
     function renderAsmaulHusnaLokal() {
         const content = document.getElementById('listing-content');
         if(!content) return;
@@ -1068,7 +1132,7 @@
         content.innerHTML = items.map(item => `
             <div class="bg-white dark:bg-slate-800 p-6 md:p-8 rounded-[2rem] shadow-sm border dark:border-slate-700 mb-6">
                 <h3 class="font-bold text-emerald-700 dark:text-emerald-400 text-lg mb-4 border-b dark:border-slate-700 pb-2">${item.judul}</h3>
-                <p class="font-arabic text-3xl md:text-4xl leading-[2.5] text-right text-slate-800 dark:text-white mb-6" dir="rtl">${item.arab}</p>
+                <p class="font-arabic text-3xl md:text-4xl leading-[2.5] text-right text-slate-800 dark:text-white mb-6 break-words" dir="rtl">${item.arab}</p>
                 ${item.latin ? `<p class="text-sm text-emerald-600 dark:text-emerald-400 font-medium mb-3">${item.latin}</p>` : ''}
                 <div class="bg-emerald-50 dark:bg-slate-900 rounded-2xl p-4"><p class="text-sm font-medium font-sans text-slate-700 dark:text-slate-300">"${item.terjemahan}"</p></div>
             </div>`).join('');
@@ -1163,8 +1227,8 @@
                                     <span class="w-8 h-8 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0">${ayah.nomorAyat}</span>
                                     <button onclick="tandaiAyat(${id}, '${safeSurahName}', ${ayah.nomorAyat})" class="px-2 py-1 rounded text-[10px] font-bold ${btnClass} shadow-sm transition-colors whitespace-nowrap" title="Tandai terakhir dibaca">Tandai</button>
                                 </div>
-                                <div class="flex-1 w-full">
-                                    <p class="font-arabic text-3xl md:text-4xl leading-[2.2] md:leading-[2.5] text-right text-slate-800 dark:text-white mb-4" dir="rtl">${ayah.teksArab}</p>
+                                <div class="flex-1 w-full overflow-x-hidden">
+                                    <p class="font-arabic text-3xl md:text-4xl leading-[2.2] md:leading-[2.5] text-right text-slate-800 dark:text-white mb-4 break-words" dir="rtl">${ayah.teksArab}</p>
                                 </div>
                             </div>
                             <div class="border-t border-slate-100 dark:border-slate-700 pt-4">
@@ -1301,7 +1365,7 @@
         if(!list) return;
         list.innerHTML = '';
         
-        if(paginatedArticles.length === 0) { list.innerHTML = `<div class="col-span-1 md:col-span-2 text-center py-10 text-slate-400 font-sans">Tidak ada artikel ditemukan.</div>`; return; }
+        if(paginatedArticles.length === 0) { list.innerHTML = `<div class="col-span-1 md:col-span-2 text-center py-10 text-slate-400 font-sans">Tidak ada Media Dakwah ditemukan.</div>`; return; }
 
         paginatedArticles.forEach(art => {
             let d = new Date(art.tanggal); let tgl = isNaN(d) ? art.tanggal : d.toLocaleDateString('id-ID', {day:'numeric',month:'short',year:'numeric'});
@@ -1327,7 +1391,7 @@
         let art = articles[artIdx]; art.views = (art.views || 0) + 1; articles[artIdx] = art; setDB('dzikra_articles', articles);
         
         scrollPositions['article-detail'] = 0; 
-        switchView('article-detail'); addLog("Membaca artikel: " + art.judul);
+        switchView('article-detail'); addLog("Membaca konten: " + art.judul);
         
         let d = new Date(art.tanggal);
         setElText('detail-kategori', art.kategori);
@@ -1393,8 +1457,8 @@
     
     function shareArticle() {
         const titleEl = document.getElementById('detail-judul');
-        const title = titleEl ? titleEl.innerText : 'Artikel';
-        if (navigator.share) navigator.share({ title: title, text: `Baca kajian menarik "${title}" di MKI App!`, url: window.location.href }).catch(console.error);
+        const title = titleEl ? titleEl.innerText : 'Media Dakwah';
+        if (navigator.share) navigator.share({ title: title, text: `Saksikan konten menarik "${title}" di MKI App!`, url: window.location.href }).catch(console.error);
         else alert("Fitur Share (Bagikan) tidak didukung browser Anda.");
     }
 
@@ -1532,7 +1596,7 @@
         const tbody = document.getElementById('admin-table-body'); 
         if(!tbody) return;
         tbody.innerHTML = '';
-        if(articles.length === 0) tbody.innerHTML = `<tr><td colspan="3" class="text-center text-slate-400 py-6 font-sans">Tidak ada artikel.</td></tr>`;
+        if(articles.length === 0) { tbody.innerHTML = `<tr><td colspan="3" class="text-center text-slate-400 py-6 font-sans">Tidak ada data.</td></tr>`; return; }
         
         articles.forEach((art) => {
             let actionsHtml = '';
@@ -1547,9 +1611,9 @@
     }
 
     function hapusArtikel(id) {
-        if(confirm(`Yakin ingin menghapus artikel permanen?`)) {
+        if(confirm(`Yakin ingin menghapus secara permanen?`)) {
             let articles = getDB('dzikra_articles').filter(a => a.id !== id);
-            setDB('dzikra_articles', articles); addLog("Menghapus artikel"); renderAdminTable(); renderArticlesHome(currentHomeArticlePage);
+            setDB('dzikra_articles', articles); addLog("Menghapus"); renderAdminTable(); renderArticlesHome(currentHomeArticlePage);
         }
     }
 
@@ -1589,10 +1653,10 @@
         let articles = getDB('dzikra_articles');
         if (currentEditId) {
             const idx = articles.findIndex(a => a.id === currentEditId);
-            if(idx !== -1) { articles[idx] = { ...articles[idx], judul, subjudul, kategori, penulis, cover, konten, tanggal: new Date().toISOString() }; addLog("Mengubah artikel: " + judul); }
+            if(idx !== -1) { articles[idx] = { ...articles[idx], judul, subjudul, kategori, penulis, cover, konten, tanggal: new Date().toISOString() }; addLog("Mengubah konten: " + judul); }
             currentEditId = null;
         } else {
-            articles.unshift({ id: Date.now(), judul, subjudul, kategori, tanggal: new Date().toISOString(), penulis, cover, konten, views: 0, rating: "0.0", ratingCount: 0 }); addLog("Mempublikasikan artikel: " + judul);
+            articles.unshift({ id: Date.now(), judul, subjudul, kategori, tanggal: new Date().toISOString(), penulis, cover, konten, views: 0, rating: "0.0", ratingCount: 0 }); addLog("Mempublikasikan konten: " + judul);
         }
         setDB('dzikra_articles', articles); 
         const editor = document.getElementById('view-cms-editor'); if(editor) editor.classList.add('hidden');
@@ -1624,6 +1688,7 @@
 
     function execCmd(command, value = null) { document.execCommand(command, false, value); const c = document.getElementById('cms-content'); if(c) c.focus(); }
     function insertImagePrompt() { let url = prompt("Masukkan URL Gambar:"); if(url) execCmd('insertImage', url); }
+    function insertEmbedPrompt() { let html = prompt("Paste Kode Embed HTML Video (YouTube/Instagram/TikTok):"); if(html) execCmd('insertHTML', html); }
 
     function bukaModalUsers() { renderUsersTable(); const m = document.getElementById('modal-users'); if(m) m.classList.remove('hidden'); }
     function tutupModalUsers() { const m = document.getElementById('modal-users'); if(m) m.classList.add('hidden'); }
@@ -1732,50 +1797,32 @@
     function bukaDonasi() { 
         const modal = document.getElementById('modal-donasi'); if(modal) modal.classList.remove('hidden'); 
         
-        const qrisData = localStorage.getItem('dzikra_qris') || 'https://i.imgur.com/Mly81cj.jpeg'; 
-        const imgDisplay = document.getElementById('img-qris-display');
-        const imgPlaceholder = document.getElementById('img-qris-placeholder');
-        
-        if(qrisData && imgDisplay && imgPlaceholder) { 
-            imgDisplay.src = qrisData; 
-            imgDisplay.classList.remove('hidden'); 
-            imgPlaceholder.classList.add('hidden'); 
-        }
-
         const rekData = localStorage.getItem('dzikra_rekening');
         const rekDisplay = document.getElementById('rekening-display');
+        const rekPlaceholder = document.getElementById('rekening-placeholder');
         
-        if(rekData && rekData.trim() !== '' && rekDisplay && imgPlaceholder) {
+        if(rekData && rekData.trim() !== '' && rekDisplay && rekPlaceholder) {
             rekDisplay.innerHTML = rekData.replace(/\n/g, '<br>');
             rekDisplay.classList.remove('hidden');
-            imgPlaceholder.classList.add('hidden');
-        } else if (rekDisplay) {
+            rekPlaceholder.classList.add('hidden');
+        } else if (rekDisplay && rekPlaceholder) {
             rekDisplay.classList.add('hidden');
-        }
-
-        if(!qrisData && (!rekData || rekData.trim() === '') && imgPlaceholder) {
-            imgPlaceholder.classList.remove('hidden');
+            rekPlaceholder.classList.remove('hidden');
         }
     }
     function tutupDonasi() { const m = document.getElementById('modal-donasi'); if(m) m.classList.add('hidden'); }
-    function toggleSetQRIS() { const f = document.getElementById('form-qris'); if(f) f.classList.toggle('hidden'); }
-    function simpanQRIS() { 
-        const fileInput = document.getElementById('input-qris'); 
-        const urlInput = document.getElementById('input-qris-url');
+    function toggleSetDonasi() { const f = document.getElementById('form-donasi'); if(f) f.classList.toggle('hidden'); }
+    function simpanDonasi() { 
         const rekInput = document.getElementById('input-rekening');
-        
-        if(rekInput) localStorage.setItem('dzikra_rekening', rekInput.value);
-
-        if(urlInput && urlInput.value) {
-            localStorage.setItem('dzikra_qris', urlInput.value); 
-            addLog("Memperbarui link QRIS dan Rekening"); alert('Informasi Donasi disimpan!'); toggleSetQRIS();
-        } else if(fileInput && fileInput.files && fileInput.files[0]) { 
-            const reader = new FileReader(); reader.onload = function(e) { localStorage.setItem('dzikra_qris', e.target.result); addLog("Memperbarui gambar QRIS dan Rekening"); alert('Informasi Donasi disimpan!'); toggleSetQRIS(); }; reader.readAsDataURL(fileInput.files[0]); 
-        } else {
-            addLog("Memperbarui Informasi Rekening"); alert('Informasi Donasi disimpan!'); toggleSetQRIS();
+        if(rekInput) {
+            localStorage.setItem('dzikra_rekening', rekInput.value);
+            addLog("Memperbarui Informasi Rekening Donasi"); 
+            alert('Informasi Donasi disimpan!'); 
+            toggleSetDonasi();
         }
     }
 
+    // --- COMPASS IMPLEMENTATION (LOW-PASS FILTER SMOOTHING) ---
     let compassHandler;
     let lastHeading = 0;
 
@@ -1789,7 +1836,7 @@
     
     function requestCompassPermission() { 
         DeviceOrientationEvent.requestPermission().then(r => { 
-            if(r == 'granted') { 
+            if(r === 'granted') { 
                 initCompassSensor(); const btn = document.getElementById('btn-izin-kompas'); if(btn) btn.classList.add('hidden'); 
             } 
         }).catch(console.error); 
@@ -1797,18 +1844,20 @@
     
     function initCompassSensor() {
         compassHandler = (e) => {
-            let heading = e.webkitCompassHeading;
-            if (typeof heading === 'undefined' || heading === null) {
+            let heading = null;
+            if (e.webkitCompassHeading !== undefined) {
+                heading = e.webkitCompassHeading;
+            } else if (e.alpha !== null) {
                 heading = 360 - e.alpha; 
             }
 
-            if(heading !== null && heading !== undefined) {
+            if(heading !== null && heading !== undefined && !isNaN(heading)) {
                 let diff = heading - lastHeading;
                 
                 if (diff > 180) diff -= 360;
                 else if (diff < -180) diff += 360;
 
-                lastHeading += diff * 0.15; 
+                lastHeading += diff * 0.1; 
                 
                 if(lastHeading < 0) lastHeading += 360;
                 if(lastHeading >= 360) lastHeading -= 360;
@@ -1821,14 +1870,21 @@
                 setElText('kompas-status', `Derajat: ${Math.round(lastHeading)}°`);
             }
         };
-        window.addEventListener('deviceorientationabsolute', compassHandler, true); 
-        window.addEventListener('deviceorientation', compassHandler, true);
+        
+        if ('ondeviceorientationabsolute' in window) {
+            window.addEventListener('deviceorientationabsolute', compassHandler, true); 
+        } else {
+            window.addEventListener('deviceorientation', compassHandler, true);
+        }
     }
     
     function stopCompass() { 
         if(compassHandler) { 
-            window.removeEventListener('deviceorientationabsolute', compassHandler, true); 
-            window.removeEventListener('deviceorientation', compassHandler, true); 
+            if ('ondeviceorientationabsolute' in window) {
+                window.removeEventListener('deviceorientationabsolute', compassHandler, true); 
+            } else {
+                window.removeEventListener('deviceorientation', compassHandler, true); 
+            }
         } 
     }
     
